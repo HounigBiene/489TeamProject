@@ -1,16 +1,22 @@
 fileFormatVersion: 2
-guid: c1aa82b455d4c58459903d073192b2a4
+guid: 9c23fb86dd8af4447ae4f61d4c0f2135
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5704414159870925328
-    second: drawing2_0
+      213: -7882826725711281038
+    second: drawing3_0
   - first:
-      213: -6232919351276382153
-    second: drawing2_1
+      213: -1963584295506533787
+    second: drawing3_1
   - first:
-      213: -161161900852719080
-    second: drawing2_2
+      213: -6519304370657042354
+    second: drawing3_2
+  - first:
+      213: -4545996921493397675
+    second: drawing3_3
+  - first:
+      213: -7677929824842715528
+    second: drawing3_4
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -104,17 +110,43 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: drawing2_0
+      name: drawing3_0
       rect:
         serializedVersion: 2
-        x: 21
-        y: 372
-        width: 95
-        height: 96
+        x: 71
+        y: 565
+        width: 225
+        height: 135
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -123,20 +155,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 01a90d284762a2f40800000000000000
-      internalID: 5704414159870925328
+      spriteID: 2740604abd29a9290800000000000000
+      internalID: -7882826725711281038
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: drawing2_1
+      name: drawing3_1
       rect:
         serializedVersion: 2
-        x: 727
-        y: 450
-        width: 60
-        height: 56
+        x: 412
+        y: 520
+        width: 119
+        height: 155
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -145,20 +177,42 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 73853899fd83089a0800000000000000
-      internalID: -6232919351276382153
+      spriteID: 5622ccb9c72ffb4e0800000000000000
+      internalID: -1963584295506533787
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: drawing2_2
+      name: drawing3_2
+      rect:
+        serializedVersion: 2
+        x: 135
+        y: 490
+        width: 11
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e40e5543737c685a0800000000000000
+      internalID: -6519304370657042354
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: drawing3_3
       rect:
         serializedVersion: 2
         x: 0
-        y: 3
-        width: 702
-        height: 429
+        y: 0
+        width: 531
+        height: 367
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -167,8 +221,30 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 812d854ea1073cdf0800000000000000
-      internalID: -161161900852719080
+      spriteID: 55fdd58b2ef59e0c0800000000000000
+      internalID: -4545996921493397675
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: drawing3_4
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 346
+        width: 231
+        height: 142
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 87e6fd3f083827590800000000000000
+      internalID: -7677929824842715528
       vertices: []
       indices: 
       edges: []
@@ -187,9 +263,11 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      drawing2_0: 5704414159870925328
-      drawing2_1: -6232919351276382153
-      drawing2_2: -161161900852719080
+      drawing3_0: -7882826725711281038
+      drawing3_1: -1963584295506533787
+      drawing3_2: -6519304370657042354
+      drawing3_3: -4545996921493397675
+      drawing3_4: -7677929824842715528
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
