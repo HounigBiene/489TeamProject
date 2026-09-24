@@ -4829,7 +4829,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ColorPencil
   colorName: Black
   colorValue: {r: 0, g: 0, b: 0, a: 1}
-  isDrawingPencil: 0
+  isDrawingPencil: 1
   canBePickedUp: 1
   redPencilPrefab: {fileID: 3467816718494542747, guid: 6bfe251d163090b40b833612a7e63ca3, type: 3}
   yellowPencilPrefab: {fileID: 6441837244048706943, guid: 9ca9d7b543646f24ab5c6e8d66c14497, type: 3}
@@ -5448,7 +5448,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -6899,6 +6899,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2851307803286555079, guid: ed9e1b805c799ef4abfb0f80233d9ba7, type: 3}
+      propertyPath: isDrawingPencil
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2851307803286555079, guid: ed9e1b805c799ef4abfb0f80233d9ba7, type: 3}
       propertyPath: redPencilPrefab
       value: 
@@ -13670,6 +13674,50 @@ PolygonCollider2D:
       - {x: 0.59999996, y: -0.64}
       - {x: 0.87, y: -0.62}
   m_UseDelaunayMesh: 1
+--- !u!1 &1646054615
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1646054617}
+  - component: {fileID: 1646054616}
+  m_Layer: 0
+  m_Name: DrawingEnabler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1646054616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1646054615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 962f1dd566992124cb8accd89fdbe980, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DrawingEnabler
+--- !u!4 &1646054617
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1646054615}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 11.33625, y: -4.61954, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1803518187
 GameObject:
   m_ObjectHideFlags: 0
@@ -16986,3 +17034,4 @@ SceneRoots:
   - {fileID: 932857301}
   - {fileID: 1366164170}
   - {fileID: 763623248}
+  - {fileID: 1646054617}

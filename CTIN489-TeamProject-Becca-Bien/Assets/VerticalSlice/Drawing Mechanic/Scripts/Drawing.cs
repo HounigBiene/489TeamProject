@@ -125,8 +125,6 @@ public class Drawing : MonoBehaviour
         drawingAudioSource.pitch = drawingPitch;
         drawingAudioSource.clip = drawingSound;
 
-        //make sure audio is not playing at start
-        drawingAudioSource.Stop();
     }
 
     private void CreateFallbackMaterial()

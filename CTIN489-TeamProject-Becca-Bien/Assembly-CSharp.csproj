@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Becca Prototype 4\Script\Player Movement.cs" />
+    <Compile Include="Assets\VerticalSlice\Drawing Mechanic\Scripts\DrawingEnabler.cs" />
     <Compile Include="Assets\Becca Prototype 4\Script\Sticker Collectable.cs" />
     <Compile Include="Assets\VerticalSlice\Level Design\Scripts\PlayerController.cs" />
     <Compile Include="Assets\VerticalSlice\Drawing Mechanic\Scripts\BlankObject.cs" />
