@@ -1,10 +1,22 @@
 fileFormatVersion: 2
-guid: e1c1012703bf5f044a18fd74b67737d3
+guid: e666696128ffda747856d6ea13be29fd
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4014284335496289545
-    second: drawing4_0
+      213: 7491885350629172653
+    second: DressParts_0
+  - first:
+      213: -6741945802360922881
+    second: DressParts_1
+  - first:
+      213: -970267417934684725
+    second: DressParts_2
+  - first:
+      213: 9218141473618687301
+    second: DressParts_3
+  - first:
+      213: 8346885411692713775
+    second: DressParts_4
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -102,13 +114,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: drawing4_0
+      name: DressParts_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 531
-        height: 709
+        x: 194
+        y: 615
+        width: 101
+        height: 81
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -117,8 +129,96 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 90ddba4a55a95b730800000000000000
-      internalID: 4014284335496289545
+      spriteID: da5643e580688f760800000000000000
+      internalID: 7491885350629172653
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DressParts_1
+      rect:
+        serializedVersion: 2
+        x: 202
+        y: 448
+        width: 81
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ffc575b530ccf62a0800000000000000
+      internalID: -6741945802360922881
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DressParts_2
+      rect:
+        serializedVersion: 2
+        x: 103
+        y: 201
+        width: 296
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bcd1ed09ceae882f0800000000000000
+      internalID: -970267417934684725
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DressParts_3
+      rect:
+        serializedVersion: 2
+        x: 124
+        y: 16
+        width: 75
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 545765894da6def70800000000000000
+      internalID: 9218141473618687301
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DressParts_4
+      rect:
+        serializedVersion: 2
+        x: 422
+        y: 28
+        width: 45
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f2795d8ee0816d370800000000000000
+      internalID: 8346885411692713775
       vertices: []
       indices: 
       edges: []
@@ -137,7 +237,11 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      drawing4_0: 4014284335496289545
+      DressParts_0: 7491885350629172653
+      DressParts_1: -6741945802360922881
+      DressParts_2: -970267417934684725
+      DressParts_3: 9218141473618687301
+      DressParts_4: 8346885411692713775
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -1,19 +1,13 @@
 fileFormatVersion: 2
-guid: 1290602bee232f94295037365758fd98
+guid: 539a7928c750b5f489abfece79ba5650
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7310584303562797654
-    second: drawing5_0
+      213: 2213355358592704209
+    second: ColorableUmbrella_0
   - first:
-      213: 731536598468264874
-    second: drawing5_1
-  - first:
-      213: 1505179608366429591
-    second: drawing5_2
-  - first:
-      213: -8012862594819689193
-    second: drawing5_3
+      213: -8655744885593005047
+    second: ColorableUmbrella_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -107,43 +101,17 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WindowsStoreApps
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: drawing5_0
+      name: ColorableUmbrella_0
       rect:
         serializedVersion: 2
-        x: 87
-        y: 274
-        width: 272
-        height: 141
+        x: 52
+        y: 392
+        width: 409
+        height: 226
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -152,20 +120,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: aadc79d1f469b8a90800000000000000
-      internalID: -7310584303562797654
+      spriteID: 1de10a6c8fa67be10800000000000000
+      internalID: 2213355358592704209
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: drawing5_1
+      name: ColorableUmbrella_1
       rect:
         serializedVersion: 2
-        x: 408
-        y: 404
-        width: 236
-        height: 108
+        x: 516
+        y: 101
+        width: 409
+        height: 226
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -174,52 +142,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: aa306e319a0f62a00800000000000000
-      internalID: 731536598468264874
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: drawing5_2
-      rect:
-        serializedVersion: 2
-        x: 56
-        y: 157
-        width: 209
-        height: 135
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 795b7d701e873e410800000000000000
-      internalID: 1505179608366429591
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: drawing5_3
-      rect:
-        serializedVersion: 2
-        x: 432
-        y: 152
-        width: 225
-        height: 236
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 715f1c98ce79cc090800000000000000
-      internalID: -8012862594819689193
+      spriteID: 90423dbf2ed90e780800000000000000
+      internalID: -8655744885593005047
       vertices: []
       indices: 
       edges: []
@@ -238,10 +162,8 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      drawing5_0: -7310584303562797654
-      drawing5_1: 731536598468264874
-      drawing5_2: 1505179608366429591
-      drawing5_3: -8012862594819689193
+      ColorableUmbrella_0: 2213355358592704209
+      ColorableUmbrella_1: -8655744885593005047
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

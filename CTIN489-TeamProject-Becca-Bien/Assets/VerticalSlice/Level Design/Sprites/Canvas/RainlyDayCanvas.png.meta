@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: e1c1012703bf5f044a18fd74b67737d3
+guid: eb29336e626a2a34fb82b50d88d05423
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4014284335496289545
-    second: drawing4_0
+      213: -3817542060557875311
+    second: RainlyDayCanvas_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -102,13 +102,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: drawing4_0
+      name: RainlyDayCanvas_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 531
-        height: 709
+        width: 1012
+        height: 679
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -117,8 +117,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 90ddba4a55a95b730800000000000000
-      internalID: 4014284335496289545
+      spriteID: 197c55dd8bd550bc0800000000000000
+      internalID: -3817542060557875311
       vertices: []
       indices: 
       edges: []
@@ -137,7 +137,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      drawing4_0: 4014284335496289545
+      RainlyDayCanvas_0: -3817542060557875311
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: e1c1012703bf5f044a18fd74b67737d3
+guid: 5f8d7f3c30b9eb14cb8ddb82c64ff023
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4014284335496289545
-    second: drawing4_0
+      213: -4589686647068452963
+    second: BarnCanvas_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -102,7 +102,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: drawing4_0
+      name: BarnCanvas_0
       rect:
         serializedVersion: 2
         x: 0
@@ -117,8 +117,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 90ddba4a55a95b730800000000000000
-      internalID: 4014284335496289545
+      spriteID: d97912bcf482e40c0800000000000000
+      internalID: -4589686647068452963
       vertices: []
       indices: 
       edges: []
@@ -137,7 +137,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      drawing4_0: 4014284335496289545
+      BarnCanvas_0: -4589686647068452963
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

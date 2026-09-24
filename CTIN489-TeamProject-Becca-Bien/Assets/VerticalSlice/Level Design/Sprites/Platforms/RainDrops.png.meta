@@ -1,10 +1,16 @@
 fileFormatVersion: 2
-guid: e1c1012703bf5f044a18fd74b67737d3
+guid: 4412558e081c8814986280f97d1364ef
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4014284335496289545
-    second: drawing4_0
+      213: -3359127624357888165
+    second: RainDrops_0
+  - first:
+      213: -7696435598418490426
+    second: RainDrops_1
+  - first:
+      213: -8352249229653353231
+    second: RainDrops_2
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -102,13 +108,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: drawing4_0
+      name: RainDrops_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 531
-        height: 709
+        x: 101
+        y: 464
+        width: 53
+        height: 113
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -117,8 +123,52 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 90ddba4a55a95b730800000000000000
-      internalID: 4014284335496289545
+      spriteID: b5f32fa193bf161d0800000000000000
+      internalID: -3359127624357888165
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RainDrops_1
+      rect:
+        serializedVersion: 2
+        x: 778
+        y: 308
+        width: 115
+        height: 167
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6cb4897c994c03590800000000000000
+      internalID: -7696435598418490426
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RainDrops_2
+      rect:
+        serializedVersion: 2
+        x: 407
+        y: 170
+        width: 125
+        height: 191
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1fc5bf6e399d61c80800000000000000
+      internalID: -8352249229653353231
       vertices: []
       indices: 
       edges: []
@@ -137,7 +187,9 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      drawing4_0: 4014284335496289545
+      RainDrops_0: -3359127624357888165
+      RainDrops_1: -7696435598418490426
+      RainDrops_2: -8352249229653353231
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

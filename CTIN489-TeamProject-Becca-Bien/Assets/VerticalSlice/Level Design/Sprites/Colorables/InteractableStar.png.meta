@@ -1,10 +1,13 @@
 fileFormatVersion: 2
-guid: e1c1012703bf5f044a18fd74b67737d3
+guid: 63b77a9472a4fad42921cce719d6b8cb
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4014284335496289545
-    second: drawing4_0
+      213: 211641372609288399
+    second: InteractableStar_0
+  - first:
+      213: -4202675267779797473
+    second: InteractableStar_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -102,13 +105,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: drawing4_0
+      name: InteractableStar_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 531
-        height: 709
+        x: 63
+        y: 222
+        width: 232
+        height: 266
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -117,8 +120,30 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 90ddba4a55a95b730800000000000000
-      internalID: 4014284335496289545
+      spriteID: fc8172205b6efe200800000000000000
+      internalID: 211641372609288399
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: InteractableStar_1
+      rect:
+        serializedVersion: 2
+        x: 426
+        y: 40
+        width: 232
+        height: 266
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f1e5aa55c191da5c0800000000000000
+      internalID: -4202675267779797473
       vertices: []
       indices: 
       edges: []
@@ -137,7 +162,8 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      drawing4_0: 4014284335496289545
+      InteractableStar_0: 211641372609288399
+      InteractableStar_1: -4202675267779797473
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
