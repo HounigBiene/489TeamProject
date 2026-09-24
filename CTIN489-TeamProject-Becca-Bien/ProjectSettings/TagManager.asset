@@ -7,7 +7,9 @@ TagManager:
   - Platform
   - Canvas
   - ColorPencil
-  - Pencil
+  - BlankObject
+  - Collectible
+  - PaintedPlatform
   layers:
   - Default
   - TransparentFX

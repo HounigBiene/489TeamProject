@@ -43,7 +43,9 @@ public class PlayerController : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Platform"))
+        // Check BOTH tags
+        if (collision.gameObject.CompareTag("Platform") || 
+            collision.gameObject.CompareTag("PaintedPlatform"))
         {
             isGrounded = true;
         }
@@ -51,7 +53,9 @@ public class PlayerController : MonoBehaviour
 
     void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Platform"))
+        // Check BOTH tags
+        if (collision.gameObject.CompareTag("Platform") || 
+            collision.gameObject.CompareTag("PaintedPlatform"))
         {
             isGrounded = false;
         }
