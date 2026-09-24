@@ -29,7 +29,7 @@ public class Drawing : MonoBehaviour
     [Header("Optional Physics")]
     [Tooltip("Enable this to let the player stand and walk on drawings.")]
     [SerializeField]
-    private bool createCollider = true;
+    private bool createCollider = false;
 
     [SerializeField]
     private PhysicsMaterial2D physicsMaterial;
@@ -170,7 +170,6 @@ public class Drawing : MonoBehaviour
         GameObject stroke = new GameObject(
             "Stroke_" + nextStrokeNumber
         );
-        stroke.tag = "Platform";
 
         nextStrokeNumber++;
 
@@ -190,10 +189,17 @@ public class Drawing : MonoBehaviour
 
         ConfigureLineRenderer(currentLine);
 
-        if (createCollider)
+        bool isBlackPencil =
+            PlayerPencil.Instance != null &&
+            PlayerPencil.Instance.isHoldingPencil &&
+            PlayerPencil.Instance.heldColorName == "Black";
+
+        if (createCollider && isBlackPencil)
         {
             currentCollider =
                 stroke.AddComponent<EdgeCollider2D>();
+
+            stroke.tag = "Platform";
 
             /*
              * An EdgeCollider2D needs at least two points, so it
@@ -230,8 +236,17 @@ public class Drawing : MonoBehaviour
         line.startWidth = lineWidth;
         line.endWidth = lineWidth;
 
-        line.startColor = lineColor;
-        line.endColor = lineColor;
+        Color colorToUse = lineColor;
+
+        if (PlayerPencil.Instance != null &&
+            PlayerPencil.Instance.isHoldingPencil)
+        {
+            colorToUse =
+                PlayerPencil.Instance.heldColor;
+        }
+
+        line.startColor = colorToUse;
+        line.endColor = colorToUse;
 
         // Creates rounded ends and corners.
         line.numCapVertices = 8;
@@ -455,57 +470,6 @@ public class Drawing : MonoBehaviour
                Mouse.current.leftButton
                    .wasReleasedThisFrame;
     }
-
-    /// <summary>
-    /// Deletes the most recently drawn stroke.
-    /// This method can be connected to a UI Button.
-    /// </summary>
-    //public void UndoLastStroke()
-    //{
-    //    if (strokes.Count == 0)
-    //    {
-    //        return;
-    //    }
-
-    //    int lastIndex = strokes.Count - 1;
-
-    //    GameObject lastStroke =
-    //        strokes[lastIndex];
-
-    //    if (currentLine != null &&
-    //        currentLine.gameObject == lastStroke)
-    //    {
-    //        StopDrawingSound();
-    //        ResetCurrentStroke();
-    //    }
-
-    //    strokes.RemoveAt(lastIndex);
-
-    //    if (lastStroke != null)
-    //    {
-    //        Destroy(lastStroke);
-    //    }
-    //}
-
-    /// <summary>
-    /// Deletes every drawn stroke.
-    /// This method can be connected to a UI Button.
-    /// </summary>
-    //public void ClearAllStrokes()
-    //{
-    //    StopDrawingSound();
-    //    ResetCurrentStroke();
-
-    //    foreach (GameObject stroke in strokes)
-    //    {
-    //        if (stroke != null)
-    //        {
-    //            Destroy(stroke);
-    //        }
-    //    }
-
-    //    strokes.Clear();
-    //}
 
     private void OnApplicationFocus(bool hasFocus)
     {

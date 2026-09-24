@@ -7,13 +7,15 @@ using UnityEngine;
 public class PlayerPencil : MonoBehaviour
 {
     public static PlayerPencil Instance;
+
+    [Header("Current Pencil")]
+    public ColorPencil currentPencil;
     
-    [Header("Currently Held Pencil")]
+    [Header("Current Pencil Details")]
     public string heldColorName = "";
     public Color heldColor = Color.white;
     public bool isHoldingPencil = false;
-    public bool isDrawingPencil = false;
-    
+
     [Header("Pencil Indicator")]
     public SpriteRenderer pencilIndicator;
 
@@ -35,7 +37,6 @@ public class PlayerPencil : MonoBehaviour
             if (isHoldingPencil)
             {
                 pencilIndicator.gameObject.SetActive(true);
-                pencilIndicator.color = heldColor;
             }
             else
             {
@@ -44,13 +45,24 @@ public class PlayerPencil : MonoBehaviour
         }
     }
 
-    public void PickUpPencil(string colorName, Color color, bool isDrawing = false)
+    public void PickUpPencil(ColorPencil pencil)
     {
-        heldColorName = colorName;
-        heldColor = color;
+        if (pencil == null)
+            return;
+
+        currentPencil = pencil;
+
+        heldColorName = pencil.colorName;
+        heldColor = pencil.colorValue;
         isHoldingPencil = true;
-        isDrawingPencil = isDrawing;
-        Debug.Log("Picked up: " + colorName + " pencil" + (isDrawing ? " (drawing)" : ""));
+
+        PencilDurability durability =
+            GetComponent<PencilDurability>();
+
+        if (durability != null)
+            durability.ResetDurability();
+
+        Debug.Log("Picked up: " + heldColorName + " pencil");
     }
 
     public void DropPencil()
@@ -58,7 +70,12 @@ public class PlayerPencil : MonoBehaviour
         heldColorName = "";
         heldColor = Color.white;
         isHoldingPencil = false;
-        isDrawingPencil = false;
+
+        currentPencil = null;
+
+        if (pencilIndicator != null)
+            pencilIndicator.gameObject.SetActive(false);
+
         Debug.Log("Dropped pencil");
     }
 }

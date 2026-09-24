@@ -4829,7 +4829,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ColorPencil
   colorName: Black
   colorValue: {r: 0, g: 0, b: 0, a: 1}
-  isDrawingPencil: 1
+  sharpSprite: {fileID: 0}
+  dullSprite: {fileID: 0}
+  brokenSprite: {fileID: 0}
   canBePickedUp: 1
   redPencilPrefab: {fileID: 3467816718494542747, guid: 6bfe251d163090b40b833612a7e63ca3, type: 3}
   yellowPencilPrefab: {fileID: 6441837244048706943, guid: 9ca9d7b543646f24ab5c6e8d66c14497, type: 3}
@@ -5391,7 +5393,7 @@ GameObject:
   - component: {fileID: 546616822}
   m_Layer: 0
   m_Name: Drawing
-  m_TagString: Platform
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6900,6 +6902,18 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2851307803286555079, guid: ed9e1b805c799ef4abfb0f80233d9ba7, type: 3}
+      propertyPath: dullSprite
+      value: 
+      objectReference: {fileID: 949492753847906471, guid: a293aab490445894b944c78ee4247e70, type: 3}
+    - target: {fileID: 2851307803286555079, guid: ed9e1b805c799ef4abfb0f80233d9ba7, type: 3}
+      propertyPath: sharpSprite
+      value: 
+      objectReference: {fileID: 5806247343882902020, guid: 7fb692936e367c54297cc9ad84731391, type: 3}
+    - target: {fileID: 2851307803286555079, guid: ed9e1b805c799ef4abfb0f80233d9ba7, type: 3}
+      propertyPath: brokenSprite
+      value: 
+      objectReference: {fileID: -1951250321677356128, guid: a06a0ea82ed2dfe478f3d25798729fa3, type: 3}
+    - target: {fileID: 2851307803286555079, guid: ed9e1b805c799ef4abfb0f80233d9ba7, type: 3}
       propertyPath: isDrawingPencil
       value: 1
       objectReference: {fileID: 0}
@@ -6982,7 +6996,9 @@ GameObject:
   - component: {fileID: 773783054}
   - component: {fileID: 773783058}
   - component: {fileID: 773783060}
+  - component: {fileID: 773783061}
   - component: {fileID: 773783059}
+  - component: {fileID: 773783062}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -7177,11 +7193,44 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78d248f34eaf44a4587ef3f4ea2b6d53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerColorInventory
+  currentPencil: {fileID: 0}
   heldColorName: 
   heldColor: {r: 1, g: 1, b: 1, a: 1}
   isHoldingPencil: 0
-  isDrawingPencil: 0
   pencilIndicator: {fileID: 1191482356}
+--- !u!114 &773783061
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 773783053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a0dae491dee6814a87c84afb7c39edf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PencilDurability
+  isDullAfterSeconds: 2
+  isBrokenAfterSeconds: 4
+  currentUseTime: 0
+  isDull: 0
+  isBroken: 0
+--- !u!114 &773783062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 773783053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 962f1dd566992124cb8accd89fdbe980, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DrawingEnabler
+  drawingScript: {fileID: 0}
+  playerPencil: {fileID: 0}
+  pencilDurability: {fileID: 0}
+  shouldDraw: 0
 --- !u!1 &858964740
 GameObject:
   m_ObjectHideFlags: 0
@@ -13674,50 +13723,6 @@ PolygonCollider2D:
       - {x: 0.59999996, y: -0.64}
       - {x: 0.87, y: -0.62}
   m_UseDelaunayMesh: 1
---- !u!1 &1646054615
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1646054617}
-  - component: {fileID: 1646054616}
-  m_Layer: 0
-  m_Name: DrawingEnabler
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1646054616
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1646054615}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 962f1dd566992124cb8accd89fdbe980, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DrawingEnabler
---- !u!4 &1646054617
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1646054615}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.33625, y: -4.61954, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1803518187
 GameObject:
   m_ObjectHideFlags: 0
@@ -17025,6 +17030,7 @@ SceneRoots:
   - {fileID: 546616821}
   - {fileID: 2000467866}
   - {fileID: 474402566}
+  - {fileID: 763623248}
   - {fileID: 6652711231438874354}
   - {fileID: 4448153175585369062}
   - {fileID: 7729879964433899961}
@@ -17033,5 +17039,3 @@ SceneRoots:
   - {fileID: 251316429}
   - {fileID: 932857301}
   - {fileID: 1366164170}
-  - {fileID: 763623248}
-  - {fileID: 1646054617}

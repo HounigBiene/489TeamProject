@@ -2,10 +2,16 @@ using UnityEngine;
 
 public class ColorPencil : MonoBehaviour
 {
+
+    [Header("Pencil Color")]
     public string colorName = "Green";
     public Color colorValue = Color.green;
-    public bool isDrawingPencil = false;
-    
+
+    [Header("Pencil Durability")]
+    public Sprite sharpSprite;
+    public Sprite dullSprite;
+    public Sprite brokenSprite;
+
     [Header("Drop Settings")]
     public bool canBePickedUp = true; //After swapping pencil, the pencil that we put down can no longer be picked back up
     
@@ -54,7 +60,7 @@ public class ColorPencil : MonoBehaviour
             DropOldPencil(playerPencil);
         }
         
-        playerPencil.PickUpPencil(colorName, colorValue, isDrawingPencil);
+        playerPencil.PickUpPencil(this);
         
         if (AudioManager.Instance != null)
             AudioManager.Instance.PlayPencilPickupSound();
@@ -80,14 +86,14 @@ public class ColorPencil : MonoBehaviour
         );
         
         GameObject droppedPencil = Instantiate(prefabToSpawn, dropPos, transform.rotation);
-        
+
         // DISABLE the dropped pencil so it can't be picked up again
         ColorPencil droppedScript = droppedPencil.GetComponent<ColorPencil>();
         if (droppedScript != null)
         {
             droppedScript.canBePickedUp = false;
         }
-        
+
         // Fade it out visually to show it's disabled
         SpriteRenderer sr = droppedPencil.GetComponent<SpriteRenderer>();
         if (sr != null)
@@ -96,7 +102,7 @@ public class ColorPencil : MonoBehaviour
             c.a = 0.5f; // Half transparent
             sr.color = c;
         }
-        
+
         Debug.Log("Dropped " + playerPencil.heldColorName + " pencil (can't pick up again)");
     }
 

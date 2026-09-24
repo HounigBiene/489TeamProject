@@ -2,41 +2,59 @@ using UnityEngine;
 
 public class DrawingEnabler : MonoBehaviour
 {
-    private Drawing drawingScript;
-    private PlayerPencil playerPencil;
+
+    [Header("Scripts")]
+    public Drawing drawingScript;
+    public PlayerPencil playerPencil;
+    public PencilDurability pencilDurability;
+
+    [Header("Drawing Status")]
+    public bool shouldDraw = false;
 
     void Start()
     {
-        // Auto-find the Drawing component in the scene
-        drawingScript = FindObjectOfType<Drawing>();
-        
-        // Auto-find the PlayerPencil component
-        playerPencil = FindObjectOfType<PlayerPencil>();
-        
+
+        if (drawingScript == null)
+            drawingScript = Object.FindAnyObjectByType<Drawing>();
+
+        if (playerPencil == null)
+            playerPencil = Object.FindAnyObjectByType<PlayerPencil>();
+
+        if (pencilDurability == null)
+            pencilDurability = GetComponent<PencilDurability>();
+
+        if (pencilDurability == null && playerPencil != null)
+            pencilDurability =
+                playerPencil.GetComponent<PencilDurability>();
+
         if (drawingScript == null)
         {
             Debug.LogError("No Drawing script found in scene!");
         }
-        
-        if (playerPencil == null)
+
+        if(playerPencil == null)
         {
-            Debug.LogError("No PlayerPencil found in scene!");
+            Debug.LogError("No PlayerPencil found!");
         }
         
-        // Start with drawing disabled
+        if (pencilDurability == null)
+        {
+            Debug.LogError("No Pencil Durability found in scene!");
+        }
+        
         if (drawingScript != null)
         {
             drawingScript.enabled = false;
-            Debug.Log("Drawing disabled at start");
         }
     }
 
     void Update()
     {
-        if (drawingScript == null || playerPencil == null) return;
-        
+        if (drawingScript == null || pencilDurability == null) 
+            return;
+
         // Enable drawing ONLY when holding the drawing pencil
-        bool shouldDraw = playerPencil.isHoldingPencil && playerPencil.isDrawingPencil;
+        shouldDraw = pencilDurability.CanDraw();
         
         if (drawingScript.enabled != shouldDraw)
         {
