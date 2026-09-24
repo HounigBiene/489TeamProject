@@ -7049,11 +7049,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a0dae491dee6814a87c84afb7c39edf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PencilDurability
-  isDullAfterSeconds: 2
-  isBrokenAfterSeconds: 4
-  currentUseTime: 0
-  isDull: 0
-  isBroken: 0
+  isDullAfterSeconds: 1
+  isBrokenAfterSeconds: 2
 --- !u!114 &773783062
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8827,7 +8824,7 @@ Transform:
   m_GameObject: {fileID: 1127608715}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0.6179272, w: 0.78623533}
-  m_LocalPosition: {x: 12.29, y: 6.71, z: 0}
+  m_LocalPosition: {x: 13.03, y: 7.4, z: 0}
   m_LocalScale: {x: 5.710618, y: 10.003889, z: 7.967257}
   m_ConstrainProportionsScale: 0
   m_Children:

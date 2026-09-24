@@ -337,7 +337,7 @@ public class Drawing : MonoBehaviour
         lastWorldPoint = worldPosition;
     }
 
-    private void EndStroke()
+    public void EndStroke()
     {
         StopDrawingSound();
 

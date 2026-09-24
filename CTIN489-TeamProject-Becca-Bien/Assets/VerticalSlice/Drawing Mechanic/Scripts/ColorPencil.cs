@@ -12,6 +12,10 @@ public class ColorPencil : MonoBehaviour
     public Sprite dullSprite;
     public Sprite brokenSprite;
 
+    public float currentUseTime = 0f;
+    public bool isDull = false;
+    public bool isBroken = false;
+
     void Start()
     {
         switch (colorName)
@@ -63,11 +67,46 @@ public class ColorPencil : MonoBehaviour
         Collider2D col =
             GetComponent<Collider2D>();
 
-        if (sr != null)
-            sr.enabled = !isHeld;
+        if (isHeld)
+        {
+            if (sr != null)
+                sr.enabled = false;
 
-        if (col != null)
-            col.enabled = !isHeld;
+            if (col != null)
+                col.enabled = false;
+        }
+        else
+        {
+            // Show correct sharp/dull/broken sprite
+            UpdateWorldSprite();
+
+            if (sr != null)
+                sr.enabled = true;
+
+            if (col != null)
+                col.enabled = true;
+        }
     }
+    public void UpdateWorldSprite()
+    {
+        SpriteRenderer sr = GetComponent<SpriteRenderer>();
 
+        if (sr == null)
+            return;
+
+        if (isBroken)
+        {
+            sr.sprite = brokenSprite;
+        }
+        else if (isDull)
+        {
+            sr.sprite = dullSprite;
+        }
+        else
+        {
+            sr.sprite = sharpSprite;
+        }
+
+        sr.color = Color.white;
+    }
 }

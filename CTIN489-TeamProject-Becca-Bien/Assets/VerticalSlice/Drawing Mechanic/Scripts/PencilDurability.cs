@@ -8,11 +8,6 @@ public class PencilDurability : MonoBehaviour
     public float isDullAfterSeconds = 30f;
     public float isBrokenAfterSeconds = 60f;
 
-    [Header("Current State")]
-    public float currentUseTime = 0f;
-    public bool isDull = false;
-    public bool isBroken = false;
-
     private PlayerPencil playerPencil;
     private Drawing drawingScript;
 
@@ -34,7 +29,10 @@ public class PencilDurability : MonoBehaviour
         if (!playerPencil.isHoldingPencil)
             return;
 
-        if (isBroken)
+        ColorPencil pencil =
+            playerPencil.currentPencil;
+
+        if (pencil.isBroken)
             return;
 
         bool currentlyDrawing =
@@ -46,20 +44,22 @@ public class PencilDurability : MonoBehaviour
         // Time starts when drawing is enabled and mouse is in use
         if (currentlyDrawing)
         {
-            currentUseTime += Time.deltaTime;
+            pencil.currentUseTime += Time.deltaTime;
 
-            CheckDurability();
+            CheckDurability(pencil);
         }
     }
 
-    void CheckDurability()
+    void CheckDurability(ColorPencil pencil)
     {
-        if(currentUseTime >= isBrokenAfterSeconds)
+        if(pencil.currentUseTime >= isBrokenAfterSeconds)
         {
-            if(!isBroken)
+            if(!pencil.isBroken)
             {
-                isBroken = true;
-                isDull = true;
+                pencil.isBroken = true;
+                pencil.isDull = true;
+
+                drawingScript.EndStroke();
 
                 Debug.Log("Pencil broke!");
 
@@ -69,11 +69,11 @@ public class PencilDurability : MonoBehaviour
             return;
         }
 
-        if(currentUseTime >= isDullAfterSeconds)
+        if(pencil.currentUseTime >= isDullAfterSeconds)
         {
-            if(!isDull)
+            if(!pencil.isDull)
             {
-                isDull = true;
+                pencil.isDull = true;
 
                 Debug.Log("Pencil is dull!");
 
@@ -84,16 +84,7 @@ public class PencilDurability : MonoBehaviour
         return;
     }
 
-    public void ResetDurability()
-    {
-        currentUseTime = 0f;
-        isDull = false;
-        isBroken = false;
-
-        UpdatePencilSprite();
-    }
-
-    void UpdatePencilSprite()
+    public void UpdatePencilSprite()
     {
         if (playerPencil == null)
             return;
@@ -101,12 +92,18 @@ public class PencilDurability : MonoBehaviour
         if (playerPencil.pencilIndicator == null)
             return;
 
-        if (isBroken)
+        if (playerPencil.currentPencil == null)
+            return;
+
+        ColorPencil pencil =
+            playerPencil.currentPencil;
+
+        if (pencil.isBroken)
         {
             playerPencil.pencilIndicator.sprite =
                 playerPencil.currentPencil.brokenSprite;
         }
-        else if (isDull)
+        else if (pencil.isDull)
         {
             playerPencil.pencilIndicator.sprite =
                 playerPencil.currentPencil.dullSprite;
@@ -124,6 +121,6 @@ public class PencilDurability : MonoBehaviour
     {
         return playerPencil != null &&
        playerPencil.isHoldingPencil &&
-       !isBroken;
+       !playerPencil.currentPencil.isBroken;
     }
 }

@@ -60,7 +60,9 @@ public class PlayerPencil : MonoBehaviour
             GetComponent<PencilDurability>();
 
         if (durability != null)
-            durability.ResetDurability();
+        {
+            durability.UpdatePencilSprite();
+        }
 
         Debug.Log("Picked up: " + heldColorName + " pencil");
     }
