@@ -12,19 +12,6 @@ public class ColorPencil : MonoBehaviour
     public Sprite dullSprite;
     public Sprite brokenSprite;
 
-    [Header("Drop Settings")]
-    public bool canBePickedUp = true; //After swapping pencil, the pencil that we put down can no longer be picked back up
-    
-    [Header("Pencil Prefabs (for dropping)")]
-    public GameObject redPencilPrefab;
-    public GameObject yellowPencilPrefab;
-    public GameObject bluePencilPrefab;
-    public GameObject greenPencilPrefab;
-    public GameObject orangePencilPrefab;
-    public GameObject purplePencilPrefab;
-    public GameObject brownPencilPrefab;
-    public GameObject blackPencilPrefab;
-
     void Start()
     {
         switch (colorName)
@@ -41,84 +28,46 @@ public class ColorPencil : MonoBehaviour
     }
 
     void OnMouseDown()
-    {
-        // Can't pick up if disabled
-        if (!canBePickedUp)
-        {
-            Debug.Log("This pencil can't be picked up again!");
-            return;
-        }
-        
+    {   
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player == null) return;
         
         PlayerPencil playerPencil = player.GetComponent<PlayerPencil>();
         if (playerPencil == null) return;
-        
+
+        // Get new pencil position
+        Vector3 pickupPosition = transform.position;
+
+        // Put down pencil in new pencil's position
         if (playerPencil.isHoldingPencil)
         {
-            DropOldPencil(playerPencil);
+            playerPencil.DropPencil(pickupPosition);
         }
-        
+
+        // Pick up new pencil
         playerPencil.PickUpPencil(this);
-        
+
+        SetHeldState(true);
+
         if (AudioManager.Instance != null)
             AudioManager.Instance.PlayPencilPickupSound();
-        
-        Destroy(gameObject);
+
         Debug.Log("Picked up " + colorName + " pencil!");
     }
 
-    void DropOldPencil(PlayerPencil playerPencil)
+    public void SetHeldState(bool isHeld)
     {
-        GameObject prefabToSpawn = GetPrefabForColor(playerPencil.heldColorName);
-        
-        if (prefabToSpawn == null)
-        {
-            Debug.LogWarning("No prefab found for " + playerPencil.heldColorName);
-            return;
-        }
-        
-        Vector3 dropPos = new Vector3(
-            transform.position.x,
-            transform.position.y + 1f,
-            transform.position.z
-        );
-        
-        GameObject droppedPencil = Instantiate(prefabToSpawn, dropPos, transform.rotation);
+        SpriteRenderer sr =
+            GetComponent<SpriteRenderer>();
 
-        // DISABLE the dropped pencil so it can't be picked up again
-        ColorPencil droppedScript = droppedPencil.GetComponent<ColorPencil>();
-        if (droppedScript != null)
-        {
-            droppedScript.canBePickedUp = false;
-        }
+        Collider2D col =
+            GetComponent<Collider2D>();
 
-        // Fade it out visually to show it's disabled
-        SpriteRenderer sr = droppedPencil.GetComponent<SpriteRenderer>();
         if (sr != null)
-        {
-            Color c = sr.color;
-            c.a = 0.5f; // Half transparent
-            sr.color = c;
-        }
+            sr.enabled = !isHeld;
 
-        Debug.Log("Dropped " + playerPencil.heldColorName + " pencil (can't pick up again)");
+        if (col != null)
+            col.enabled = !isHeld;
     }
 
-    GameObject GetPrefabForColor(string colorName)
-    {
-        switch (colorName)
-        {
-            case "Red": return redPencilPrefab;
-            case "Yellow": return yellowPencilPrefab;
-            case "Blue": return bluePencilPrefab;
-            case "Green": return greenPencilPrefab;
-            case "Orange": return orangePencilPrefab;
-            case "Purple": return purplePencilPrefab;
-            case "Brown": return brownPencilPrefab;
-            case "Black": return blackPencilPrefab;
-            default: return null;
-        }
-    }
 }

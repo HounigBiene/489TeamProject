@@ -65,8 +65,15 @@ public class PlayerPencil : MonoBehaviour
         Debug.Log("Picked up: " + heldColorName + " pencil");
     }
 
-    public void DropPencil()
+    public void DropPencil(Vector3 dropPosition)
     {
+        if (currentPencil == null)
+            return;
+
+        currentPencil.transform.position = dropPosition;
+
+        currentPencil.SetHeldState(false);
+
         heldColorName = "";
         heldColor = Color.white;
         isHoldingPencil = false;
