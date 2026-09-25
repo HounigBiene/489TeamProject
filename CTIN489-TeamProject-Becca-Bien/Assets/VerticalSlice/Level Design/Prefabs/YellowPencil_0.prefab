@@ -108,14 +108,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ColorPencil
   colorName: Yellow
   colorValue: {r: 1, g: 0.8277313, b: 0.17295581, a: 1}
-  redPencilPrefab: {fileID: 3467816718494542747, guid: 6bfe251d163090b40b833612a7e63ca3, type: 3}
-  yellowPencilPrefab: {fileID: 0}
-  bluePencilPrefab: {fileID: 0}
-  greenPencilPrefab: {fileID: 0}
-  orangePencilPrefab: {fileID: 0}
-  purplePencilPrefab: {fileID: 3393025151026550687, guid: 26e303347f181504599efcd540fd0910, type: 3}
-  brownPencilPrefab: {fileID: 0}
-  blackPencilPrefab: {fileID: 4191391590944251766, guid: ed9e1b805c799ef4abfb0f80233d9ba7, type: 3}
+  sharpSprite: {fileID: 4165564952913773723, guid: 344afa1ee5cd05141bd5c7df27ad1abd, type: 3}
+  dullSprite: {fileID: -4151390978379668979, guid: 9b2ac6d554b595f4abed7ece7dbd4b5a, type: 3}
+  brokenSprite: {fileID: 21300000, guid: afa777b84401bd8488066e8a205a46f0, type: 3}
+  currentUseTime: 0
+  isDull: 0
+  isBroken: 0
 --- !u!61 &2151469479534890695
 BoxCollider2D:
   m_ObjectHideFlags: 0

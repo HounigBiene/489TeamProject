@@ -6740,38 +6740,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1490271034}
     m_Modifications:
-    - target: {fileID: 2851307803286555079, guid: ed9e1b805c799ef4abfb0f80233d9ba7, type: 3}
-      propertyPath: dullSprite
-      value: 
-      objectReference: {fileID: 949492753847906471, guid: a293aab490445894b944c78ee4247e70, type: 3}
-    - target: {fileID: 2851307803286555079, guid: ed9e1b805c799ef4abfb0f80233d9ba7, type: 3}
-      propertyPath: sharpSprite
-      value: 
-      objectReference: {fileID: 5806247343882902020, guid: 7fb692936e367c54297cc9ad84731391, type: 3}
-    - target: {fileID: 2851307803286555079, guid: ed9e1b805c799ef4abfb0f80233d9ba7, type: 3}
-      propertyPath: brokenSprite
-      value: 
-      objectReference: {fileID: -1951250321677356128, guid: a06a0ea82ed2dfe478f3d25798729fa3, type: 3}
-    - target: {fileID: 2851307803286555079, guid: ed9e1b805c799ef4abfb0f80233d9ba7, type: 3}
-      propertyPath: isDrawingPencil
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2851307803286555079, guid: ed9e1b805c799ef4abfb0f80233d9ba7, type: 3}
-      propertyPath: redPencilPrefab
-      value: 
-      objectReference: {fileID: 3467816718494542747, guid: 6bfe251d163090b40b833612a7e63ca3, type: 3}
-    - target: {fileID: 2851307803286555079, guid: ed9e1b805c799ef4abfb0f80233d9ba7, type: 3}
-      propertyPath: blackPencilPrefab
-      value: 
-      objectReference: {fileID: 4191391590944251766, guid: ed9e1b805c799ef4abfb0f80233d9ba7, type: 3}
-    - target: {fileID: 2851307803286555079, guid: ed9e1b805c799ef4abfb0f80233d9ba7, type: 3}
-      propertyPath: purplePencilPrefab
-      value: 
-      objectReference: {fileID: 3393025151026550687, guid: 26e303347f181504599efcd540fd0910, type: 3}
-    - target: {fileID: 2851307803286555079, guid: ed9e1b805c799ef4abfb0f80233d9ba7, type: 3}
-      propertyPath: yellowPencilPrefab
-      value: 
-      objectReference: {fileID: 6441837244048706943, guid: 9ca9d7b543646f24ab5c6e8d66c14497, type: 3}
     - target: {fileID: 4191391590944251766, guid: ed9e1b805c799ef4abfb0f80233d9ba7, type: 3}
       propertyPath: m_Name
       value: Pencil_0
@@ -7489,14 +7457,6 @@ PrefabInstance:
     - target: {fileID: 4191391590944251766, guid: ed9e1b805c799ef4abfb0f80233d9ba7, type: 3}
       propertyPath: m_Name
       value: Pencil_0 (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 6499799624579103697, guid: ed9e1b805c799ef4abfb0f80233d9ba7, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.34999996
-      objectReference: {fileID: 0}
-    - target: {fileID: 6499799624579103697, guid: ed9e1b805c799ef4abfb0f80233d9ba7, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.34999996
       objectReference: {fileID: 0}
     - target: {fileID: 6499799624579103697, guid: ed9e1b805c799ef4abfb0f80233d9ba7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -11916,11 +11876,6 @@ PolygonCollider2D:
       - {x: -0.065, y: -0.125}
       - {x: -0.074999996, y: -0.095}
   m_UseDelaunayMesh: 1
---- !u!1 &1420594652 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6441837244048706943, guid: 9ca9d7b543646f24ab5c6e8d66c14497, type: 3}
-  m_PrefabInstance: {fileID: 6652711231438874354}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1420594656 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2133989549055712391, guid: 9ca9d7b543646f24ab5c6e8d66c14497, type: 3}
@@ -16881,45 +16836,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1490271034}
     m_Modifications:
-    - target: {fileID: 3139352365355682898, guid: 6bfe251d163090b40b833612a7e63ca3, type: 3}
-      propertyPath: dullSprite
-      value: 
-      objectReference: {fileID: -8197030122156087261, guid: 8a6f2ad82ad15e74283a8e54c3999f5c, type: 3}
-    - target: {fileID: 3139352365355682898, guid: 6bfe251d163090b40b833612a7e63ca3, type: 3}
-      propertyPath: sharpSprite
-      value: 
-      objectReference: {fileID: 369648223334911472, guid: 0c8c38338622e36489a00b4b587b57b3, type: 3}
-    - target: {fileID: 3139352365355682898, guid: 6bfe251d163090b40b833612a7e63ca3, type: 3}
-      propertyPath: brokenSprite
-      value: 
-      objectReference: {fileID: -2063392583764440959, guid: a68e0c47dadce6142bfa5ca59aaf3f21, type: 3}
-    - target: {fileID: 3139352365355682898, guid: 6bfe251d163090b40b833612a7e63ca3, type: 3}
-      propertyPath: redPencilPrefab
-      value: 
-      objectReference: {fileID: 3467816718494542747, guid: 6bfe251d163090b40b833612a7e63ca3, type: 3}
-    - target: {fileID: 3139352365355682898, guid: 6bfe251d163090b40b833612a7e63ca3, type: 3}
-      propertyPath: blackPencilPrefab
-      value: 
-      objectReference: {fileID: 4191391590944251766, guid: ed9e1b805c799ef4abfb0f80233d9ba7, type: 3}
-    - target: {fileID: 3139352365355682898, guid: 6bfe251d163090b40b833612a7e63ca3, type: 3}
-      propertyPath: purplePencilPrefab
-      value: 
-      objectReference: {fileID: 3393025151026550687, guid: 26e303347f181504599efcd540fd0910, type: 3}
-    - target: {fileID: 3139352365355682898, guid: 6bfe251d163090b40b833612a7e63ca3, type: 3}
-      propertyPath: yellowPencilPrefab
-      value: 
-      objectReference: {fileID: 6441837244048706943, guid: 9ca9d7b543646f24ab5c6e8d66c14497, type: 3}
     - target: {fileID: 3467816718494542747, guid: 6bfe251d163090b40b833612a7e63ca3, type: 3}
       propertyPath: m_Name
       value: RedPencil_0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4739029627202567187, guid: 6bfe251d163090b40b833612a7e63ca3, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.34999996
-      objectReference: {fileID: 0}
-    - target: {fileID: 4739029627202567187, guid: 6bfe251d163090b40b833612a7e63ca3, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.34999996
       objectReference: {fileID: 0}
     - target: {fileID: 4739029627202567187, guid: 6bfe251d163090b40b833612a7e63ca3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -16975,14 +16894,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 1490271034}
     m_Modifications:
     - target: {fileID: 2133989549055712391, guid: 9ca9d7b543646f24ab5c6e8d66c14497, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.34999996
-      objectReference: {fileID: 0}
-    - target: {fileID: 2133989549055712391, guid: 9ca9d7b543646f24ab5c6e8d66c14497, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.34999996
-      objectReference: {fileID: 0}
-    - target: {fileID: 2133989549055712391, guid: 9ca9d7b543646f24ab5c6e8d66c14497, type: 3}
       propertyPath: m_LocalPosition.x
       value: -27.10222
       objectReference: {fileID: 0}
@@ -17022,22 +16933,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 67.753
       objectReference: {fileID: 0}
-    - target: {fileID: 4213083916835908333, guid: 9ca9d7b543646f24ab5c6e8d66c14497, type: 3}
-      propertyPath: dullSprite
-      value: 
-      objectReference: {fileID: -4151390978379668979, guid: 9b2ac6d554b595f4abed7ece7dbd4b5a, type: 3}
-    - target: {fileID: 4213083916835908333, guid: 9ca9d7b543646f24ab5c6e8d66c14497, type: 3}
-      propertyPath: sharpSprite
-      value: 
-      objectReference: {fileID: 4165564952913773723, guid: 344afa1ee5cd05141bd5c7df27ad1abd, type: 3}
-    - target: {fileID: 4213083916835908333, guid: 9ca9d7b543646f24ab5c6e8d66c14497, type: 3}
-      propertyPath: brokenSprite
-      value: 
-      objectReference: {fileID: 1407357401916769128, guid: afa777b84401bd8488066e8a205a46f0, type: 3}
-    - target: {fileID: 4213083916835908333, guid: 9ca9d7b543646f24ab5c6e8d66c14497, type: 3}
-      propertyPath: yellowPencilPrefab
-      value: 
-      objectReference: {fileID: 1420594652}
     - target: {fileID: 6441837244048706943, guid: 9ca9d7b543646f24ab5c6e8d66c14497, type: 3}
       propertyPath: m_Name
       value: YellowPencil_0
@@ -17095,34 +16990,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -58.083
       objectReference: {fileID: 0}
-    - target: {fileID: 676073672845953026, guid: 26e303347f181504599efcd540fd0910, type: 3}
-      propertyPath: dullSprite
-      value: 
-      objectReference: {fileID: -8197030122156087261, guid: 8a6f2ad82ad15e74283a8e54c3999f5c, type: 3}
-    - target: {fileID: 676073672845953026, guid: 26e303347f181504599efcd540fd0910, type: 3}
-      propertyPath: sharpSprite
-      value: 
-      objectReference: {fileID: -6744977565049946210, guid: 6b69986b93a4ff945adf9665b52f6911, type: 3}
-    - target: {fileID: 676073672845953026, guid: 26e303347f181504599efcd540fd0910, type: 3}
-      propertyPath: brokenSprite
-      value: 
-      objectReference: {fileID: 2781080567531237780, guid: cc27d75c1caf88b43bc9a7bcb3da898b, type: 3}
-    - target: {fileID: 676073672845953026, guid: 26e303347f181504599efcd540fd0910, type: 3}
-      propertyPath: redPencilPrefab
-      value: 
-      objectReference: {fileID: 3467816718494542747, guid: 6bfe251d163090b40b833612a7e63ca3, type: 3}
-    - target: {fileID: 676073672845953026, guid: 26e303347f181504599efcd540fd0910, type: 3}
-      propertyPath: blackPencilPrefab
-      value: 
-      objectReference: {fileID: 4191391590944251766, guid: ed9e1b805c799ef4abfb0f80233d9ba7, type: 3}
-    - target: {fileID: 676073672845953026, guid: 26e303347f181504599efcd540fd0910, type: 3}
-      propertyPath: purplePencilPrefab
-      value: 
-      objectReference: {fileID: 3393025151026550687, guid: 26e303347f181504599efcd540fd0910, type: 3}
-    - target: {fileID: 676073672845953026, guid: 26e303347f181504599efcd540fd0910, type: 3}
-      propertyPath: yellowPencilPrefab
-      value: 
-      objectReference: {fileID: 6441837244048706943, guid: 9ca9d7b543646f24ab5c6e8d66c14497, type: 3}
     - target: {fileID: 3393025151026550687, guid: 26e303347f181504599efcd540fd0910, type: 3}
       propertyPath: m_Name
       value: PurplePencil_0
