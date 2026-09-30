@@ -2,56 +2,81 @@ using UnityEngine;
 
 /**
 *
-* For colorable objects in the painitngs. When they are clicked on with the correct color, 
+* For colorable objects in the painitngs. When the player scribbles 
+* on the object for longer than 1.5 seconds with the correct color, 
 * we should switch to using the colored version of sprite, and users can be able to walk on it
 *
 **/
+
 public class BlankObject : MonoBehaviour
 {
     public string requiredColor = "Green";
     public bool isColored = false;
     
+    [Header("Scribble Settings")]
+    private float fillDuration = 0.5f; // How long to scribble (seconds)
+    
     [Header("Visuals")]
-    public Sprite coloredSprite;  // The colored version 
+    public Sprite blankSprite;     // The uncolored/outline sprite
+    public Sprite coloredSprite;   // The fully colored sprite
 
     private SpriteRenderer spriteRenderer;
     private Collider2D objectCollider;
+    private float scribbleTime = 0f;
+    
+    private PlayerPencil cachedPlayerPencil;
 
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         objectCollider = GetComponent<Collider2D>();
         
-        // Start as trigger (not walkable)
         if (objectCollider != null)
             objectCollider.isTrigger = true;
+        
+        // Set blank sprite
+        if (blankSprite != null && spriteRenderer != null)
+            spriteRenderer.sprite = blankSprite;
     }
 
-    void OnMouseDown()
+    void Update()
     {
-        // Player clicked this blank object
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        if (player == null) return;
+        if (isColored) return;
         
-        PlayerPencil playerPencil = player.GetComponent<PlayerPencil>();
-        if (playerPencil == null) return;
+        if (cachedPlayerPencil == null)
+            cachedPlayerPencil = FindObjectOfType<PlayerPencil>();
         
-        // Check if player is holding a pencil
-        if (!playerPencil.isHoldingPencil)
+        if (Input.GetMouseButton(0))
         {
-            Debug.Log("No pencil! Pick one up first.");
-            return;
+            Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero);
+            
+            if (hit.collider != null && hit.collider.gameObject == gameObject)
+            {
+                if (cachedPlayerPencil == null || !cachedPlayerPencil.isHoldingPencil) return;
+                if (cachedPlayerPencil.heldColorName != requiredColor) return;
+                
+                // Accumulate scribble time
+                scribbleTime += Time.deltaTime;
+                
+                Debug.Log("Scribbling... " + scribbleTime.ToString("F1") + "s / " + fillDuration + "s");
+                
+                // Check if enough time has passed
+                if (scribbleTime >= fillDuration)
+                {
+                    ColorObject(cachedPlayerPencil.heldColor);
+                }
+            }
         }
-        
-        // Check if it's the right color
-        if (playerPencil.heldColorName != requiredColor)
+        else
         {
-            Debug.Log("Wrong color. Needs: " + requiredColor + " (You have: " + playerPencil.heldColorName + ")");
-            return;
+            // Mouse released - reset scribble timer
+            if (!isColored && scribbleTime > 0f)
+            {
+                scribbleTime = 0f;
+                Debug.Log("Scribble cancelled");
+            }
         }
-        
-        // Color the object!
-        ColorObject(playerPencil.heldColor);
     }
 
     public void ColorObject(Color color)
@@ -59,26 +84,25 @@ public class BlankObject : MonoBehaviour
         if (isColored) return;
         
         isColored = true;
+        scribbleTime = 0f;
         
-        // Change sprite to colored version
-        if (coloredSprite != null)
+        // Swap to colored sprite
+        if (coloredSprite != null && spriteRenderer != null)
         {
             spriteRenderer.sprite = coloredSprite;
-            spriteRenderer.color = Color.white; // Use sprite's own colors
+            spriteRenderer.color = Color.white;
         }
-        else
+        else if (spriteRenderer != null)
         {
-            spriteRenderer.color = color; // Tint the sprite
+            spriteRenderer.color = color;
         }
         
-        // Make it walkable (remove trigger)
+        // Make it walkable
         if (objectCollider != null)
             objectCollider.isTrigger = false;
         
-        // Change tag
         gameObject.tag = "PaintedPlatform";
         
-        // Play color sound
         if (AudioManager.Instance != null)
             AudioManager.Instance.PlayColoringSound();
         

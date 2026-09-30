@@ -2,10 +2,12 @@ using UnityEngine;
 
 public class ColorPencil : MonoBehaviour
 {
-
     [Header("Pencil Color")]
     public string colorName = "Green";
     public Color colorValue = Color.green;
+
+    [Header("Pickup Range")]
+    public float maxPickupDistance = 3f;
 
     [Header("Pencil Durability")]
     public Sprite sharpSprite;
@@ -32,10 +34,18 @@ public class ColorPencil : MonoBehaviour
     }
 
     void OnMouseDown()
-    {   
+    {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player == null) return;
-        
+
+        // CHECK DISTANCE: range for picking up pencil
+        float distance = Vector2.Distance(player.transform.position, transform.position);
+        if (distance > maxPickupDistance)
+        {
+            Debug.Log("Too far to pick up! Distance: " + distance.ToString("F1") + " (max: " + maxPickupDistance + ")");
+            return;
+        }
+
         PlayerPencil playerPencil = player.GetComponent<PlayerPencil>();
         if (playerPencil == null) return;
 
@@ -61,11 +71,8 @@ public class ColorPencil : MonoBehaviour
 
     public void SetHeldState(bool isHeld)
     {
-        SpriteRenderer sr =
-            GetComponent<SpriteRenderer>();
-
-        Collider2D col =
-            GetComponent<Collider2D>();
+        SpriteRenderer sr = GetComponent<SpriteRenderer>();
+        Collider2D col = GetComponent<Collider2D>();
 
         if (isHeld)
         {
@@ -77,7 +84,6 @@ public class ColorPencil : MonoBehaviour
         }
         else
         {
-            // Show correct sharp/dull/broken sprite
             UpdateWorldSprite();
 
             if (sr != null)
@@ -87,6 +93,7 @@ public class ColorPencil : MonoBehaviour
                 col.enabled = true;
         }
     }
+
     public void UpdateWorldSprite()
     {
         SpriteRenderer sr = GetComponent<SpriteRenderer>();
@@ -95,17 +102,11 @@ public class ColorPencil : MonoBehaviour
             return;
 
         if (isBroken)
-        {
             sr.sprite = brokenSprite;
-        }
         else if (isDull)
-        {
             sr.sprite = dullSprite;
-        }
         else
-        {
             sr.sprite = sharpSprite;
-        }
 
         sr.color = Color.white;
     }

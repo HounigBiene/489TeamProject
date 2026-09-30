@@ -7655,6 +7655,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1490271034}
     m_Modifications:
+    - target: {fileID: 2851307803286555079, guid: ed9e1b805c799ef4abfb0f80233d9ba7, type: 3}
+      propertyPath: dullSprite
+      value: 
+      objectReference: {fileID: 3364420212256695481, guid: a5f0b8219990d4647ac1fd28825d9e08, type: 3}
+    - target: {fileID: 2851307803286555079, guid: ed9e1b805c799ef4abfb0f80233d9ba7, type: 3}
+      propertyPath: brokenSprite
+      value: 
+      objectReference: {fileID: -2012382893496992895, guid: fb4b839b81e6ab44d82fa8972542eb0e, type: 3}
     - target: {fileID: 4191391590944251766, guid: ed9e1b805c799ef4abfb0f80233d9ba7, type: 3}
       propertyPath: m_Name
       value: Pencil_0
@@ -7698,6 +7706,10 @@ PrefabInstance:
     - target: {fileID: 6499799624579103697, guid: ed9e1b805c799ef4abfb0f80233d9ba7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -3.097
+      objectReference: {fileID: 0}
+    - target: {fileID: 7253297604667161216, guid: ed9e1b805c799ef4abfb0f80233d9ba7, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8187,6 +8199,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BlankObject
   requiredColor: Yellow
   isColored: 0
+  fillDuration: 1.5
+  blankSprite: {fileID: 0}
   coloredSprite: {fileID: -4202675267779797473, guid: 63b77a9472a4fad42921cce719d6b8cb, type: 3}
 --- !u!212 &872333085
 SpriteRenderer:
@@ -8369,6 +8383,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1490271034}
     m_Modifications:
+    - target: {fileID: 2851307803286555079, guid: ed9e1b805c799ef4abfb0f80233d9ba7, type: 3}
+      propertyPath: dullSprite
+      value: 
+      objectReference: {fileID: 3364420212256695481, guid: a5f0b8219990d4647ac1fd28825d9e08, type: 3}
+    - target: {fileID: 2851307803286555079, guid: ed9e1b805c799ef4abfb0f80233d9ba7, type: 3}
+      propertyPath: brokenSprite
+      value: 
+      objectReference: {fileID: -2012382893496992895, guid: fb4b839b81e6ab44d82fa8972542eb0e, type: 3}
     - target: {fileID: 4191391590944251766, guid: ed9e1b805c799ef4abfb0f80233d9ba7, type: 3}
       propertyPath: m_Name
       value: Pencil_0 (1)
@@ -8412,6 +8434,10 @@ PrefabInstance:
     - target: {fileID: 6499799624579103697, guid: ed9e1b805c799ef4abfb0f80233d9ba7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -55.383
+      objectReference: {fileID: 0}
+    - target: {fileID: 7253297604667161216, guid: ed9e1b805c799ef4abfb0f80233d9ba7, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -12742,6 +12768,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BlankObject
   requiredColor: Red
   isColored: 0
+  fillDuration: 1.5
+  blankSprite: {fileID: 0}
   coloredSprite: {fileID: -4991941823520278336, guid: dd8aeb98d05c01c46b83ce78e45936ff, type: 3}
 --- !u!251 &1365572081
 PlatformEffector2D:
@@ -15502,6 +15530,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BlankObject
   requiredColor: Purple
   isColored: 0
+  fillDuration: 1.5
+  blankSprite: {fileID: 0}
   coloredSprite: {fileID: -8655744885593005047, guid: 539a7928c750b5f489abfece79ba5650, type: 3}
 --- !u!1 &1948769048
 GameObject:
@@ -18165,6 +18195,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1490271034}
     m_Modifications:
+    - target: {fileID: 3139352365355682898, guid: 6bfe251d163090b40b833612a7e63ca3, type: 3}
+      propertyPath: dullSprite
+      value: 
+      objectReference: {fileID: 1173748092474972319, guid: dd23d80b8ec6e5f4cac66bc9db6a7728, type: 3}
+    - target: {fileID: 3139352365355682898, guid: 6bfe251d163090b40b833612a7e63ca3, type: 3}
+      propertyPath: brokenSprite
+      value: 
+      objectReference: {fileID: 5071317634867815502, guid: a68e0c47dadce6142bfa5ca59aaf3f21, type: 3}
+    - target: {fileID: 3161277311856662078, guid: 6bfe251d163090b40b833612a7e63ca3, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3467816718494542747, guid: 6bfe251d163090b40b833612a7e63ca3, type: 3}
       propertyPath: m_Name
       value: RedPencil_0
@@ -18262,6 +18304,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 67.753
       objectReference: {fileID: 0}
+    - target: {fileID: 2151469479534890695, guid: 9ca9d7b543646f24ab5c6e8d66c14497, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4213083916835908333, guid: 9ca9d7b543646f24ab5c6e8d66c14497, type: 3}
+      propertyPath: dullSprite
+      value: 
+      objectReference: {fileID: 4305252081852458666, guid: 93532fefe45001645a7417ca261c280e, type: 3}
+    - target: {fileID: 4213083916835908333, guid: 9ca9d7b543646f24ab5c6e8d66c14497, type: 3}
+      propertyPath: brokenSprite
+      value: 
+      objectReference: {fileID: -9216755554606574281, guid: afa777b84401bd8488066e8a205a46f0, type: 3}
     - target: {fileID: 6441837244048706943, guid: 9ca9d7b543646f24ab5c6e8d66c14497, type: 3}
       propertyPath: m_Name
       value: YellowPencil_0
@@ -18319,9 +18373,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -58.083
       objectReference: {fileID: 0}
+    - target: {fileID: 676073672845953026, guid: 26e303347f181504599efcd540fd0910, type: 3}
+      propertyPath: dullSprite
+      value: 
+      objectReference: {fileID: 2239078274153568750, guid: 15f5be3e78acfb147b063e10d5bb03ee, type: 3}
+    - target: {fileID: 676073672845953026, guid: 26e303347f181504599efcd540fd0910, type: 3}
+      propertyPath: brokenSprite
+      value: 
+      objectReference: {fileID: 1756310036801459486, guid: cc27d75c1caf88b43bc9a7bcb3da898b, type: 3}
     - target: {fileID: 3393025151026550687, guid: 26e303347f181504599efcd540fd0910, type: 3}
       propertyPath: m_Name
       value: PurplePencil_0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6576193692821065388, guid: 26e303347f181504599efcd540fd0910, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
