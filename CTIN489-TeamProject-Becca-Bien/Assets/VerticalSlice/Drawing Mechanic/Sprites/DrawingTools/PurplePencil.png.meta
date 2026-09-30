@@ -105,10 +105,10 @@ TextureImporter:
       name: PurplePencil_0
       rect:
         serializedVersion: 2
-        x: 458
-        y: 7
-        width: 84
-        height: 993
+        x: 457
+        y: 350
+        width: 316
+        height: 470
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

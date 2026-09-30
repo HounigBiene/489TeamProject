@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 8a6f2ad82ad15e74283a8e54c3999f5c
+guid: a5f0b8219990d4647ac1fd28825d9e08
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8197030122156087261
-    second: DullRedPencil_0
+      213: 3364420212256695481
+    second: DullPencil - Copy_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -102,13 +102,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: DullRedPencil_0
+      name: DullPencil - Copy_0
       rect:
         serializedVersion: 2
-        x: 458
-        y: 7
-        width: 84
-        height: 990
+        x: 457
+        y: 446
+        width: 88
+        height: 551
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -117,8 +117,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 328a5bb988c4e3e80800000000000000
-      internalID: -8197030122156087261
+      spriteID: 9b464ba8b52d0be20800000000000000
+      internalID: 3364420212256695481
       vertices: []
       indices: 
       edges: []
@@ -137,7 +137,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      DullRedPencil_0: -8197030122156087261
+      DullPencil - Copy_0: 3364420212256695481
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

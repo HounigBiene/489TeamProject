@@ -105,10 +105,10 @@ TextureImporter:
       name: LightBluePencil_0
       rect:
         serializedVersion: 2
-        x: 458
-        y: 7
-        width: 84
-        height: 993
+        x: 459
+        y: 453
+        width: 82
+        height: 475
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

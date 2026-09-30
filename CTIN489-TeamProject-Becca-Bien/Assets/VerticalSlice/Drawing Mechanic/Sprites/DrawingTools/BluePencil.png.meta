@@ -5,6 +5,9 @@ TextureImporter:
   - first:
       213: -4915676324398565982
     second: BluePencil_0
+  - first:
+      213: 4287941044969915303
+    second: BluePencil_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -105,10 +108,10 @@ TextureImporter:
       name: BluePencil_0
       rect:
         serializedVersion: 2
-        x: 458
-        y: 7
-        width: 84
-        height: 993
+        x: 495
+        y: 995
+        width: 10
+        height: 5
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -119,6 +122,28 @@ TextureImporter:
       bones: []
       spriteID: 2a5fc656d6208cbb0800000000000000
       internalID: -4915676324398565982
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BluePencil_1
+      rect:
+        serializedVersion: 2
+        x: 458
+        y: 450
+        width: 84
+        height: 461
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7a3cf3379a3d18b30800000000000000
+      internalID: 4287941044969915303
       vertices: []
       indices: 
       edges: []
@@ -138,6 +163,7 @@ TextureImporter:
       entries: []
     nameFileIdTable:
       BluePencil_0: -4915676324398565982
+      BluePencil_1: 4287941044969915303
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
