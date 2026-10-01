@@ -47,6 +47,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Pencils
+    uniqueID: 1586686883
+    locked: 0
+  - name: Paper
+    uniqueID: 2053984705
+    locked: 0
   m_RenderingLayers:
   - Default
   m_MigratedRenderPipelines: []
