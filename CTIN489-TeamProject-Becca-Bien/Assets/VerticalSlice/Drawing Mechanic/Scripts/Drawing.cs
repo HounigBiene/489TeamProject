@@ -2,330 +2,196 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+[RequireComponent(typeof(AudioSource))]
 public class Drawing : MonoBehaviour
 {
-
     [Header("Drawing")]
     [SerializeField] private Camera drawingCamera;
     [SerializeField] private Material lineMaterial;
-    [SerializeField] private Color lineColor = Color.black;
-
-    [Tooltip("Thickness of the drawn line in world units.")]
-    [SerializeField, Min(0.01f)]
-    private float lineWidth = 0.15f;
-
-    [Tooltip("How far the mouse must move before another point is added.")]
-    [SerializeField, Min(0.001f)]
-    private float minimumPointDistance = 0.08f;
-
-    [Tooltip("The Z position where lines are drawn.")]
-    [SerializeField]
-    private float drawingPlaneZ = 0f;
+    [SerializeField, Min(0.01f)] private float lineWidth = 0.15f;
+    [SerializeField, Min(0.001f)] private float minimumPointDistance = 0.08f;
+    [SerializeField] private float drawingPlaneZ = 0f;
 
     [Header("Rendering")]
     [SerializeField] private string sortingLayerName = "Default";
     [SerializeField] private int sortingOrder = 10;
 
-    [Header("Optional Physics")]
-    [Tooltip("Enable this to let the player stand and walk on drawings.")]
-    [SerializeField]
-    private bool createCollider = false;
+    [Header("Paper Boundaries")]
+    [SerializeField] private SpriteMask[] paperMasks = new SpriteMask[0];
+    [SerializeField, Min(0f)] private float paperEdgeInset = 0.01f;
 
-    [SerializeField]
-    private PhysicsMaterial2D physicsMaterial;
+    [Header("Physics")]
+    [SerializeField] private bool createCollider = false;
+    [SerializeField] private PhysicsMaterial2D physicsMaterial;
 
     [Header("Drawing Sound")]
-    [Tooltip("Sound that plays while the mouse is drawing.")]
-    [SerializeField]
-    private AudioClip drawingSound;
+    [SerializeField] private AudioClip drawingSound;
+    [SerializeField, Range(0f, 1f)] private float drawingVolume = 0.5f;
+    [SerializeField, Range(0.1f, 3f)] private float drawingPitch = 1f;
 
-    [Range(0f, 1f)]
-    [SerializeField]
-    private float drawingVolume = 0.5f;
+    public bool IsDrawingOnPaper { get; private set; }
 
-    [Range(0.1f, 3f)]
-    [SerializeField]
-    private float drawingPitch = 1f;
-
-    private readonly List<Vector3> linePoints =
-        new List<Vector3>();
-
-    private readonly List<Vector2> colliderPoints =
-        new List<Vector2>();
-
-    private readonly List<GameObject> strokes =
-        new List<GameObject>();
-
+    private readonly List<Vector2> colliderPoints = new List<Vector2>();
     private LineRenderer currentLine;
     private EdgeCollider2D currentCollider;
-
+    private SpriteMask currentPaper;
+    private ColorPencil strokePencil;
     private AudioSource drawingAudioSource;
-
-    private Vector3 lastWorldPoint;
     private Material fallbackMaterial;
-
+    private Vector3 lastWorldPoint;
     private int nextStrokeNumber = 1;
 
     private void Awake()
     {
         if (drawingCamera == null)
-        {
             drawingCamera = Camera.main;
-        }
 
-        SetupAudioSource();
-        CreateFallbackMaterial();
+        drawingAudioSource = GetComponent<AudioSource>();
+
+        // Also handles objects that already had Drawing before RequireComponent.
+        if (drawingAudioSource == null)
+            drawingAudioSource = gameObject.AddComponent<AudioSource>();
+
+        drawingAudioSource.playOnAwake = false;
+        drawingAudioSource.loop = true;
+        drawingAudioSource.spatialBlend = 0f;
+
+        if (lineMaterial != null)
+            return;
+
+        Shader shader = Shader.Find("Sprites/Default");
+
+        if (shader == null)
+            shader = Shader.Find("Universal Render Pipeline/2D/Sprite-Unlit-Default");
+
+        if (shader != null)
+            fallbackMaterial = new Material(shader);
+        else
+            Debug.LogWarning("Assign a Line Material on the Drawing component.", this);
     }
 
     private void Update()
     {
-        /*
-         * Check for mouse release first so the sound stops even if
-         * the mouse is released outside of the Game window.
-         */
-        if (LeftMouseReleasedThisFrame())
+        Mouse mouse = Mouse.current;
+        PlayerPencil player = PlayerPencil.Instance;
+
+        if (drawingCamera == null || !Application.isFocused ||
+            mouse == null || !mouse.leftButton.isPressed ||
+            mouse.leftButton.wasReleasedThisFrame ||
+            player == null || !player.isHoldingPencil ||
+            player.currentPencil == null || player.currentPencil.isBroken)
+        {
+            EndStroke();
+            return;
+        }
+
+        Vector2 screenPosition = mouse.position.ReadValue();
+
+        if (screenPosition.x < 0f || screenPosition.y < 0f ||
+            screenPosition.x >= Screen.width || screenPosition.y >= Screen.height)
+        {
+            EndStroke();
+            return;
+        }
+
+        float depth = Mathf.Abs(drawingPlaneZ - drawingCamera.transform.position.z);
+        Vector3 worldPosition = drawingCamera.ScreenToWorldPoint(
+            new Vector3(screenPosition.x, screenPosition.y, depth));
+        worldPosition.z = drawingPlaneZ;
+
+        SpriteMask paper = GetPaperAtPosition(worldPosition);
+
+        if (paper == null)
+        {
+            EndStroke();
+            return;
+        }
+
+        // Separate strokes when crossing between papers or switching pencils.
+        if (currentLine != null &&
+            (paper != currentPaper || player.currentPencil != strokePencil))
         {
             EndStroke();
         }
 
-        if (drawingCamera == null)
+        if (currentLine == null)
         {
-            return;
+            BeginStroke(worldPosition, paper, player);
+        }
+        else if (Vector2.Distance(worldPosition, lastWorldPoint) >= minimumPointDistance)
+        {
+            AddPoint(worldPosition);
         }
 
-        if (!TryGetMouseScreenPosition(out Vector2 screenPosition))
-        {
-            return;
-        }
-
-        Vector3 worldPosition =
-            ScreenToDrawingPlane(screenPosition);
-
-        if (LeftMousePressedThisFrame())
-        {
-            BeginStroke(worldPosition);
-        }
-        else if (LeftMouseIsPressed() && currentLine != null)
-        {
-            ContinueStroke(worldPosition);
-        }
+        IsDrawingOnPaper = currentLine != null;
     }
 
-    private void SetupAudioSource()
+    private void BeginStroke(Vector3 worldPosition, SpriteMask paper, PlayerPencil player)
     {
-        drawingAudioSource = GetComponent<AudioSource>();
+        currentPaper = paper;
+        strokePencil = player.currentPencil;
 
-        drawingAudioSource.playOnAwake = false;
-        drawingAudioSource.loop = true;
-
-        // A value of zero makes this a 2D sound.
-        drawingAudioSource.spatialBlend = 0f;
-
-        drawingAudioSource.volume = drawingVolume;
-        drawingAudioSource.pitch = drawingPitch;
-        drawingAudioSource.clip = drawingSound;
-
-    }
-
-    private void CreateFallbackMaterial()
-    {
-        if (lineMaterial != null)
-        {
-            return;
-        }
-
-        Shader spriteShader = Shader.Find("Sprites/Default");
-
-        if (spriteShader == null)
-        {
-            spriteShader = Shader.Find(
-                "Universal Render Pipeline/2D/Sprite-Unlit-Default"
-            );
-        }
-
-        if (spriteShader != null)
-        {
-            fallbackMaterial = new Material(spriteShader);
-        }
-        else
-        {
-            Debug.LogWarning(
-                "MouseDrawer2D could not create a line material. " +
-                "Assign a material to Line Material in the Inspector."
-            );
-        }
-    }
-
-    private void BeginStroke(Vector3 worldPosition)
-    {
-        /*
-         * Finish any existing stroke in case the previous mouse
-         * release was missed.
-         */
-        if (currentLine != null)
-        {
-            EndStroke();
-        }
-
-        GameObject stroke = new GameObject(
-            "Stroke_" + nextStrokeNumber
-        );
-
-        nextStrokeNumber++;
-
-        /*
-         * Keep the strokes underneath the DrawingManager object
-         * in the Hierarchy.
-         */
-        stroke.transform.position =
-            new Vector3(0f, 0f, drawingPlaneZ);
-
-        stroke.transform.rotation = Quaternion.identity;
-        stroke.transform.localScale = Vector3.one;
-
+        GameObject stroke = new GameObject("Stroke_" + nextStrokeNumber++);
+        stroke.transform.position = new Vector3(0f, 0f, drawingPlaneZ);
         stroke.transform.SetParent(transform, true);
 
         currentLine = stroke.AddComponent<LineRenderer>();
+        currentLine.useWorldSpace = false;
+        currentLine.positionCount = 0;
+        currentLine.startWidth = lineWidth;
+        currentLine.endWidth = lineWidth;
+        currentLine.startColor = player.heldColor;
+        currentLine.endColor = player.heldColor;
+        currentLine.numCapVertices = 8;
+        currentLine.numCornerVertices = 8;
+        currentLine.alignment = LineAlignment.View;
+        currentLine.sortingLayerName = sortingLayerName;
+        currentLine.sortingOrder = sortingOrder;
 
-        ConfigureLineRenderer(currentLine);
+        Material material = lineMaterial != null ? lineMaterial : fallbackMaterial;
+        if (material != null)
+            currentLine.sharedMaterial = material;
 
-        bool isBlackPencil =
-            PlayerPencil.Instance != null &&
-            PlayerPencil.Instance.isHoldingPencil &&
-            PlayerPencil.Instance.heldColorName == "Black";
-
-        if (createCollider && isBlackPencil)
+        // Colored strokes remain visible but have no physical collider.
+        currentCollider = null;
+        if (createCollider && player.heldColorName == "Black")
         {
-            currentCollider =
-                stroke.AddComponent<EdgeCollider2D>();
-
-            stroke.tag = "Platform";
-
-            /*
-             * An EdgeCollider2D needs at least two points, so it
-             * starts disabled.
-             */
+            currentCollider = stroke.AddComponent<EdgeCollider2D>();
             currentCollider.enabled = false;
             currentCollider.isTrigger = false;
             currentCollider.edgeRadius = lineWidth * 0.5f;
+            stroke.tag = "Platform";
 
             if (physicsMaterial != null)
-            {
                 currentCollider.sharedMaterial = physicsMaterial;
-            }
-        }
-        else
-        {
-            currentCollider = null;
         }
 
-        linePoints.Clear();
         colliderPoints.Clear();
-
-        strokes.Add(stroke);
-
         AddPoint(worldPosition);
-        StartDrawingSound();
-    }
 
-    private void ConfigureLineRenderer(LineRenderer line)
-    {
-        line.useWorldSpace = false;
-        line.positionCount = 0;
-
-        line.startWidth = lineWidth;
-        line.endWidth = lineWidth;
-
-        Color colorToUse = lineColor;
-
-        if (PlayerPencil.Instance != null &&
-            PlayerPencil.Instance.isHoldingPencil)
+        if (drawingAudioSource != null && drawingSound != null)
         {
-            colorToUse =
-                PlayerPencil.Instance.heldColor;
+            drawingAudioSource.clip = drawingSound;
+            drawingAudioSource.volume = drawingVolume;
+            drawingAudioSource.pitch = drawingPitch;
+
+            if (!drawingAudioSource.isPlaying)
+                drawingAudioSource.Play();
         }
-
-        line.startColor = colorToUse;
-        line.endColor = colorToUse;
-
-        // Creates rounded ends and corners.
-        line.numCapVertices = 8;
-        line.numCornerVertices = 8;
-
-        line.alignment = LineAlignment.View;
-
-        line.sortingLayerName = sortingLayerName;
-        line.sortingOrder = sortingOrder;
-
-        Material materialToUse =
-            lineMaterial != null
-                ? lineMaterial
-                : fallbackMaterial;
-
-        if (materialToUse != null)
-        {
-            line.sharedMaterial = materialToUse;
-        }
-    }
-
-    private void ContinueStroke(Vector3 worldPosition)
-    {
-        float distanceFromPreviousPoint =
-            Vector2.Distance(
-                new Vector2(
-                    worldPosition.x,
-                    worldPosition.y
-                ),
-                new Vector2(
-                    lastWorldPoint.x,
-                    lastWorldPoint.y
-                )
-            );
-
-        if (distanceFromPreviousPoint <
-            minimumPointDistance)
-        {
-            return;
-        }
-
-        AddPoint(worldPosition);
     }
 
     private void AddPoint(Vector3 worldPosition)
     {
-        if (currentLine == null)
-        {
-            return;
-        }
-
-        /*
-         * LineRenderer and EdgeCollider2D store their points
-         * relative to the stroke GameObject.
-         */
-        Vector3 localPosition =
-            currentLine.transform.InverseTransformPoint(
-                worldPosition
-            );
-
+        Vector3 localPosition = currentLine.transform.InverseTransformPoint(worldPosition);
         localPosition.z = 0f;
 
-        linePoints.Add(localPosition);
-
-        currentLine.positionCount = linePoints.Count;
-
-        currentLine.SetPosition(
-            linePoints.Count - 1,
-            localPosition
-        );
+        int index = currentLine.positionCount;
+        currentLine.positionCount = index + 1;
+        currentLine.SetPosition(index, localPosition);
 
         if (currentCollider != null)
         {
-            colliderPoints.Add(
-                new Vector2(
-                    localPosition.x,
-                    localPosition.y
-                )
-            );
+            colliderPoints.Add(new Vector2(localPosition.x, localPosition.y));
 
             if (colliderPoints.Count >= 2)
             {
@@ -339,160 +205,77 @@ public class Drawing : MonoBehaviour
 
     public void EndStroke()
     {
-        StopDrawingSound();
+        IsDrawingOnPaper = false;
 
-        if (currentLine == null)
-        {
-            return;
-        }
+        if (drawingAudioSource != null && drawingAudioSource.isPlaying)
+            drawingAudioSource.Stop();
 
-        /*
-         * Delete the stroke if the player only clicked and did
-         * not drag far enough to create a complete line.
-         */
-        if (currentLine.positionCount < 2)
-        {
-            GameObject incompleteStroke =
-                currentLine.gameObject;
+        // Discard clicks that never became a complete line.
+        if (currentLine != null && currentLine.positionCount < 2)
+            Destroy(currentLine.gameObject);
 
-            strokes.Remove(incompleteStroke);
-            Destroy(incompleteStroke);
-        }
-
-        ResetCurrentStroke();
-    }
-
-    private void ResetCurrentStroke()
-    {
         currentLine = null;
         currentCollider = null;
-
-        linePoints.Clear();
+        currentPaper = null;
+        strokePencil = null;
         colliderPoints.Clear();
     }
 
-    private void StartDrawingSound()
+    private SpriteMask GetPaperAtPosition(Vector3 worldPosition)
     {
-        if (drawingAudioSource == null ||
-            drawingSound == null)
+        // Prefer the existing paper when paper rectangles overlap.
+        if (IsInsidePaper(currentPaper, worldPosition))
+            return currentPaper;
+
+        if (paperMasks != null)
         {
-            return;
+            foreach (SpriteMask paper in paperMasks)
+            {
+                if (IsInsidePaper(paper, worldPosition))
+                    return paper;
+            }
         }
 
-        drawingAudioSource.clip = drawingSound;
-        drawingAudioSource.volume = drawingVolume;
-        drawingAudioSource.pitch = drawingPitch;
-        drawingAudioSource.loop = true;
-
-        if (!drawingAudioSource.isPlaying)
-        {
-            drawingAudioSource.Play();
-        }
+        return null;
     }
 
-    private void StopDrawingSound()
+    private bool IsInsidePaper(SpriteMask paper, Vector3 worldPosition)
     {
-        if (drawingAudioSource != null &&
-            drawingAudioSource.isPlaying)
+        if (paper == null || !paper.enabled ||
+            !paper.gameObject.activeInHierarchy || paper.sprite == null)
         {
-            drawingAudioSource.Stop();
-        }
-    }
-
-    private Vector3 ScreenToDrawingPlane(
-        Vector2 screenPosition
-    )
-    {
-        /*
-         * Example:
-         * Camera Z = -10
-         * Drawing plane Z = 0
-         * Distance from camera = 10
-         */
-        float distanceFromCamera = Mathf.Abs(
-            drawingPlaneZ -
-            drawingCamera.transform.position.z
-        );
-
-        Vector3 worldPosition =
-            drawingCamera.ScreenToWorldPoint(
-                new Vector3(
-                    screenPosition.x,
-                    screenPosition.y,
-                    distanceFromCamera
-                )
-            );
-
-        worldPosition.z = drawingPlaneZ;
-
-        return worldPosition;
-    }
-
-    private bool TryGetMouseScreenPosition(
-        out Vector2 screenPosition
-    )
-    {
-        if (Mouse.current == null)
-        {
-            screenPosition = Vector2.zero;
             return false;
         }
 
-        screenPosition =
-            Mouse.current.position.ReadValue();
+        Vector3 localPosition = paper.transform.InverseTransformPoint(worldPosition);
+        Bounds bounds = paper.sprite.bounds;
 
-        /*
-         * Prevent drawing while the mouse is outside of the
-         * Game window.
-         */
-        return screenPosition.x >= 0f &&
-               screenPosition.y >= 0f &&
-               screenPosition.x < Screen.width &&
-               screenPosition.y < Screen.height;
-    }
+        // Account for paper rotation/scale and keep line thickness inside its edges.
+        float padding = lineWidth * 0.5f + paperEdgeInset;
+        Matrix4x4 matrix = paper.transform.worldToLocalMatrix;
+        float paddingX = padding * new Vector2(matrix.m00, matrix.m01).magnitude;
+        float paddingY = padding * new Vector2(matrix.m10, matrix.m11).magnitude;
 
-    private bool LeftMousePressedThisFrame()
-    {
-        return Mouse.current != null &&
-               Mouse.current.leftButton
-                   .wasPressedThisFrame;
-    }
-
-    private bool LeftMouseIsPressed()
-    {
-        return Mouse.current != null &&
-               Mouse.current.leftButton.isPressed;
-    }
-
-    private bool LeftMouseReleasedThisFrame()
-    {
-        return Mouse.current != null &&
-               Mouse.current.leftButton
-                   .wasReleasedThisFrame;
+        return localPosition.x >= bounds.min.x + paddingX &&
+               localPosition.x <= bounds.max.x - paddingX &&
+               localPosition.y >= bounds.min.y + paddingY &&
+               localPosition.y <= bounds.max.y - paddingY;
     }
 
     private void OnApplicationFocus(bool hasFocus)
     {
-        /*
-         * Finish the stroke and stop the sound when the player
-         * clicks outside of the Unity game.
-         */
         if (!hasFocus)
-        {
             EndStroke();
-        }
     }
 
     private void OnDisable()
     {
-        StopDrawingSound();
+        EndStroke();
     }
 
     private void OnDestroy()
     {
         if (fallbackMaterial != null)
-        {
             Destroy(fallbackMaterial);
-        }
     }
 }

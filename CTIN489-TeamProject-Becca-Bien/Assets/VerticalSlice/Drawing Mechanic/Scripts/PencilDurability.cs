@@ -21,7 +21,7 @@ public class PencilDurability : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
         if (playerPencil == null)
             return;
@@ -37,9 +37,8 @@ public class PencilDurability : MonoBehaviour
 
         bool currentlyDrawing =
             drawingScript != null &&
-            drawingScript.enabled &&
-            Mouse.current != null &&
-            Mouse.current.leftButton.isPressed;
+            drawingScript.isActiveAndEnabled &&
+            drawingScript.IsDrawingOnPaper;
 
         // Time starts when drawing is enabled and mouse is in use
         if (currentlyDrawing)
