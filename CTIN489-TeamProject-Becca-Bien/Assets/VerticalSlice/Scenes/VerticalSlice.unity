@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 151836}
   - component: {fileID: 151835}
   - component: {fileID: 151834}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: RainDrops_0 (2)
   m_TagString: Platform
   m_Icon: {fileID: 0}
@@ -607,7 +607,7 @@ GameObject:
   - component: {fileID: 32787629}
   - component: {fileID: 32787632}
   - component: {fileID: 32787631}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: DressParts_0
   m_TagString: Platform
   m_Icon: {fileID: 0}
@@ -813,7 +813,7 @@ GameObject:
   - component: {fileID: 77042674}
   - component: {fileID: 77042673}
   - component: {fileID: 77042672}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: DressParts_0 (1)
   m_TagString: Platform
   m_Icon: {fileID: 0}
@@ -1137,7 +1137,7 @@ GameObject:
   - component: {fileID: 146096082}
   - component: {fileID: 146096081}
   - component: {fileID: 146096080}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: RainDrops_0 (3)
   m_TagString: Platform
   m_Icon: {fileID: 0}
@@ -1613,7 +1613,7 @@ GameObject:
   - component: {fileID: 205651569}
   - component: {fileID: 205651568}
   - component: {fileID: 205651567}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: DressParts_0 (2)
   m_TagString: Platform
   m_Icon: {fileID: 0}
@@ -2320,7 +2320,7 @@ GameObject:
   - component: {fileID: 247991992}
   - component: {fileID: 247991990}
   - component: {fileID: 247991993}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Clouds_0 (1)
   m_TagString: Platform
   m_Icon: {fileID: 0}
@@ -3698,7 +3698,7 @@ GameObject:
   - component: {fileID: 332059597}
   - component: {fileID: 332059596}
   - component: {fileID: 332059598}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Trees_0 (2)
   m_TagString: Platform
   m_Icon: {fileID: 0}
@@ -5468,7 +5468,7 @@ GameObject:
   - component: {fileID: 346562161}
   - component: {fileID: 346562160}
   - component: {fileID: 346562159}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BarnAnimals_0 (1)
   m_TagString: Platform
   m_Icon: {fileID: 0}
@@ -5694,7 +5694,7 @@ GameObject:
   - component: {fileID: 448262493}
   - component: {fileID: 448262492}
   - component: {fileID: 448262494}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Stars_0 (2)
   m_TagString: Platform
   m_Icon: {fileID: 0}
@@ -6158,7 +6158,7 @@ GameObject:
   - component: {fileID: 485362310}
   - component: {fileID: 485362309}
   - component: {fileID: 485362311}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Stars_0
   m_TagString: Platform
   m_Icon: {fileID: 0}
@@ -6863,6 +6863,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   moveSpeed: 4
   jumpForce: 6
+  groundCheck: {fileID: 1518972174}
+  groundCheckRadius: 0.5
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  fallMultiplier: 2.5
+  lowJumpMultiplier: 2
+  coyoteTime: 0.15
+  jumpBufferTime: 0.15
 --- !u!50 &552576947
 Rigidbody2D:
   serializedVersion: 5
@@ -6964,6 +6973,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1191482355}
+  - {fileID: 1518972174}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!70 &552576950
@@ -7031,7 +7041,7 @@ GameObject:
   - component: {fileID: 604855781}
   - component: {fileID: 604855780}
   - component: {fileID: 604855779}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: drawing5_0 (3)
   m_TagString: Platform
   m_Icon: {fileID: 0}
@@ -7219,7 +7229,7 @@ GameObject:
   - component: {fileID: 615157624}
   - component: {fileID: 615157627}
   - component: {fileID: 615157626}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: drawing5_0 (2)
   m_TagString: Platform
   m_Icon: {fileID: 0}
@@ -7735,7 +7745,7 @@ GameObject:
   - component: {fileID: 639449442}
   - component: {fileID: 639449441}
   - component: {fileID: 639449443}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Stars_0 (1)
   m_TagString: Platform
   m_Icon: {fileID: 0}
@@ -8392,7 +8402,7 @@ GameObject:
   - component: {fileID: 707050462}
   - component: {fileID: 707050461}
   - component: {fileID: 707050460}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: DressParts_0 (3)
   m_TagString: Platform
   m_Icon: {fileID: 0}
@@ -8667,7 +8677,7 @@ GameObject:
   - component: {fileID: 858964744}
   - component: {fileID: 858964743}
   - component: {fileID: 858964742}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: drawing5_0 (4)
   m_TagString: Platform
   m_Icon: {fileID: 0}
@@ -8856,7 +8866,7 @@ GameObject:
   - component: {fileID: 872333083}
   - component: {fileID: 872333086}
   - component: {fileID: 872333087}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: InteractableStar_0
   m_TagString: BlankObject
   m_Icon: {fileID: 0}
@@ -9171,7 +9181,7 @@ GameObject:
   m_Component:
   - component: {fileID: 900685049}
   - component: {fileID: 900685048}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: AppleTree
   m_TagString: Platform
   m_Icon: {fileID: 0}
@@ -9566,7 +9576,7 @@ GameObject:
   - component: {fileID: 1037275877}
   - component: {fileID: 1037275876}
   - component: {fileID: 1037275875}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: DressParts_0 (4)
   m_TagString: Platform
   m_Icon: {fileID: 0}
@@ -9772,7 +9782,7 @@ GameObject:
   - component: {fileID: 1097435847}
   - component: {fileID: 1097435845}
   - component: {fileID: 1097435848}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Clouds_0
   m_TagString: Platform
   m_Icon: {fileID: 0}
@@ -10345,7 +10355,7 @@ GameObject:
   - component: {fileID: 1109032158}
   - component: {fileID: 1109032157}
   - component: {fileID: 1109032156}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: RainDrops_0 (1)
   m_TagString: Platform
   m_Icon: {fileID: 0}
@@ -10932,7 +10942,7 @@ GameObject:
   - component: {fileID: 1164402953}
   - component: {fileID: 1164402955}
   - component: {fileID: 1164402954}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BarnAnimals_0
   m_TagString: Platform
   m_Icon: {fileID: 0}
@@ -11681,7 +11691,7 @@ GameObject:
   - component: {fileID: 1305417727}
   - component: {fileID: 1305417726}
   - component: {fileID: 1305417728}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Trees_0 (1)
   m_TagString: Platform
   m_Icon: {fileID: 0}
@@ -13748,7 +13758,7 @@ GameObject:
   - component: {fileID: 1365572082}
   - component: {fileID: 1365572081}
   - component: {fileID: 1365572080}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: InteractableRoof_0
   m_TagString: BlankObject
   m_Icon: {fileID: 0}
@@ -13986,7 +13996,7 @@ GameObject:
   - component: {fileID: 1366836241}
   - component: {fileID: 1366836243}
   - component: {fileID: 1366836242}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: RainDrops_0
   m_TagString: Platform
   m_Icon: {fileID: 0}
@@ -14265,7 +14275,7 @@ GameObject:
   - component: {fileID: 1440958584}
   - component: {fileID: 1440958583}
   - component: {fileID: 1440958582}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: drawing5_0 (5)
   m_TagString: Platform
   m_Icon: {fileID: 0}
@@ -14477,6 +14487,37 @@ Transform:
   - {fileID: 1532782928}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1518972173
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1518972174}
+  m_Layer: 0
+  m_Name: GroundCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1518972174
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1518972173}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -5.09, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 552576949}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1531717122
 GameObject:
   m_ObjectHideFlags: 0
@@ -14532,7 +14573,7 @@ GameObject:
   - component: {fileID: 1568339205}
   - component: {fileID: 1568339204}
   - component: {fileID: 1568339206}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Stars_0
   m_TagString: Platform
   m_Icon: {fileID: 0}
@@ -15899,7 +15940,7 @@ GameObject:
   - component: {fileID: 1579663290}
   - component: {fileID: 1579663293}
   - component: {fileID: 1579663292}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: drawing5_0
   m_TagString: Platform
   m_Icon: {fileID: 0}
@@ -16428,7 +16469,7 @@ GameObject:
   - component: {fileID: 1803518188}
   - component: {fileID: 1803518191}
   - component: {fileID: 1803518190}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: drawing5_0 (1)
   m_TagString: Platform
   m_Icon: {fileID: 0}
@@ -16617,7 +16658,7 @@ GameObject:
   - component: {fileID: 1927359638}
   - component: {fileID: 1927359637}
   - component: {fileID: 1927359636}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ColorableUmbrella_0
   m_TagString: BlankObject
   m_Icon: {fileID: 0}
@@ -16863,7 +16904,7 @@ GameObject:
   - component: {fileID: 1948769050}
   - component: {fileID: 1948769051}
   - component: {fileID: 1948769052}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Trees_0
   m_TagString: Platform
   m_Icon: {fileID: 0}
@@ -19372,7 +19413,7 @@ GameObject:
   - component: {fileID: 2141089104}
   - component: {fileID: 2141089103}
   - component: {fileID: 2141089102}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: StartPlatform
   m_TagString: Platform
   m_Icon: {fileID: 0}
