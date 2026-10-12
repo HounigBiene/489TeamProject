@@ -161,6 +161,7 @@ public class Drawing : MonoBehaviour
             currentCollider.isTrigger = false;
             currentCollider.edgeRadius = lineWidth * 0.5f;
             stroke.tag = "Platform";
+            stroke.layer = LayerMask.NameToLayer("Ground");
 
             if (physicsMaterial != null)
                 currentCollider.sharedMaterial = physicsMaterial;
