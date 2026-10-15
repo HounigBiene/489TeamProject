@@ -34,6 +34,12 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        // Block input while dialogue is active
+        if (DialogueManager.Instance != null && DialogueManager.Instance.IsActive())
+        {
+            moveX = 0f;
+            return;
+        }
         // Movement input
         moveX = 0f;
         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))

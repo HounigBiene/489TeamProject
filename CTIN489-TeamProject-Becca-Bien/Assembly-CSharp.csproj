@@ -59,9 +59,12 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\EnvMapAnimator.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_A.cs" />
     <Compile Include="Assets\VerticalSlice\Drawing Mechanic\Scripts\PencilDurability.cs" />
+    <Compile Include="Assets\Tutorial\Level Design 1\DialogueManager.cs" />
     <Compile Include="Assets\Becca Prototype 4\Script\Sticker Collectable.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark02.cs" />
     <Compile Include="Assets\VerticalSlice\Level Design\Scripts\PlayerController.cs" />
+    <Compile Include="Assets\Tutorial\Level Design 1\TutorialTrigger.cs" />
+    <Compile Include="Assets\Tutorial\Level Design 1\TutorialManager.cs" />
     <Compile Include="Assets\VerticalSlice\Level Design\Scripts\PlayerAnimator.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_ExampleScript_01.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMPro_InstructionOverlay.cs" />

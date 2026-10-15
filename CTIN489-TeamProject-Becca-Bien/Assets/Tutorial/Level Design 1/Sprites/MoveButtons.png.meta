@@ -116,7 +116,7 @@ TextureImporter:
         width: 173
         height: 142
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -138,7 +138,7 @@ TextureImporter:
         width: 173
         height: 143
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -160,7 +160,7 @@ TextureImporter:
         width: 584
         height: 113
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -173,11 +173,33 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: MoveButtons_3
+      rect:
+        serializedVersion: 2
+        x: 305
+        y: 259
+        width: 584
+        height: 320
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0454a48aaebe9ba4d89ced7d9b569780
+      internalID: 1340705370
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 2439627fd57c89a4f81337441ae71134
     internalID: 0
     vertices: []
     indices: 
@@ -190,6 +212,7 @@ TextureImporter:
       MoveButtons_0: 2355541054655408848
       MoveButtons_1: 8004879564192281152
       MoveButtons_2: 1375205842379716133
+      MoveButtons_3: 1340705370
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
