@@ -30,6 +30,7 @@ public class Drawing : MonoBehaviour
     [SerializeField, Range(0.1f, 3f)] private float drawingPitch = 1f;
 
     public bool IsDrawingOnPaper { get; private set; }
+    public int StrokesCreated { get; private set; } = 0;
 
     private readonly List<Vector2> colliderPoints = new List<Vector2>();
     private LineRenderer currentLine;
@@ -179,6 +180,8 @@ public class Drawing : MonoBehaviour
             if (!drawingAudioSource.isPlaying)
                 drawingAudioSource.Play();
         }
+
+        StrokesCreated++;
     }
 
     private void AddPoint(Vector3 worldPosition)

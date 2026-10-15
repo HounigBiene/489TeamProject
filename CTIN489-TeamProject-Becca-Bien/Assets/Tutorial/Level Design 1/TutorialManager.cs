@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public enum TutorialStep
 {
@@ -12,6 +13,9 @@ public enum TutorialStep
     PickUpPencil,
     DrawBridge,
     CrossBridge,
+    WaitingForDrawMore,
+    DrawMoreForFun,
+    PencilBreakDialogue,
     Done
 }
 
@@ -23,7 +27,7 @@ public class TutorialManager : MonoBehaviour
     public Sprite characterProfile;
 
     [Header("UI Prompts")]
-    public GameObject moveKeysUI;       // A/D + Space combined
+    public GameObject moveKeysUI;
     public GameObject clickPromptUI;
     public GameObject drawPromptUI;
 
@@ -50,29 +54,17 @@ public class TutorialManager : MonoBehaviour
 
         switch (step)
         {
-            case TutorialStep.Intro:
-                ShowIntroDialogue();
-                break;
-            case TutorialStep.WalkAround:
-                ShowWalkTutorial();
-                break;
-            case TutorialStep.Explore:
-                break;
-            case TutorialStep.SeeGap:
-                ShowGapDialogue();
-                break;
-            case TutorialStep.PickUpPencil:
-                ShowPencilTutorial();
-                break;
-            case TutorialStep.DrawBridge:
-                ShowDrawTutorial();
-                break;
-            case TutorialStep.CrossBridge:
-                ShowCrossTutorial();
-                break;
-            case TutorialStep.Done:
-                Debug.Log("Tutorial complete!");
-                break;
+            case TutorialStep.Intro: ShowIntroDialogue(); break;
+            case TutorialStep.WalkAround: ShowWalkTutorial(); break;
+            case TutorialStep.Explore: break;
+            case TutorialStep.SeeGap: ShowGapDialogue(); break;
+            case TutorialStep.PickUpPencil: ShowPencilTutorial(); break;
+            case TutorialStep.DrawBridge: ShowDrawTutorial(); break;
+            case TutorialStep.CrossBridge: ShowCrossTutorial(); break;
+            case TutorialStep.WaitingForDrawMore: break;  
+            case TutorialStep.DrawMoreForFun: ShowDrawMoreForFun(); break;
+            case TutorialStep.PencilBreakDialogue: ShowPencilBreakDialogue(); break;
+            case TutorialStep.Done: Debug.Log("Tutorial complete!"); break;
         }
     }
 
@@ -87,6 +79,7 @@ public class TutorialManager : MonoBehaviour
     {
         string[] lines = {
             "Where... am I?",
+            "This doesn't look like home.",
             "Maybe I should walk around and see what's here."
         };
 
@@ -113,9 +106,7 @@ public class TutorialManager : MonoBehaviour
             yield return null;
         }
 
-        // Wait a moment so player can see the completion
         yield return new WaitForSeconds(1.5f);
-
         if (moveKeysUI != null) moveKeysUI.SetActive(false);
         SetStep(TutorialStep.Explore);
     }
@@ -144,10 +135,9 @@ public class TutorialManager : MonoBehaviour
         PlayerPencil playerPencil = PlayerPencil.Instance;
 
         while (playerPencil == null || !playerPencil.isHoldingPencil)
-        {
             yield return null;
-        }
 
+        yield return new WaitForSeconds(0.5f);
         if (clickPromptUI != null) clickPromptUI.SetActive(false);
         SetStep(TutorialStep.DrawBridge);
     }
@@ -157,8 +147,7 @@ public class TutorialManager : MonoBehaviour
         if (drawPromptUI != null) drawPromptUI.SetActive(true);
 
         string[] lines = {
-            "A pencil! It feels familiar.",
-            "If I hold and drag, maybe I can draw a bridge!",
+            "Maybe I can draw a bridge over to the other side?",
         };
 
         DialogueManager.Instance.ShowDialogue("Hero", characterProfile, lines, () => {
@@ -168,11 +157,15 @@ public class TutorialManager : MonoBehaviour
 
     IEnumerator WaitForDrawing()
     {
-        while (GameObject.FindGameObjectsWithTag("Platform").Length < 2)
-        {
-            yield return null;
-        }
+        Drawing drawing = FindObjectOfType<Drawing>();
+        if (drawing == null) yield break;
 
+        int startingStrokes = drawing.StrokesCreated;
+
+        while (drawing.StrokesCreated <= startingStrokes)
+            yield return null;
+
+        yield return new WaitForSeconds(0.5f);
         if (drawPromptUI != null) drawPromptUI.SetActive(false);
         SetStep(TutorialStep.CrossBridge);
     }
@@ -185,15 +178,135 @@ public class TutorialManager : MonoBehaviour
         };
 
         DialogueManager.Instance.ShowDialogue("Hero", characterProfile, lines, () => {
-            SetStep(TutorialStep.Done);
+            SetStep(TutorialStep.WaitingForDrawMore); // Wait, don't loop
         });
     }
 
     public void OnPlayerReachedGap()
     {
         if (currentStep == TutorialStep.Explore)
-        {
             SetStep(TutorialStep.SeeGap);
+    }
+
+    public void OnPlayerReachedDrawMoreArea()
+    {
+        if (currentStep == TutorialStep.WaitingForDrawMore)
+            SetStep(TutorialStep.DrawMoreForFun);
+    }
+
+    void ShowDrawMoreForFun()
+    {
+        if (drawPromptUI != null) drawPromptUI.SetActive(true);
+
+        string[] lines = {
+            "Look at all this blank space!",
+            "I kind of want to draw more"
+        };
+
+        DialogueManager.Instance.ShowDialogue("Hero", characterProfile, lines, () => {
+            StartCoroutine(WaitForMoreDrawing());
+        });
+    }
+
+    IEnumerator WaitForMoreDrawing()
+    {
+        Drawing drawing = FindObjectOfType<Drawing>();
+        if (drawing == null) yield break;
+
+        int startingStrokes = drawing.StrokesCreated;
+        float timer = 0f;
+        float maxWaitTime = 3f; // safety timeout
+
+        while (true)
+        {
+            timer += Time.deltaTime;
+
+            // Check if pencil is broken
+            PlayerPencil playerPencil = PlayerPencil.Instance;
+            bool pencilBroken = playerPencil != null && 
+                                playerPencil.currentPencil != null && 
+                                playerPencil.currentPencil.isBroken;
+
+            // Check if enough strokes drawn
+            bool enoughStrokes = (drawing.StrokesCreated - startingStrokes) >= 2;
+
+            if (pencilBroken || enoughStrokes || timer >= maxWaitTime)
+            {
+                Debug.Log("Draw-for-fun complete. Pencil broken: " + pencilBroken + 
+                        " | Strokes: " + (drawing.StrokesCreated - startingStrokes));
+                break;
+            }
+
+            yield return null;
+        }
+
+        // Hide draw UI after 1 second
+        yield return new WaitForSeconds(1f);
+        if (drawPromptUI != null) drawPromptUI.SetActive(false);
+
+        SetStep(TutorialStep.PencilBreakDialogue);
+    }
+
+    void ShowPencilBreakDialogue()
+    {
+        string[] lines = {
+            "Oh no... my pencil snapped!",
+            "I guess there's a limit to how much I can draw."
+        };
+
+        DialogueManager.Instance.ShowDialogue("Hero", characterProfile, lines, () => {
+            SetStep(TutorialStep.Done);
+        });
+    }
+
+    // void ShowFindNewPencil()
+    // {
+    //     if (clickPromptUI != null) clickPromptUI.SetActive(true);
+
+    //     string[] lines = {
+    //         "Another pencil! I'll use it more wisely this time."
+    //     };
+
+    //     DialogueManager.Instance.ShowDialogue("Hero", characterProfile, lines, () => {
+    //         StartCoroutine(WaitForNewPencilPickup());
+    //     });
+    // }
+
+    // IEnumerator WaitForNewPencilPickup()
+    // {
+    //     PlayerPencil playerPencil = PlayerPencil.Instance;
+
+    //     // Wait until they drop the broken pencil
+    //     while (playerPencil != null && playerPencil.isHoldingPencil)
+    //         yield return null;
+
+    //     // Wait until they pick up the new one
+    //     while (playerPencil != null && !playerPencil.isHoldingPencil)
+    //         yield return null;
+
+    //     // Hide the prompt immediately
+    //     if (clickPromptUI != null) clickPromptUI.SetActive(false);
+
+    //     // Wait a moment for the pickup to feel complete
+    //     yield return new WaitForSeconds(1.5f);
+
+    //     string[] lines = {
+    //         "Perfect! Now I know to be careful.",
+    //         "Let's keep going."
+    //     };
+
+    //     DialogueManager.Instance.ShowDialogue("Hero", characterProfile, lines, () => {
+    //         SetStep(TutorialStep.Done);
+    //     });
+    // }
+
+    //CHANGE SCENE
+    public void OnPlayerReachedEnd()
+    {
+        if (currentStep == TutorialStep.Done)
+        {
+            Debug.Log("Loading Vertical Slice...");
+            SceneManager.LoadScene("VerticalSlice");
         }
     }
 }
