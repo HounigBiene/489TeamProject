@@ -96,13 +96,21 @@ public class TutorialManager : MonoBehaviour
 
     IEnumerator WaitForMovement()
     {
-        bool movedLeft = false, movedRight = false, jumped = false;
+        float timer = 0f;
+        float maxTime = 5f; // advance after 5 seconds regardless
+        bool startedMoving = false;
 
-        while (!movedLeft || !movedRight || !jumped)
+        while (timer < maxTime && !startedMoving)
         {
-            if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)) movedLeft = true;
-            if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)) movedRight = true;
-            if (Input.GetKeyDown(KeyCode.Space)) jumped = true;
+            timer += Time.deltaTime;
+
+            if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow) ||
+                Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow) ||
+                Input.GetKey(KeyCode.Space))
+            {
+                startedMoving = true;
+            }
+
             yield return null;
         }
 
@@ -160,6 +168,9 @@ public class TutorialManager : MonoBehaviour
         Drawing drawing = FindObjectOfType<Drawing>();
         if (drawing == null) yield break;
 
+        // Wait for dialogue click to finish processing
+        yield return new WaitForSeconds(0.2f);
+
         int startingStrokes = drawing.StrokesCreated;
 
         while (drawing.StrokesCreated <= startingStrokes)
@@ -213,34 +224,39 @@ public class TutorialManager : MonoBehaviour
         Drawing drawing = FindObjectOfType<Drawing>();
         if (drawing == null) yield break;
 
+        yield return new WaitForSeconds(0.2f);
+
         int startingStrokes = drawing.StrokesCreated;
         float timer = 0f;
-        float maxWaitTime = 3f; // safety timeout
+        float maxWaitTime = 30f; // safety timeout — high since pencil controls the end
+
+        PlayerPencil playerPencil = PlayerPencil.Instance;
 
         while (true)
         {
             timer += Time.deltaTime;
 
-            // Check if pencil is broken
-            PlayerPencil playerPencil = PlayerPencil.Instance;
+            // PRIMARY: wait until pencil actually breaks
             bool pencilBroken = playerPencil != null && 
                                 playerPencil.currentPencil != null && 
                                 playerPencil.currentPencil.isBroken;
 
-            // Check if enough strokes drawn
-            bool enoughStrokes = (drawing.StrokesCreated - startingStrokes) >= 2;
-
-            if (pencilBroken || enoughStrokes || timer >= maxWaitTime)
+            if (pencilBroken)
             {
-                Debug.Log("Draw-for-fun complete. Pencil broken: " + pencilBroken + 
-                        " | Strokes: " + (drawing.StrokesCreated - startingStrokes));
+                Debug.Log("Pencil broke! Advancing.");
+                break;
+            }
+
+            // SAFETY: if something goes wrong, don't hang forever
+            if (timer >= maxWaitTime)
+            {
+                Debug.LogWarning("Max wait time reached without pencil breaking.");
                 break;
             }
 
             yield return null;
         }
 
-        // Hide draw UI after 1 second
         yield return new WaitForSeconds(1f);
         if (drawPromptUI != null) drawPromptUI.SetActive(false);
 
