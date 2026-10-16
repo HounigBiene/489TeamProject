@@ -1,3 +1,3 @@
-This week I worked on the level set up, which includes the 5 drawings and basic camera movement with the player.
+This week I worked on the tutorial layout, added the dialogue, instruction, and profile assets, and then the tutorial scene and sequence (move instructions, click to pick up pencil, draw with pencil). Also fixed buggy jumping.
 
-Next week I might work on character design and maybe more refined assets for a beautiful corner.
+Next week I will work on the opening cutscene.

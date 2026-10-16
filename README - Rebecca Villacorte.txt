@@ -1,3 +1,3 @@
-Becca 9/17
-- This week I worked on implementing the drawing mechanic based off of my first prototype in week 1.
-- Next week I hope to work on limiting this drawing mechanic and balancing it out with the rest of the game.
+Becca 10/15
+- This week I worked on implementing the home screen and bg music
+- Next week I hope to work on expanding the level design w narrative
