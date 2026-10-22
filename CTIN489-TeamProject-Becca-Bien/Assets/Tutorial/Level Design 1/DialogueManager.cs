@@ -80,6 +80,9 @@ public class DialogueManager : MonoBehaviour
 
     public void ShowDialogue(string speaker, Sprite profile, string[] lines, Action onFinish = null)
     {
+        // 1. STOP any currently running typing coroutines immediately!
+        StopAllCoroutines();
+
         isActive = true;
         currentLines = lines;
         currentLineIndex = 0;
@@ -90,6 +93,12 @@ public class DialogueManager : MonoBehaviour
 
         if (speakerName != null) speakerName.text = speaker;
         if (profilePic != null && profile != null) profilePic.sprite = profile;
+
+        // 2. CLEAR THE TEXT before typing the new line
+        dialogueText.text = ""; 
+        
+        // 3. Make sure the click indicator is hidden while it types
+        if (clickIndicator != null) clickIndicator.SetActive(false);
 
         StartCoroutine(TypeLine(currentLines[0]));
     }

@@ -168,13 +168,22 @@ public class TutorialManager : MonoBehaviour
         Drawing drawing = FindObjectOfType<Drawing>();
         if (drawing == null) yield break;
 
-        // Wait for dialogue click to finish processing
         yield return new WaitForSeconds(0.2f);
 
         int startingStrokes = drawing.StrokesCreated;
+        float timer = 0f;
+        float maxWaitTime = 20f; // Give them 20 seconds to figure it out
 
         while (drawing.StrokesCreated <= startingStrokes)
+        {
+            timer += Time.deltaTime;
+            if (timer >= maxWaitTime) 
+            {
+                Debug.Log("Timeout: Player didn't draw a bridge immediately.");
+                break;
+            }
             yield return null;
+        }
 
         yield return new WaitForSeconds(0.5f);
         if (drawPromptUI != null) drawPromptUI.SetActive(false);
@@ -195,14 +204,18 @@ public class TutorialManager : MonoBehaviour
 
     public void OnPlayerReachedGap()
     {
-        if (currentStep == TutorialStep.Explore)
+        // If they somehow reach the gap but the step is still WalkAround/Explore
+        if (currentStep == TutorialStep.Explore || currentStep == TutorialStep.WalkAround)
             SetStep(TutorialStep.SeeGap);
     }
 
     public void OnPlayerReachedDrawMoreArea()
     {
-        if (currentStep == TutorialStep.WaitingForDrawMore)
+        // If they are in WaitingForDrawMore OR if they skipped ahead and are still in CrossBridge
+        if (currentStep == TutorialStep.WaitingForDrawMore || currentStep == TutorialStep.CrossBridge)
+        {
             SetStep(TutorialStep.DrawMoreForFun);
+        }
     }
 
     void ShowDrawMoreForFun()
@@ -220,14 +233,10 @@ public class TutorialManager : MonoBehaviour
 
     IEnumerator WaitForMoreDrawing()
     {
-        Drawing drawing = FindObjectOfType<Drawing>();
-        if (drawing == null) yield break;
-
         yield return new WaitForSeconds(0.2f);
-
-        int startingStrokes = drawing.StrokesCreated;
+        
         float timer = 0f;
-        float maxWaitTime = 30f; // safety timeout — high since pencil controls the end
+        float maxWaitTime = 30f; // Safety timeout
 
         PlayerPencil playerPencil = PlayerPencil.Instance;
 
@@ -235,7 +244,7 @@ public class TutorialManager : MonoBehaviour
         {
             timer += Time.deltaTime;
 
-            // PRIMARY: wait until pencil actually breaks
+            // Just check if the pencil is broken. We don't care about strokes anymore!
             bool pencilBroken = playerPencil != null && 
                                 playerPencil.currentPencil != null && 
                                 playerPencil.currentPencil.isBroken;
@@ -246,10 +255,9 @@ public class TutorialManager : MonoBehaviour
                 break;
             }
 
-            // SAFETY: if something goes wrong, don't hang forever
             if (timer >= maxWaitTime)
             {
-                Debug.LogWarning("Max wait time reached without pencil breaking.");
+                Debug.LogWarning("Safety timeout reached in DrawMore.");
                 break;
             }
 

@@ -1,43 +1,77 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class TutorialTrigger : MonoBehaviour
 {
     public enum TriggerType { Gap, DrawMore, Pencil, ToVerticalSlice }
 
     [SerializeField] private TriggerType triggerType = TriggerType.Gap;
-    [SerializeField] private bool triggerOnce = true;
-    [SerializeField] private string sceneName = "VerticalSlice"; // for ToVerticalSlice
 
     private bool hasFired = false;
+    private bool playerInZone = false;
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (triggerOnce && hasFired) return;
         if (!other.CompareTag("Player")) return;
+        playerInZone = true;
+        TryFire();
+    }
 
-        hasFired = true;
+    void OnTriggerStay2D(Collider2D other)
+    {
+        if (!other.CompareTag("Player")) return;
+        if (!hasFired) TryFire();
+    }
 
-        if (TutorialManager.Instance == null)
-        {
-            Debug.LogWarning("TutorialTrigger: No TutorialManager in scene!");
-            return;
-        }
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+            playerInZone = false;
+    }
+
+    void TryFire()
+    {
+        // If it already fired successfully, do nothing
+        if (hasFired) return; 
+        if (TutorialManager.Instance == null) return;
+
+        bool successfullyTriggered = false;
 
         switch (triggerType)
         {
             case TriggerType.Gap:
-                TutorialManager.Instance.OnPlayerReachedGap();
+                // Check if tutorial is at the right step
+                if (TutorialManager.Instance.currentStep == TutorialStep.Explore || 
+                    TutorialManager.Instance.currentStep == TutorialStep.WalkAround)
+                {
+                    TutorialManager.Instance.OnPlayerReachedGap();
+                    successfullyTriggered = true;
+                }
                 break;
+
             case TriggerType.DrawMore:
-                TutorialManager.Instance.OnPlayerReachedDrawMoreArea();
+                // Check if tutorial is at the right step
+                if (TutorialManager.Instance.currentStep == TutorialStep.WaitingForDrawMore || 
+                    TutorialManager.Instance.currentStep == TutorialStep.CrossBridge)
+                {
+                    TutorialManager.Instance.OnPlayerReachedDrawMoreArea();
+                    successfullyTriggered = true;
+                }
                 break;
-            case TriggerType.Pencil:
-                Debug.Log("Pencil trigger fired");
-                break;
+
             case TriggerType.ToVerticalSlice:
-                TutorialManager.Instance.OnPlayerReachedEnd();
+                if (TutorialManager.Instance.currentStep == TutorialStep.Done)
+                {
+                    TutorialManager.Instance.OnPlayerReachedEnd();
+                    successfullyTriggered = true;
+                }
                 break;
+        }
+
+        // ONLY lock the trigger if it actually did something!
+        if (successfullyTriggered)
+        {
+            hasFired = true;
+            Debug.Log("Trigger locked: " + triggerType);
         }
     }
 }
