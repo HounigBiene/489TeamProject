@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class RespawnManager : MonoBehaviour
 {
@@ -17,8 +16,6 @@ public class RespawnManager : MonoBehaviour
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        
-        // If no checkpoint has been set, the starting position is the checkpoint
         if (player != null && !hasCheckpoint)
         {
             currentCheckpoint = player.transform.position;
@@ -35,6 +32,12 @@ public class RespawnManager : MonoBehaviour
     public void RespawnPlayer()
     {
         if (player == null) return;
+
+        // RECORD DEATH METRICS
+        if (DeathTracker.Instance != null)
+        {
+            DeathTracker.Instance.RecordDeath(player.transform.position);
+        }
 
         // Move player to checkpoint
         player.transform.position = currentCheckpoint;

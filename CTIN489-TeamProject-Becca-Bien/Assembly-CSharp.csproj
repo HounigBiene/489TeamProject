@@ -60,12 +60,15 @@
     <Compile Include="Assets\Main Menu\Scripts\Start Game.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_A.cs" />
     <Compile Include="Assets\VerticalSlice\Drawing Mechanic\Scripts\PencilDurability.cs" />
+    <Compile Include="Assets\Telemetry\Scripts\Metrics\Metric.cs" />
     <Compile Include="Assets\Tutorial\Level Design 1\DialogueManager.cs" />
     <Compile Include="Assets\VerticalSlice\Level Design\Scripts\RespawnManager.cr.cs" />
     <Compile Include="Assets\Becca Prototype 4\Script\Sticker Collectable.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark02.cs" />
     <Compile Include="Assets\VerticalSlice\Level Design\Scripts\PlayerController.cs" />
     <Compile Include="Assets\Tutorial\Level Design 1\TutorialTrigger.cs" />
+    <Compile Include="Assets\Telemetry\Scripts\Manager\TelemetryManager.cs" />
+    <Compile Include="Assets\Telemetry\Scripts\DeathTracker.cs" />
     <Compile Include="Assets\Tutorial\Level Design 1\TutorialManager.cs" />
     <Compile Include="Assets\VerticalSlice\Level Design\Scripts\PlayerAnimator.cs" />
     <Compile Include="Assets\VerticalSlice\Level Design\Scripts\KillZone.cs" />
@@ -83,6 +86,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\WarpTextExample.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ShaderPropAnimator.cs" />
     <Compile Include="Assets\VerticalSlice\Drawing Mechanic\Scripts\ColorPencil.cs" />
+    <Compile Include="Assets\Telemetry\Scripts\Examples\RecordMetricsExample.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextInfoDebugTool.cs" />
     <Compile Include="Assets\VerticalSlice\Level Design\Scripts\AudioManager.cs" />
     <Compile Include="Assets\VerticalSlice\Level Design\Scripts\Checkpoint.cs" />
@@ -96,6 +100,8 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_FrameRateCounter.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshSpawner.cs" />
+    <Compile Include="Assets\Telemetry\Scripts\Metrics\SampledMetric.cs" />
+    <Compile Include="Assets\Telemetry\Scripts\Metrics\AccumulatedMetric.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\CameraController.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark03.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\DropdownSample.cs" />
@@ -107,6 +113,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TeleType.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventCheck.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshProFloatingText.cs" />
+    <Compile Include="Assets\Telemetry\Scripts\Metrics\MetricId.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
