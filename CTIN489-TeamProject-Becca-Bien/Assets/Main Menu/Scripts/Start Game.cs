@@ -5,6 +5,6 @@ public class StartGame : MonoBehaviour
 {
     public void LoadGame()
     {
-        SceneManager.LoadScene("Tutorial");
+        SceneManager.LoadScene("OpeningCutscene");
     }
 }

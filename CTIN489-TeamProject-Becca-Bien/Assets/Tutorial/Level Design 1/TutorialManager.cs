@@ -210,8 +210,7 @@ public class TutorialManager : MonoBehaviour
         if (drawPromptUI != null) drawPromptUI.SetActive(true);
 
         string[] lines = {
-            "Look at all this blank space!",
-            "I kind of want to draw more"
+            "Look at all this blank space!"
         };
 
         DialogueManager.Instance.ShowDialogue("Hero", characterProfile, lines, () => {
