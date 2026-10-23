@@ -49,38 +49,50 @@ public class PencilDurability : MonoBehaviour
         }
     }
 
-    void CheckDurability(ColorPencil pencil)
+    private void CheckDurability(ColorPencil pencil)
     {
-        if(pencil.currentUseTime >= isBrokenAfterSeconds)
+        if (pencil.currentUseTime >= isBrokenAfterSeconds)
         {
-            if(!pencil.isBroken)
+            pencil.currentUseTime = isBrokenAfterSeconds;
+
+            // Only record the transition from usable to broken.
+            if (!pencil.isBroken)
             {
                 pencil.isBroken = true;
                 pencil.isDull = true;
 
-                drawingScript.EndStroke();
-
-                Debug.Log("Pencil broke!");
-
                 UpdatePencilSprite();
+
+                if (PencilBreakTracker.Instance != null)
+                {
+                    PencilBreakTracker.Instance.RecordPencilBreak(
+                        pencil.colorName,
+                        playerPencil.transform.position
+                    );
+                }
+                else
+                {
+                    Debug.LogError(
+                        "PencilBreakTracker is missing from the scene!",
+                        this
+                    );
+                }
             }
 
             return;
         }
 
-        if(pencil.currentUseTime >= isDullAfterSeconds)
+        if (pencil.currentUseTime >= isDullAfterSeconds)
         {
-            if(!pencil.isDull)
+            if (!pencil.isDull)
             {
                 pencil.isDull = true;
 
-                Debug.Log("Pencil is dull!");
-
                 UpdatePencilSprite();
+
+                Debug.Log(pencil.colorName + " pencil is dull!");
             }
         }
-
-        return;
     }
 
     public void UpdatePencilSprite()

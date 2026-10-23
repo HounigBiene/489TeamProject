@@ -79,6 +79,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark02.cs" />
     <Compile Include="Assets\VerticalSlice\Level Design\Scripts\PlayerController.cs" />
     <Compile Include="Assets\Tutorial\Level Design 1\TutorialTrigger.cs" />
+    <Compile Include="Assets\Telemetry\Scripts\PencilBreakTracker.cs" />
     <Compile Include="Assets\Telemetry\Scripts\Manager\TelemetryManager.cs" />
     <Compile Include="Assets\Telemetry\Scripts\DeathTracker.cs" />
     <Compile Include="Assets\Tutorial\Level Design 1\TutorialManager.cs" />
@@ -126,6 +127,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TeleType.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventCheck.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshProFloatingText.cs" />
+    <Compile Include="Assets\VerticalSlice\Drawing Mechanic\Scripts\PickUpGlow.cs" />
     <Compile Include="Assets\Telemetry\Scripts\Metrics\MetricId.cs" />
     <Compile Include="Assets\Telemetry\Scripts\CollectableTimer.cs" />
   </ItemGroup>
