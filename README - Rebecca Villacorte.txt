@@ -1,3 +1,3 @@
-Becca 10/15
-- This week I worked on implementing the home screen and bg music
-- Next week I hope to work on expanding the level design w narrative
+Becca 10/22
+- This week I added the sharpener mechanic, tutorial scene cleanup, pencil break mechanics and pickup indicator and collectable timer metric
+- Next week I will work on level design and narratives

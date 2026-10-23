@@ -1,3 +1,3 @@
-This week I worked on the tutorial layout, added the dialogue, instruction, and profile assets, and then the tutorial scene and sequence (move instructions, click to pick up pencil, draw with pencil). Also fixed buggy jumping.
+This week I added checkpoints to collectables, added death count and location metrics, and added opening scene.
 
-Next week I will work on the opening cutscene.
+Next week I will work on character animation and replace draft cutscene
