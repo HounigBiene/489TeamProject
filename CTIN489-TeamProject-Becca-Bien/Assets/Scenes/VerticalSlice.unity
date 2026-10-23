@@ -3525,8 +3525,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec0d54a82ebb82349a94138f1fa99680, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Collectible
-  collectibleName: Smiley
-  scoreValue: 1
+  collectibleName: Umbrella
 --- !u!114 &251316432
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3743,6 +3742,51 @@ Transform:
   - {fileID: 1440958581}
   m_Father: {fileID: 1531717123}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90.231}
+--- !u!1 &331550079
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 331550081}
+  - component: {fileID: 331550080}
+  m_Layer: 0
+  m_Name: CollectibleTimeTracker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &331550080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 331550079}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d452c99fb50f4924db44fdb4275b2008, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CollectibleTimeTracker
+  firstCollectibleOnly: 0
+--- !u!4 &331550081
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 331550079}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 435.13773, y: 173.9491, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &332059594
 GameObject:
   m_ObjectHideFlags: 0
@@ -9667,8 +9711,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec0d54a82ebb82349a94138f1fa99680, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Collectible
-  collectibleName: Smiley
-  scoreValue: 1
+  collectibleName: Bag
 --- !u!114 &932857304
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13839,8 +13882,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec0d54a82ebb82349a94138f1fa99680, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Collectible
-  collectibleName: Smiley
-  scoreValue: 1
+  collectibleName: Hat
 --- !u!114 &1334157940
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19656,7 +19698,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 20.2, y: -3.9, z: 0}
-  m_LocalScale: {x: 13.434809, y: 7.994356, z: 5.6766}
+  m_LocalScale: {x: 16.457642, y: 18.68291, z: 5.6766}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -20287,3 +20329,4 @@ SceneRoots:
   - {fileID: 1374467044}
   - {fileID: 771240799}
   - {fileID: 280113950}
+  - {fileID: 331550081}
