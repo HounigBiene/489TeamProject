@@ -6247,6 +6247,11 @@ PlatformEffector2D:
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 1
+--- !u!1 &462214587 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6441837244048706943, guid: 9ca9d7b543646f24ab5c6e8d66c14497, type: 3}
+  m_PrefabInstance: {fileID: 6652711231438874354}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &485362307
 GameObject:
   m_ObjectHideFlags: 0
@@ -6711,6 +6716,30 @@ PlatformEffector2D:
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 1
+--- !u!1 &493947305 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3467816718494542747, guid: 6bfe251d163090b40b833612a7e63ca3, type: 3}
+  m_PrefabInstance: {fileID: 4448153175585369062}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &493947309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 493947305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b5d9ae375dc0d649a05136ecf8adc15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PickupGlow
+  pickupReach: 2.5
+  player: {fileID: 0}
+  glowColor: {r: 1, g: 0.85, b: 0.2, a: 1}
+  outlinePixels: 4
+  glowPixels: 11
+  pulseSpeed: 3
+  glowMaterial: {fileID: 0}
 --- !u!1 &546616819
 GameObject:
   m_ObjectHideFlags: 0
@@ -7524,6 +7553,11 @@ PolygonCollider2D:
       - {x: -0.565, y: -0.53499997}
       - {x: -0.385, y: -0.59499997}
   m_UseDelaunayMesh: 1
+--- !u!1 &626678668 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3393025151026550687, guid: 26e303347f181504599efcd540fd0910, type: 3}
+  m_PrefabInstance: {fileID: 7729879964433899961}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &628249885
 GameObject:
   m_ObjectHideFlags: 0
@@ -8764,7 +8798,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4191391590944251766, guid: ed9e1b805c799ef4abfb0f80233d9ba7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1948902724}
   m_SourcePrefab: {fileID: 100100000, guid: ed9e1b805c799ef4abfb0f80233d9ba7, type: 3}
 --- !u!1 &771240797
 GameObject:
@@ -9312,7 +9349,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4191391590944251766, guid: ed9e1b805c799ef4abfb0f80233d9ba7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1286671845}
   m_SourcePrefab: {fileID: 100100000, guid: ed9e1b805c799ef4abfb0f80233d9ba7, type: 3}
 --- !u!4 &883784103 stripped
 Transform:
@@ -9768,6 +9808,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1002485550 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4191391590944251766, guid: ed9e1b805c799ef4abfb0f80233d9ba7, type: 3}
+  m_PrefabInstance: {fileID: 763623248}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1037275874
 GameObject:
   m_ObjectHideFlags: 0
@@ -11715,6 +11760,30 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
   m_BlendShapeWeights: []
+--- !u!1 &1286671841 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4191391590944251766, guid: ed9e1b805c799ef4abfb0f80233d9ba7, type: 3}
+  m_PrefabInstance: {fileID: 883784102}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1286671845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1286671841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b5d9ae375dc0d649a05136ecf8adc15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PickupGlow
+  pickupReach: 2.5
+  player: {fileID: 0}
+  glowColor: {r: 1, g: 0.85, b: 0.2, a: 1}
+  outlinePixels: 4
+  glowPixels: 11
+  pulseSpeed: 3
+  glowMaterial: {fileID: 0}
 --- !u!1 &1290309658
 GameObject:
   m_ObjectHideFlags: 0
@@ -14761,6 +14830,25 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2133989549055712391, guid: 9ca9d7b543646f24ab5c6e8d66c14497, type: 3}
   m_PrefabInstance: {fileID: 6652711231438874354}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1420594660
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 462214587}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b5d9ae375dc0d649a05136ecf8adc15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PickupGlow
+  pickupReach: 2.5
+  player: {fileID: 0}
+  glowColor: {r: 1, g: 0.85, b: 0.2, a: 1}
+  outlinePixels: 4
+  glowPixels: 11
+  pulseSpeed: 3
+  glowMaterial: {fileID: 0}
 --- !u!1 &1440958580
 GameObject:
   m_ObjectHideFlags: 0
@@ -15059,6 +15147,25 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 224221931216290139, guid: 26e303347f181504599efcd540fd0910, type: 3}
   m_PrefabInstance: {fileID: 7729879964433899961}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1532782932
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 626678668}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b5d9ae375dc0d649a05136ecf8adc15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PickupGlow
+  pickupReach: 2.5
+  player: {fileID: 0}
+  glowColor: {r: 1, g: 0.85, b: 0.2, a: 1}
+  outlinePixels: 4
+  glowPixels: 11
+  pulseSpeed: 3
+  glowMaterial: {fileID: 0}
 --- !u!1 &1568339202
 GameObject:
   m_ObjectHideFlags: 0
@@ -19655,6 +19762,25 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6499799624579103697, guid: ed9e1b805c799ef4abfb0f80233d9ba7, type: 3}
   m_PrefabInstance: {fileID: 763623248}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1948902724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1002485550}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b5d9ae375dc0d649a05136ecf8adc15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PickupGlow
+  pickupReach: 2.5
+  player: {fileID: 0}
+  glowColor: {r: 1, g: 0.85, b: 0.2, a: 1}
+  outlinePixels: 4
+  glowPixels: 11
+  pulseSpeed: 3
+  glowMaterial: {fileID: 0}
 --- !u!1 &2000467864
 GameObject:
   m_ObjectHideFlags: 0
@@ -20171,7 +20297,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3467816718494542747, guid: 6bfe251d163090b40b833612a7e63ca3, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 493947309}
   m_SourcePrefab: {fileID: 100100000, guid: 6bfe251d163090b40b833612a7e63ca3, type: 3}
 --- !u!1001 &6652711231438874354
 PrefabInstance:
@@ -20260,7 +20389,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6441837244048706943, guid: 9ca9d7b543646f24ab5c6e8d66c14497, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1420594660}
   m_SourcePrefab: {fileID: 100100000, guid: 9ca9d7b543646f24ab5c6e8d66c14497, type: 3}
 --- !u!1001 &7729879964433899961
 PrefabInstance:
@@ -20353,7 +20485,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3393025151026550687, guid: 26e303347f181504599efcd540fd0910, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1532782932}
   m_SourcePrefab: {fileID: 100100000, guid: 26e303347f181504599efcd540fd0910, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
