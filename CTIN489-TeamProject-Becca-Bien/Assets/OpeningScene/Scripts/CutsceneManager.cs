@@ -26,8 +26,10 @@ public class CutsceneManager : MonoBehaviour
             panel.SetActive(false);
         }
 
-        // 2. Start at the first panel
+        // 2. Start at the first two panels
         currentPanelIndex = 0;
+        ShowPanel();
+        currentPanelIndex = 1;
         ShowPanel();
     }
 
