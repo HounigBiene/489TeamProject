@@ -28,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8688140392798748049}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: 0.26882792, w: 0.96318823}
+  m_LocalRotation: {x: 0, y: 0, z: 0.2688274, w: 0.96318835}
   m_LocalPosition: {x: 15.69, y: -2.66, z: 0}
   m_LocalScale: {x: 0.33709, y: 0.33709, z: 0.33709}
   m_ConstrainProportionsScale: 0
@@ -168,8 +168,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PickupGlow
   pickupReach: 3
   player: {fileID: 0}
-  glowColor: {r: 1, g: 0.85, b: 0.2, a: 1}
-  outlinePixels: 4
-  glowPixels: 11
+  glowColor: {r: 1, g: 0.9839374, b: 0, a: 1}
+  outlinePixels: 8
+  glowPixels: 17
   pulseSpeed: 3
   glowMaterial: {fileID: 0}

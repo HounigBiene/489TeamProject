@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2906313604946796755}
   - component: {fileID: 4213083916835908333}
   - component: {fileID: 2151469479534890695}
+  - component: {fileID: 6757102790609817517}
   m_Layer: 0
   m_Name: YellowPencil_0
   m_TagString: Untagged
@@ -27,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6441837244048706943}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: 0.55740786, w: 0.83023876}
+  m_LocalRotation: {x: 0, y: 0, z: 0.5574047, w: 0.83024096}
   m_LocalPosition: {x: -2.36, y: 2.37, z: 0}
   m_LocalScale: {x: 0.35, y: 0.35, z: 0.35}
   m_ConstrainProportionsScale: 0
@@ -79,8 +80,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1586686883
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 4165564952913773723, guid: 344afa1ee5cd05141bd5c7df27ad1abd, type: 3}
@@ -108,9 +109,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ColorPencil
   colorName: Yellow
   colorValue: {r: 1, g: 0.8277313, b: 0.17295581, a: 1}
+  maxPickupDistance: 3
   sharpSprite: {fileID: 4165564952913773723, guid: 344afa1ee5cd05141bd5c7df27ad1abd, type: 3}
-  dullSprite: {fileID: -4151390978379668979, guid: 9b2ac6d554b595f4abed7ece7dbd4b5a, type: 3}
-  brokenSprite: {fileID: 21300000, guid: afa777b84401bd8488066e8a205a46f0, type: 3}
+  dullSprite: {fileID: 4305252081852458666, guid: 93532fefe45001645a7417ca261c280e, type: 3}
+  brokenSprite: {fileID: -9216755554606574281, guid: afa777b84401bd8488066e8a205a46f0, type: 3}
   currentUseTime: 0
   isDull: 0
   isBroken: 0
@@ -144,7 +146,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -152,11 +154,30 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.84, y: 9.93}
+    oldSize: {x: 0.85, y: 4.69}
     newSize: {x: 0.84, y: 9.93}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.84, y: 9.93}
+  m_Size: {x: 0.85, y: 4.69}
   m_EdgeRadius: 0
+--- !u!114 &6757102790609817517
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6441837244048706943}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b5d9ae375dc0d649a05136ecf8adc15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PickupGlow
+  pickupReach: 2.5
+  player: {fileID: 0}
+  glowColor: {r: 0.9918583, g: 1, b: 0, a: 1}
+  outlinePixels: 8
+  glowPixels: 17
+  pulseSpeed: 3
+  glowMaterial: {fileID: 0}

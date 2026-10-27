@@ -275,7 +275,7 @@ public class TutorialManager : MonoBehaviour
         string[] lines = {
             "Oh no... my pencil snapped!",
             "I guess there's a limit to how much I can draw.",
-            "Luckily there's a sharpener and a new pencil right here!"
+            "Luckily there's a sharpener right here!"
         };
 
         DialogueManager.Instance.ShowDialogue("Hero", characterProfile, lines, () => {
