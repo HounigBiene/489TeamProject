@@ -1,28 +1,20 @@
 using UnityEngine;
 
-/**
-*
-* For colorable objects in the painitngs. When the player scribbles 
-* on the object for longer than 1.5 seconds with the correct color, 
-* we should switch to using the colored version of sprite, and users can be able to walk on it
-*
-**/
-
 public class BlankObject : MonoBehaviour
 {
     public string requiredColor = "Green";
     public bool isColored = false;
     
     [Header("Scribble Settings")]
-    private float fillDuration = 0.5f; // How long to scribble (seconds)
+    public float fillDuration = 1.5f; // Total seconds needed to color it
     
     [Header("Visuals")]
-    public Sprite blankSprite;     // The uncolored/outline sprite
-    public Sprite coloredSprite;   // The fully colored sprite
+    public Sprite blankSprite;     
+    public Sprite coloredSprite;   
 
     private SpriteRenderer spriteRenderer;
     private Collider2D objectCollider;
-    private float scribbleTime = 0f;
+    private float fillProgress = 0f; // accumulates over time
     
     private PlayerPencil cachedPlayerPencil;
 
@@ -34,7 +26,6 @@ public class BlankObject : MonoBehaviour
         if (objectCollider != null)
             objectCollider.isTrigger = true;
         
-        // Set blank sprite
         if (blankSprite != null && spriteRenderer != null)
             spriteRenderer.sprite = blankSprite;
     }
@@ -56,25 +47,14 @@ public class BlankObject : MonoBehaviour
                 if (cachedPlayerPencil == null || !cachedPlayerPencil.isHoldingPencil) return;
                 if (cachedPlayerPencil.heldColorName != requiredColor) return;
                 
-                // Accumulate scribble time
-                scribbleTime += Time.deltaTime;
+                // ADD to the progress instead of resetting it
+                fillProgress += Time.deltaTime;
                 
-                Debug.Log("Scribbling... " + scribbleTime.ToString("F1") + "s / " + fillDuration + "s");
-                
-                // Check if enough time has passed
-                if (scribbleTime >= fillDuration)
+                // Check if enough TOTAL time has passed
+                if (fillProgress >= fillDuration)
                 {
                     ColorObject(cachedPlayerPencil.heldColor);
                 }
-            }
-        }
-        else
-        {
-            // Mouse released - reset scribble timer
-            if (!isColored && scribbleTime > 0f)
-            {
-                scribbleTime = 0f;
-                Debug.Log("Scribble cancelled");
             }
         }
     }
@@ -84,9 +64,8 @@ public class BlankObject : MonoBehaviour
         if (isColored) return;
         
         isColored = true;
-        scribbleTime = 0f;
+        fillProgress = 0f; 
         
-        // Swap to colored sprite
         if (coloredSprite != null && spriteRenderer != null)
         {
             spriteRenderer.sprite = coloredSprite;
@@ -97,7 +76,6 @@ public class BlankObject : MonoBehaviour
             spriteRenderer.color = color;
         }
         
-        // Make it walkable
         if (objectCollider != null)
             objectCollider.isTrigger = false;
         
