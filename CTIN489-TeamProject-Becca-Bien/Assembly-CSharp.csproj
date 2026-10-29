@@ -103,6 +103,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshSpawner.cs" />
     <Compile Include="Assets\Telemetry\Scripts\Metrics\SampledMetric.cs" />
+    <Compile Include="Assets\VerticalSlice\Level Design\Scripts\IntroDialogue.cs" />
     <Compile Include="Assets\Telemetry\Scripts\Metrics\AccumulatedMetric.cs" />
     <Compile Include="Assets\VerticalSlice\Drawing Mechanic\Scripts\PencilSharpener.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\CameraController.cs" />
