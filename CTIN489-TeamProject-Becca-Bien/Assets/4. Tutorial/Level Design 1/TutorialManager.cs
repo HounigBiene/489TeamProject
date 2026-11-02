@@ -156,6 +156,7 @@ public class TutorialManager : MonoBehaviour
 
         string[] lines = {
             "Maybe I can draw a bridge over to the other side?",
+            "If it doesn't work I guess I can just erase it."
         };
 
         DialogueManager.Instance.ShowDialogue("Hero", characterProfile, lines, () => {
