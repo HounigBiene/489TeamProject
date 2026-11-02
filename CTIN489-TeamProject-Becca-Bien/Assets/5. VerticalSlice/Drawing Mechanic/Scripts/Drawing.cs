@@ -29,6 +29,10 @@ public class Drawing : MonoBehaviour
     [SerializeField, Range(0f, 1f)] private float drawingVolume = 0.5f;
     [SerializeField, Range(0.1f, 3f)] private float drawingPitch = 1f;
 
+    [Header("Eraser")]
+    [SerializeField, Min(0.05f)] private float eraserRadius = 0.3f;
+    [SerializeField] private bool eraseOnlyOnPaper = true;
+
     public bool IsDrawingOnPaper { get; private set; }
     public int StrokesCreated { get; private set; } = 0;
 
@@ -71,16 +75,13 @@ public class Drawing : MonoBehaviour
             Debug.LogWarning("Assign a Line Material on the Drawing component.", this);
     }
 
+
     private void Update()
     {
         Mouse mouse = Mouse.current;
         PlayerPencil player = PlayerPencil.Instance;
 
-        if (drawingCamera == null || !Application.isFocused ||
-            mouse == null || !mouse.leftButton.isPressed ||
-            mouse.leftButton.wasReleasedThisFrame ||
-            player == null || !player.isHoldingPencil ||
-            player.currentPencil == null || player.currentPencil.isBroken)
+        if (drawingCamera == null || !Application.isFocused || mouse == null)
         {
             EndStroke();
             return;
@@ -95,11 +96,43 @@ public class Drawing : MonoBehaviour
             return;
         }
 
-        float depth = Mathf.Abs(drawingPlaneZ - drawingCamera.transform.position.z);
+        float depth = Mathf.Abs(
+            drawingPlaneZ - drawingCamera.transform.position.z);
+
         Vector3 worldPosition = drawingCamera.ScreenToWorldPoint(
             new Vector3(screenPosition.x, screenPosition.y, depth));
+
         worldPosition.z = drawingPlaneZ;
 
+        // =====================================
+        // RIGHT CLICK: ERASE
+        // Works even if pencil is broken
+        // =====================================
+
+        if (mouse.rightButton.isPressed)
+        {
+            EndStroke();
+            EraseAtPosition(worldPosition);
+            return;
+        }
+
+        // =====================================
+        // LEFT CLICK: DRAW
+        // Requires a working pencil
+        // =====================================
+
+        if (!mouse.leftButton.isPressed ||
+            mouse.leftButton.wasReleasedThisFrame ||
+            player == null ||
+            !player.isHoldingPencil ||
+            player.currentPencil == null ||
+            player.currentPencil.isBroken)
+        {
+            EndStroke();
+            return;
+        }
+
+        // Check if mouse is inside paper
         SpriteMask paper = GetPaperAtPosition(worldPosition);
 
         if (paper == null)
@@ -108,24 +141,28 @@ public class Drawing : MonoBehaviour
             return;
         }
 
-        // Separate strokes when crossing between papers or switching pencils.
+        // Separate strokes when switching papers or pencils
         if (currentLine != null &&
-            (paper != currentPaper || player.currentPencil != strokePencil))
+            (paper != currentPaper ||
+             player.currentPencil != strokePencil))
         {
             EndStroke();
         }
 
+        // Start a new stroke or continue drawing
         if (currentLine == null)
         {
             BeginStroke(worldPosition, paper, player);
         }
-        else if (Vector2.Distance(worldPosition, lastWorldPoint) >= minimumPointDistance)
+        else if (Vector2.Distance(
+            worldPosition, lastWorldPoint) >= minimumPointDistance)
         {
             AddPoint(worldPosition);
         }
 
         IsDrawingOnPaper = currentLine != null;
     }
+
 
     private void BeginStroke(Vector3 worldPosition, SpriteMask paper, PlayerPencil player)
     {
@@ -281,5 +318,69 @@ public class Drawing : MonoBehaviour
     {
         if (fallbackMaterial != null)
             Destroy(fallbackMaterial);
+    }
+
+    private void EraseAtPosition(Vector3 worldPosition)
+    {
+        if (eraseOnlyOnPaper && GetPaperAtPosition(worldPosition) == null)
+            return;
+
+        List<GameObject> strokesToErase = new List<GameObject>();
+
+        foreach (Transform child in transform)
+        {
+            LineRenderer line = child.GetComponent<LineRenderer>();
+
+            if (line == null)
+                continue;
+
+            for (int i = 0; i < line.positionCount - 1; i++)
+            {
+                Vector3 pointA = line.useWorldSpace
+                    ? line.GetPosition(i)
+                    : line.transform.TransformPoint(line.GetPosition(i));
+
+                Vector3 pointB = line.useWorldSpace
+                    ? line.GetPosition(i + 1)
+                    : line.transform.TransformPoint(line.GetPosition(i + 1));
+
+                float distance = DistanceToSegment(
+                    worldPosition, pointA, pointB);
+
+                if (distance <= eraserRadius + lineWidth * 0.5f)
+                {
+                    strokesToErase.Add(child.gameObject);
+                    break;
+                }
+            }
+        }
+
+        foreach (GameObject stroke in strokesToErase)
+        {
+            // Immediately disable collider before destroying
+            EdgeCollider2D collider = stroke.GetComponent<EdgeCollider2D>();
+
+            if (collider != null)
+                collider.enabled = false;
+
+            stroke.SetActive(false);
+            Destroy(stroke);
+        }
+    }
+
+    private float DistanceToSegment(
+        Vector2 point, Vector2 start, Vector2 end)
+    {
+        Vector2 segment = end - start;
+
+        if (segment.sqrMagnitude < 0.0001f)
+            return Vector2.Distance(point, start);
+
+        float t = Mathf.Clamp01(
+            Vector2.Dot(point - start, segment) / segment.sqrMagnitude);
+
+        Vector2 closestPoint = start + t * segment;
+
+        return Vector2.Distance(point, closestPoint);
     }
 }
