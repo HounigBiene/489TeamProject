@@ -61,7 +61,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7438547626593964414
 Transform:
   m_ObjectHideFlags: 0
@@ -161,6 +161,8 @@ MonoBehaviour:
   drawingSound: {fileID: 8300000, guid: e0cf40db0d6c9e849a527a4f4029c410, type: 3}
   drawingVolume: 0.5
   drawingPitch: 1
+  eraserRadius: 0.3
+  eraseOnlyOnPaper: 1
 --- !u!82 &6133261222851571832
 AudioSource:
   m_ObjectHideFlags: 0
@@ -452,7 +454,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3299561148089165195
 Transform:
   m_ObjectHideFlags: 0
