@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class TutorialTrigger : MonoBehaviour
 {
-    public enum TriggerType { Gap, DrawMore, Pencil, ToVerticalSlice }
+    public enum TriggerType { Gap, DrawMore, Pencil, ToAct1 }
 
     [SerializeField] private TriggerType triggerType = TriggerType.Gap;
 
@@ -58,7 +58,7 @@ public class TutorialTrigger : MonoBehaviour
                 }
                 break;
 
-            case TriggerType.ToVerticalSlice:
+            case TriggerType.ToAct1:
                 if (TutorialManager.Instance.currentStep == TutorialStep.Done)
                 {
                     TutorialManager.Instance.OnPlayerReachedEnd();

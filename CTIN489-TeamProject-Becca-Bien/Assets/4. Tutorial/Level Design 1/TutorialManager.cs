@@ -330,8 +330,8 @@ public class TutorialManager : MonoBehaviour
     {
         if (currentStep == TutorialStep.Done)
         {
-            Debug.Log("Loading Vertical Slice...");
-            SceneManager.LoadScene("VerticalSlice");
+            Debug.Log("Loading Act 1...");
+            SceneManager.LoadScene("Act 1");
         }
     }
 }
