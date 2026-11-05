@@ -1,3 +1,3 @@
-This week I added checkpoints to collectables, added death count and location metrics, and added opening scene.
+This week I added erase icon for tutorial and collectable list UI
 
-Next week I will work on character animation and replace draft cutscene
+Next week I will work on smoothing out jumps and character animation
