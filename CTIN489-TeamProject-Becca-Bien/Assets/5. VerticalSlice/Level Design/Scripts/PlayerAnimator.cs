@@ -34,10 +34,6 @@ public class PlayerAnimator : MonoBehaviour
             inputX = -1f;
         if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
             inputX = 1f;
-        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
-            inputY = 1f;
-        if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
-            inputY = -1f;
         
         Vector2 direction = new Vector2(inputX, inputY);
         

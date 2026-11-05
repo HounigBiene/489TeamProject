@@ -6,7 +6,13 @@ public class PlayerController : MonoBehaviour
     [Header("Movement")]
     public float moveSpeed = 7f;
     public float jumpForce = 12f;
-    
+
+    [Header("Camera Zoom")]
+    public Camera mainCamera;
+    public float normalCameraSize = 8f;
+    public float zoomedOutCameraSize = 14f;
+    public float zoomSpeed = 5f;
+
     [Header("Ground Check")]
     public Transform groundCheck;        
     public float groundCheckRadius = 0.2f;
@@ -46,6 +52,20 @@ public class PlayerController : MonoBehaviour
             moveX = -1f;
         if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
             moveX = 1f;
+
+        // Camera zoom when holding W
+        if (mainCamera != null)
+        {
+            float targetSize = Input.GetKey(KeyCode.W)
+                ? zoomedOutCameraSize
+                : normalCameraSize;
+
+            mainCamera.orthographicSize = Mathf.Lerp(
+                mainCamera.orthographicSize,
+                targetSize,
+                zoomSpeed * Time.deltaTime
+            );
+        }
 
         // Ground check with OverlapCircle
         if (groundCheck != null)
