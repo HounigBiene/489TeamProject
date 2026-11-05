@@ -1,3 +1,3 @@
-Becca 10/22
-- This week I added the sharpener mechanic, tutorial scene cleanup, pencil break mechanics and pickup indicator and collectable timer metric
-- Next week I will work on level design and narratives
+Becca 11/5
+- This week I added and fixed Act 1 based off playtesting feedback. I also added a zoom out mechanic to see the level
+- Next week I will block out Act 2 and add SFX and BGM to everything
