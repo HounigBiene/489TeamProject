@@ -9160,18 +9160,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 496962598}
     m_Modifications:
     - target: {fileID: 6602368533828615706, guid: cd3f1b05aba1086489390bf8d7044a83, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 6602368533828615706, guid: cd3f1b05aba1086489390bf8d7044a83, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 6602368533828615706, guid: cd3f1b05aba1086489390bf8d7044a83, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 6602368533828615706, guid: cd3f1b05aba1086489390bf8d7044a83, type: 3}
       propertyPath: m_LocalPosition.x
       value: 16.8
       objectReference: {fileID: 0}
@@ -9210,10 +9198,6 @@ PrefabInstance:
     - target: {fileID: 6602368533828615706, guid: cd3f1b05aba1086489390bf8d7044a83, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 31.189
-      objectReference: {fileID: 0}
-    - target: {fileID: 6602368533828615706, guid: cd3f1b05aba1086489390bf8d7044a83, type: 3}
-      propertyPath: m_ConstrainProportionsScale
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8688140392798748049, guid: cd3f1b05aba1086489390bf8d7044a83, type: 3}
       propertyPath: m_Name
@@ -11546,6 +11530,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1712435956291338916, guid: 1b05aae8efc7d5b4e9375d463def49d5, type: 3}
+      propertyPath: sharpenerSound
+      value: 
+      objectReference: {fileID: 8300000, guid: b6bcdfecd5c234042bcc4bd044b5f3d2, type: 3}
     - target: {fileID: 2680121530502836298, guid: 1b05aae8efc7d5b4e9375d463def49d5, type: 3}
       propertyPath: m_Name
       value: Scripts

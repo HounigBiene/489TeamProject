@@ -2997,6 +2997,7 @@ MonoBehaviour:
   collectableSound: {fileID: 8300000, guid: 6f80bef69765c7d4e8a00fb4f350c7fe, type: 3}
   pencilPickupSound: {fileID: 8300000, guid: f01d263678a4f114db5119bb2226184b, type: 3}
   coloringSound: {fileID: 8300000, guid: 41f01a072d3233a419411855d0d6b261, type: 3}
+  sharpenerSound: {fileID: 8300000, guid: b6bcdfecd5c234042bcc4bd044b5f3d2, type: 3}
 --- !u!4 &1366164170
 Transform:
   m_ObjectHideFlags: 0

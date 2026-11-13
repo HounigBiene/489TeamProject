@@ -2913,6 +2913,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Collectible
   collectibleName: Umbrella
+  collectableUI: {fileID: 0}
 --- !u!114 &251316432
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8475,6 +8476,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Collectible
   collectibleName: Bag
+  collectableUI: {fileID: 0}
 --- !u!114 &932857304
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13098,6 +13100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Collectible
   collectibleName: Hat
+  collectableUI: {fileID: 0}
 --- !u!114 &1334157940
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19452,22 +19455,6 @@ PrefabInstance:
     - target: {fileID: 5270592631785573331, guid: 1b05aae8efc7d5b4e9375d463def49d5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6618175732713020330, guid: 1b05aae8efc7d5b4e9375d463def49d5, type: 3}
-      propertyPath: profilePic
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6618175732713020330, guid: 1b05aae8efc7d5b4e9375d463def49d5, type: 3}
-      propertyPath: dialogueText
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6618175732713020330, guid: 1b05aae8efc7d5b4e9375d463def49d5, type: 3}
-      propertyPath: dialoguePanel
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6618175732713020330, guid: 1b05aae8efc7d5b4e9375d463def49d5, type: 3}
-      propertyPath: clickIndicator
-      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
