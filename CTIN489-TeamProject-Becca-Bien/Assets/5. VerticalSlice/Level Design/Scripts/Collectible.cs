@@ -4,6 +4,9 @@ public class Collectible : MonoBehaviour
 {
     public string collectibleName = "Items";
 
+    [Header("Collectible UI")]
+    public CollectableUI collectableUI;
+
     private bool isCollected = false;
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -35,11 +38,15 @@ public class Collectible : MonoBehaviour
             AudioManager.Instance.PlayCollectableSound();
         }
 
+        // Update the collectible UI.
+        if (collectableUI != null)
+        {
+            collectableUI.SetCollected();
+        }
+
         Debug.Log(
             $"Collected: {collectibleName}"
         );
-
-        // TODO: Add to score, play particle effect, etc.
 
         Destroy(gameObject);
     }

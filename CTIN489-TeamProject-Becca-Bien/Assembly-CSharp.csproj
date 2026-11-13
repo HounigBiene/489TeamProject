@@ -69,6 +69,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventHandler.cs" />
     <Compile Include="Assets\5. VerticalSlice\Drawing Mechanic\Scripts\ColorPencil.cs" />
     <Compile Include="Assets\1. Main Menu\Scripts\Start Game.cs" />
+    <Compile Include="Assets\5. VerticalSlice\Level Design\Scripts\CollectableUI.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\EnvMapAnimator.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_A.cs" />
     <Compile Include="Assets\5. VerticalSlice\Drawing Mechanic\Scripts\PickUpGlow.cs" />

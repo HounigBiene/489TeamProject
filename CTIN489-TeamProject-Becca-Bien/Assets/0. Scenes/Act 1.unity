@@ -901,6 +901,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Collectible
   collectibleName: Items
+  collectableUI: {fileID: 461116698}
 --- !u!1 &84022793
 GameObject:
   m_ObjectHideFlags: 0
@@ -2976,6 +2977,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Collectible
   collectibleName: Items
+  collectableUI: {fileID: 353402867}
 --- !u!1 &353402863
 GameObject:
   m_ObjectHideFlags: 0
@@ -2987,6 +2989,7 @@ GameObject:
   - component: {fileID: 353402864}
   - component: {fileID: 353402866}
   - component: {fileID: 353402865}
+  - component: {fileID: 353402867}
   m_Layer: 5
   m_Name: Item
   m_TagString: Untagged
@@ -3003,14 +3006,14 @@ RectTransform:
   m_GameObject: {fileID: 353402863}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.16192372, y: 0.38132, z: 0.38132}
+  m_LocalScale: {x: 0.18195368, y: 0.4284893, z: 0.4284893}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1472169042}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -28.5, y: -0}
+  m_AnchoredPosition: {x: -30.1, y: -13.6}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &353402865
@@ -3026,7 +3029,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.4481132, g: 0.4481132, b: 0.4481132, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3051,6 +3054,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 353402863}
   m_CullTransparentMesh: 1
+--- !u!114 &353402867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 353402863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3aa85f6d1a850bb46b934d4485eaf620, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CollectableUI
 --- !u!1 &364531544
 GameObject:
   m_ObjectHideFlags: 0
@@ -4250,6 +4265,7 @@ GameObject:
   - component: {fileID: 461116695}
   - component: {fileID: 461116697}
   - component: {fileID: 461116696}
+  - component: {fileID: 461116698}
   m_Layer: 5
   m_Name: Item (2)
   m_TagString: Untagged
@@ -4264,16 +4280,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 461116694}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: 0.055328436, w: 0.9984683}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.2579283, y: 0.38132, z: 0.38132}
+  m_LocalScale: {x: 0.28186408, y: 0.4167065, z: 0.4167065}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1472169042}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 6.343}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 9.8, y: -0}
+  m_AnchoredPosition: {x: 9.7, y: -17.5}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &461116696
@@ -4289,7 +4305,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.4509804, g: 0.4509804, b: 0.4509804, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -4314,6 +4330,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 461116694}
   m_CullTransparentMesh: 1
+--- !u!114 &461116698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 461116694}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3aa85f6d1a850bb46b934d4485eaf620, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CollectableUI
 --- !u!1 &487863711 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8695144624713682158, guid: 4cea5447fa947c746aabb90e8c437a81, type: 3}
@@ -4740,7 +4768,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 97397563772438693, guid: 4cea5447fa947c746aabb90e8c437a81, type: 3}
       propertyPath: m_Name
-      value: DialogueBox
+      value: UI
       objectReference: {fileID: 0}
     - target: {fileID: 97397563772438693, guid: 4cea5447fa947c746aabb90e8c437a81, type: 3}
       propertyPath: m_IsActive
@@ -5811,6 +5839,7 @@ GameObject:
   - component: {fileID: 772388635}
   - component: {fileID: 772388637}
   - component: {fileID: 772388636}
+  - component: {fileID: 772388638}
   m_Layer: 5
   m_Name: Item (1)
   m_TagString: Untagged
@@ -5827,14 +5856,14 @@ RectTransform:
   m_GameObject: {fileID: 772388634}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.16192372, y: 0.38132, z: 0.38132}
+  m_LocalScale: {x: 0.1833948, y: 0.431883, z: 0.431883}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1472169042}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 34.6, y: -2.9}
+  m_AnchoredPosition: {x: 32.4, y: 1}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &772388636
@@ -5850,7 +5879,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.4509804, g: 0.4509804, b: 0.4509804, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -5875,6 +5904,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 772388634}
   m_CullTransparentMesh: 1
+--- !u!114 &772388638
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 772388634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3aa85f6d1a850bb46b934d4485eaf620, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CollectableUI
 --- !u!1 &835409102
 GameObject:
   m_ObjectHideFlags: 0
@@ -6445,6 +6486,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Collectible
   collectibleName: Basket
+  collectableUI: {fileID: 0}
 --- !u!114 &977560320
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11120,6 +11162,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Collectible
   collectibleName: Items
+  collectableUI: {fileID: 2095088662}
 --- !u!1 &1646770702
 GameObject:
   m_ObjectHideFlags: 0
@@ -13734,6 +13777,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Collectible
   collectibleName: Items
+  collectableUI: {fileID: 772388638}
 --- !u!1001 &1905149984
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14073,6 +14117,7 @@ GameObject:
   - component: {fileID: 2095088659}
   - component: {fileID: 2095088661}
   - component: {fileID: 2095088660}
+  - component: {fileID: 2095088662}
   m_Layer: 5
   m_Name: Item (3)
   m_TagString: Untagged
@@ -14087,16 +14132,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2095088658}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0.0480327, w: 0.99884576}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.16192372, y: 0.38132, z: 0.38132}
+  m_LocalScale: {x: 0.20057492, y: 0.4723411, z: 0.4723411}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1472169042}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -5.506}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -9.9, y: 0}
+  m_AnchoredPosition: {x: -8.2, y: 0.7}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2095088660
@@ -14112,7 +14157,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.4509804, g: 0.4509804, b: 0.4509804, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -14137,6 +14182,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2095088658}
   m_CullTransparentMesh: 1
+--- !u!114 &2095088662
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2095088658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3aa85f6d1a850bb46b934d4485eaf620, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CollectableUI
 --- !u!1 &2139412720
 GameObject:
   m_ObjectHideFlags: 0
