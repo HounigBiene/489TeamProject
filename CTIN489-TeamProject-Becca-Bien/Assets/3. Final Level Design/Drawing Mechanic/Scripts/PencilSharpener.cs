@@ -59,6 +59,9 @@ public class PencilSharpener : MonoBehaviour
         if (clickArea.OverlapPoint(worldPosition))
         {
             SharpenPencil();
+
+            if (AudioManager.Instance != null)
+                AudioManager.Instance.PlaySharpenerSound();
         }
     }
 

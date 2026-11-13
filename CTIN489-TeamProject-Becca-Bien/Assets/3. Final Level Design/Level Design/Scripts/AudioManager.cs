@@ -10,6 +10,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip collectableSound;
     public AudioClip pencilPickupSound;
     public AudioClip coloringSound;
+    public AudioClip sharpenerSound;
 
     void Awake()
     {
@@ -36,6 +37,7 @@ public class AudioManager : MonoBehaviour
     public void PlayCollectableSound() => PlaySound(collectableSound);
     public void PlayPencilPickupSound() => PlaySound(pencilPickupSound);
     public void PlayColoringSound() => PlaySound(coloringSound);
+    public void PlaySharpenerSound() => PlaySound(sharpenerSound);
 
     void PlaySound(AudioClip clip)
     {

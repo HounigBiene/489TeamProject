@@ -83,7 +83,6 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeB.cs" />
     <Compile Include="Assets\3. Final Level Design\Drawing Mechanic\Scripts\PlayerPencil.cs" />
     <Compile Include="Assets\3. Final Level Design\Drawing Mechanic\Scripts\Drawing.cs" />
-    <Compile Include="Assets\3. Final Level Design\Drawing Mechanic\Scripts\NewMonoBehaviourScript.cs" />
     <Compile Include="Assets\3. Final Level Design\Drawing Mechanic\Scripts\DrawingEnabler.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexJitter.cs" />
     <Compile Include="Assets\3. Final Level Design\Drawing Mechanic\Scripts\PencilDurability.cs" />
