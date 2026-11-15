@@ -21,7 +21,15 @@ public class PlayerPencil : MonoBehaviour
 
     void Awake()
     {
-        Instance = this;
+        // Make sure there is only ONE instance and it never gets destroyed
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else if (Instance != this)
+        {
+            Destroy(gameObject);
+        }
     }
 
     void Start()
