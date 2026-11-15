@@ -71,7 +71,7 @@ public class CutsceneManager : MonoBehaviour
             }
 
             // 4. Pause briefly for the "page flip" effect
-            StartCoroutine(PageFlipPause());
+            //StartCoroutine(PageFlipPause());
         }
         else
         {

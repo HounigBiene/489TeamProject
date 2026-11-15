@@ -23,5 +23,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/0. Scenes/VerticalSlice.unity
     guid: d141c05807a928a499c4cdcb2780e403
+  - enabled: 1
+    path: Assets/0. Scenes/EndingCutscene.unity
+    guid: 8e77dd2d9cc05f24dacd1f88612b7782
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
