@@ -28,8 +28,10 @@ public class TutorialManager : MonoBehaviour
 
     [Header("UI Prompts")]
     public GameObject moveKeysUI;
+    public GameObject rwKeysUI;        // NEW: R / W UI
     public GameObject clickPromptUI;
     public GameObject drawPromptUI;
+    public GameObject sharpenPromptUI; // NEW: Sharpen UI
 
     [Header("Scene References")]
     public GameObject pencilObject;
@@ -71,8 +73,10 @@ public class TutorialManager : MonoBehaviour
     void HideAllPrompts()
     {
         if (moveKeysUI != null) moveKeysUI.SetActive(false);
+        if (rwKeysUI != null) rwKeysUI.SetActive(false);
         if (clickPromptUI != null) clickPromptUI.SetActive(false);
         if (drawPromptUI != null) drawPromptUI.SetActive(false);
+        if (sharpenPromptUI != null) sharpenPromptUI.SetActive(false);
     }
 
     void ShowIntroDialogue()
@@ -91,15 +95,17 @@ public class TutorialManager : MonoBehaviour
     void ShowWalkTutorial()
     {
         if (moveKeysUI != null) moveKeysUI.SetActive(true);
+        if (rwKeysUI != null) rwKeysUI.SetActive(true); // Turn on R/W here
         StartCoroutine(WaitForMovement());
     }
 
     IEnumerator WaitForMovement()
     {
         float timer = 0f;
-        float maxTime = 5f; // advance after 5 seconds regardless
+        float maxTime = 8f; 
         bool startedMoving = false;
 
+        // Wait for them to press a button OR wait 6 seconds
         while (timer < maxTime && !startedMoving)
         {
             timer += Time.deltaTime;
@@ -114,10 +120,53 @@ public class TutorialManager : MonoBehaviour
             yield return null;
         }
 
-        yield return new WaitForSeconds(1.5f);
-        if (moveKeysUI != null) moveKeysUI.SetActive(false);
-        SetStep(TutorialStep.Explore);
+        // NEW: If they pressed a button immediately, this forces the UI to stay 
+        // on screen for at least 4 seconds total before disappearing.
+        if (timer < 5f)
+        {
+            yield return new WaitForSeconds(4f - timer);
+        }
+        else
+        {
+            // If they took a long time to move, just wait 1.5 seconds to show them the UI
+            yield return new WaitForSeconds(1.5f);
+        }
+
+        // Only advance if we are still in the walk tutorial (prevents sequence breaking)
+        if (currentStep == TutorialStep.WalkAround)
+        {
+            SetStep(TutorialStep.Explore);
+        }
     }
+
+    // IEnumerator WaitForMovement()
+    // {
+    //     float timer = 0f;
+    //     float maxTime = 5f; 
+    //     bool startedMoving = false;
+
+    //     while (timer < maxTime && !startedMoving)
+    //     {
+    //         timer += Time.deltaTime;
+
+    //         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow) ||
+    //             Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow) ||
+    //             Input.GetKey(KeyCode.Space))
+    //         {
+    //             startedMoving = true;
+    //         }
+
+    //         yield return null;
+    //     }
+
+    //     yield return new WaitForSeconds(1.5f);
+        
+    //     // Only advance if we are still in the walk tutorial
+    //     if (currentStep == TutorialStep.WalkAround)
+    //     {
+    //         SetStep(TutorialStep.Explore);
+    //     }
+    // }
 
     void ShowGapDialogue()
     {
@@ -128,7 +177,8 @@ public class TutorialManager : MonoBehaviour
         };
 
         DialogueManager.Instance.ShowDialogue("Hero", characterProfile, lines, () => {
-            SetStep(TutorialStep.PickUpPencil);
+            if (currentStep == TutorialStep.SeeGap) // Ensure we didn't skip ahead
+                SetStep(TutorialStep.PickUpPencil);
         });
     }
 
@@ -147,7 +197,9 @@ public class TutorialManager : MonoBehaviour
 
         yield return new WaitForSeconds(0.5f);
         if (clickPromptUI != null) clickPromptUI.SetActive(false);
-        SetStep(TutorialStep.DrawBridge);
+        
+        if (currentStep == TutorialStep.PickUpPencil)
+            SetStep(TutorialStep.DrawBridge);
     }
 
     void ShowDrawTutorial()
@@ -173,22 +225,20 @@ public class TutorialManager : MonoBehaviour
 
         int startingStrokes = drawing.StrokesCreated;
         float timer = 0f;
-        float maxWaitTime = 20f; // Give them 20 seconds to figure it out
+        float maxWaitTime = 20f; 
 
         while (drawing.StrokesCreated <= startingStrokes)
         {
             timer += Time.deltaTime;
-            if (timer >= maxWaitTime) 
-            {
-                Debug.Log("Timeout: Player didn't draw a bridge immediately.");
-                break;
-            }
+            if (timer >= maxWaitTime) break;
             yield return null;
         }
 
         yield return new WaitForSeconds(0.5f);
         if (drawPromptUI != null) drawPromptUI.SetActive(false);
-        SetStep(TutorialStep.CrossBridge);
+
+        if (currentStep == TutorialStep.DrawBridge)
+            SetStep(TutorialStep.CrossBridge);
     }
 
     void ShowCrossTutorial()
@@ -199,22 +249,34 @@ public class TutorialManager : MonoBehaviour
         };
 
         DialogueManager.Instance.ShowDialogue("Hero", characterProfile, lines, () => {
-            SetStep(TutorialStep.WaitingForDrawMore); // Wait, don't loop
+            if (currentStep == TutorialStep.CrossBridge)
+                SetStep(TutorialStep.WaitingForDrawMore); 
         });
     }
 
+    // --- FORGIVING TRIGGERS ---
+
     public void OnPlayerReachedGap()
     {
-        // If they somehow reach the gap but the step is still WalkAround/Explore
-        if (currentStep == TutorialStep.Explore || currentStep == TutorialStep.WalkAround)
+        // If they are anywhere BEFORE the gap dialogue, fast-forward to it
+        if (currentStep == TutorialStep.Intro || 
+            currentStep == TutorialStep.WalkAround || 
+            currentStep == TutorialStep.Explore)
+        {
+            StopAllCoroutines(); 
             SetStep(TutorialStep.SeeGap);
+        }
     }
 
     public void OnPlayerReachedDrawMoreArea()
     {
-        // If they are in WaitingForDrawMore OR if they skipped ahead and are still in CrossBridge
-        if (currentStep == TutorialStep.WaitingForDrawMore || currentStep == TutorialStep.CrossBridge)
+        // If they ran past the bridge and reached the end before finishing
+        if (currentStep == TutorialStep.WaitingForDrawMore || 
+            currentStep == TutorialStep.CrossBridge ||
+            currentStep == TutorialStep.DrawBridge ||
+            currentStep == TutorialStep.PickUpPencil)
         {
+            StopAllCoroutines();
             SetStep(TutorialStep.DrawMoreForFun);
         }
     }
@@ -237,7 +299,7 @@ public class TutorialManager : MonoBehaviour
         yield return new WaitForSeconds(0.2f);
         
         float timer = 0f;
-        float maxWaitTime = 30f; // Safety timeout
+        float maxWaitTime = 30f; 
 
         PlayerPencil playerPencil = PlayerPencil.Instance;
 
@@ -245,22 +307,12 @@ public class TutorialManager : MonoBehaviour
         {
             timer += Time.deltaTime;
 
-            // Just check if the pencil is broken. We don't care about strokes anymore!
             bool pencilBroken = playerPencil != null && 
                                 playerPencil.currentPencil != null && 
                                 playerPencil.currentPencil.isBroken;
 
-            if (pencilBroken)
-            {
-                Debug.Log("Pencil broke! Advancing.");
-                break;
-            }
-
-            if (timer >= maxWaitTime)
-            {
-                Debug.LogWarning("Safety timeout reached in DrawMore.");
-                break;
-            }
+            if (pencilBroken) break;
+            if (timer >= maxWaitTime) break;
 
             yield return null;
         }
@@ -268,7 +320,8 @@ public class TutorialManager : MonoBehaviour
         yield return new WaitForSeconds(1f);
         if (drawPromptUI != null) drawPromptUI.SetActive(false);
 
-        SetStep(TutorialStep.PencilBreakDialogue);
+        if (currentStep == TutorialStep.DrawMoreForFun)
+            SetStep(TutorialStep.PencilBreakDialogue);
     }
 
     void ShowPencilBreakDialogue()
@@ -280,58 +333,35 @@ public class TutorialManager : MonoBehaviour
         };
 
         DialogueManager.Instance.ShowDialogue("Hero", characterProfile, lines, () => {
+            // 1. Set step to Done (this hides all other prompts)
             SetStep(TutorialStep.Done);
+            
+            // 2. NOW turn on the sharpener icon so it stays on screen
+            if (sharpenPromptUI != null) 
+                sharpenPromptUI.SetActive(true);
+
+            // 3. Start the timer to hide it
+            StartCoroutine(HideSharpenerAfterDelay(4f)); // Hides after 4 seconds
         });
     }
 
-    // void ShowFindNewPencil()
-    // {
-    //     if (clickPromptUI != null) clickPromptUI.SetActive(true);
+    IEnumerator HideSharpenerAfterDelay(float delay)
+    {
+        // Wait for the specified number of seconds
+        yield return new WaitForSeconds(delay);
 
-    //     string[] lines = {
-    //         "Another pencil! I'll use it more wisely this time."
-    //     };
+        // Turn the sharpener icon off
+        if (sharpenPromptUI != null)
+            sharpenPromptUI.SetActive(false);
+    }
 
-    //     DialogueManager.Instance.ShowDialogue("Hero", characterProfile, lines, () => {
-    //         StartCoroutine(WaitForNewPencilPickup());
-    //     });
-    // }
-
-    // IEnumerator WaitForNewPencilPickup()
-    // {
-    //     PlayerPencil playerPencil = PlayerPencil.Instance;
-
-    //     // Wait until they drop the broken pencil
-    //     while (playerPencil != null && playerPencil.isHoldingPencil)
-    //         yield return null;
-
-    //     // Wait until they pick up the new one
-    //     while (playerPencil != null && !playerPencil.isHoldingPencil)
-    //         yield return null;
-
-    //     // Hide the prompt immediately
-    //     if (clickPromptUI != null) clickPromptUI.SetActive(false);
-
-    //     // Wait a moment for the pickup to feel complete
-    //     yield return new WaitForSeconds(1.5f);
-
-    //     string[] lines = {
-    //         "Perfect! Now I know to be careful.",
-    //         "Let's keep going."
-    //     };
-
-    //     DialogueManager.Instance.ShowDialogue("Hero", characterProfile, lines, () => {
-    //         SetStep(TutorialStep.Done);
-    //     });
-    // }
-
-    //CHANGE SCENE
     public void OnPlayerReachedEnd()
     {
-        if (currentStep == TutorialStep.Done)
-        {
+        // Accept the End Trigger if they are on Done OR PencilBreakDialogue
+        // if (currentStep == TutorialStep.Done || currentStep == TutorialStep.PencilBreakDialogue)
+        // {
             Debug.Log("Loading Act 1...");
             SceneManager.LoadScene("Act 1");
-        }
+        // }
     }
 }

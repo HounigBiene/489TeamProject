@@ -59,11 +59,11 @@ public class TutorialTrigger : MonoBehaviour
                 break;
 
             case TriggerType.ToAct1:
-                if (TutorialManager.Instance.currentStep == TutorialStep.Done)
-                {
+                // if (TutorialManager.Instance.currentStep == TutorialStep.Done)
+                // {
                     TutorialManager.Instance.OnPlayerReachedEnd();
                     successfullyTriggered = true;
-                }
+                // }
                 break;
         }
 
