@@ -28,7 +28,7 @@ RectTransform:
   m_GameObject: {fileID: 1697420978766802081}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 4.662849, y: 0.38173375, z: 0.38173375}
+  m_LocalScale: {x: 3.6511505, y: 0.38173375, z: 0.38173375}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7746466380204103727}
@@ -89,7 +89,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80bc73c42df371649a466e2b22e4d4b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PencilHUD
-  hudContainer: {fileID: 0}
+  hudContainer: {fileID: 1697420978766802081}
   leadFillImage: {fileID: 8434676176765882597}
   maxPencilUseTime: 2
 --- !u!1 &4297885130567181173
@@ -150,14 +150,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -2455330433534101553, guid: 5d479392aff51c4459d4fc31f7b5abfc, type: 3}
+  m_Sprite: {fileID: 3968091297299902879, guid: 60aaf113b3924b54dbf25a8c88c6a645, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
