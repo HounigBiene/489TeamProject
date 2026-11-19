@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using USCG.Core.Telemetry;
+
 
 public class PlayerController : MonoBehaviour
 {
@@ -96,6 +98,13 @@ public class PlayerController : MonoBehaviour
         // Reset
         if (Input.GetKeyDown(KeyCode.R))
         {
+            // Save csv
+            if (TelemetryManager.instance != null)
+            {            
+                TelemetryManager.instance.PrintMetricsImmediate();
+            }
+                
+            //reload
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }

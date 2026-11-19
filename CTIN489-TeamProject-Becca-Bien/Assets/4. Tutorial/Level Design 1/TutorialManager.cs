@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
+using USCG.Core.Telemetry;
 
 public enum TutorialStep
 {
@@ -360,8 +361,16 @@ public class TutorialManager : MonoBehaviour
         // Accept the End Trigger if they are on Done OR PencilBreakDialogue
         // if (currentStep == TutorialStep.Done || currentStep == TutorialStep.PencilBreakDialogue)
         // {
-            Debug.Log("Loading Act 1...");
-            SceneManager.LoadScene("Act 1");
+        SaveDrawingsTelemetry.SaveDrawingData("Tutorial");
+
+        //save csv
+        if (TelemetryManager.instance != null)
+        {
+            TelemetryManager.instance.PrintMetricsImmediate();
+        }
+
+        Debug.Log("Loading Act 1...");
+        SceneManager.LoadScene("Act 1");
         // }
     }
 }

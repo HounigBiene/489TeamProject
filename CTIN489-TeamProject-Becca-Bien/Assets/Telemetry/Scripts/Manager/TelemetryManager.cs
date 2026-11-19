@@ -163,7 +163,7 @@ namespace USCG.Core.Telemetry
 
         // Prints all metrics to a file. The optional parameter can be used to reset all
         // current metrics, which will clear their values.
-        private void PrintMetricsImmediate(bool bResetMetrics = false)
+        public void PrintMetricsImmediate(bool bResetMetrics = false)
         {
             // Don't print anything if metrics are still printing. This gets reset in Update().
             if (_bIsPrintingMetrics)
@@ -199,7 +199,11 @@ namespace USCG.Core.Telemetry
             dateTime = dateTime.Replace(":", "_");
             dateTime = dateTime.Replace(" ", "___");
 
-            string filePath = $"{Application.persistentDataPath}/{Application.productName}-Metrics-{dateTime}.csv";
+            //get scene name
+            string sceneName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
+
+
+            string filePath = $"{Application.persistentDataPath}/{Application.productName}-{sceneName}-Metrics-{dateTime}.csv";
             File.WriteAllText(filePath, stringBuilder.ToString());
             Debug.Log($"Metrics written to {filePath}");
         }
