@@ -11655,6 +11655,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1123649532}
     - target: {fileID: 324979805939735576, guid: 1b05aae8efc7d5b4e9375d463def49d5, type: 3}
+      propertyPath: playerTransform
+      value: 
+      objectReference: {fileID: 62201911}
+    - target: {fileID: 324979805939735576, guid: 1b05aae8efc7d5b4e9375d463def49d5, type: 3}
+      propertyPath: maxDrawingDistance
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 324979805939735576, guid: 1b05aae8efc7d5b4e9375d463def49d5, type: 3}
       propertyPath: paperMasks.Array.size
       value: 16
       objectReference: {fileID: 0}

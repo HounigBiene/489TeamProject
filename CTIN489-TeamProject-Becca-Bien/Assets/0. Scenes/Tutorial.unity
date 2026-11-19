@@ -1140,6 +1140,8 @@ MonoBehaviour:
   lineWidth: 0.15
   minimumPointDistance: 0.08
   drawingPlaneZ: 0
+  playerTransform: {fileID: 1216851149}
+  maxDrawingDistance: 9
   sortingLayerName: Default
   sortingOrder: 10
   paperMasks:

@@ -3002,6 +3002,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Collectible
   collectibleName: Umbrella
   collectableUI: {fileID: 0}
+  storyTrigger: {fileID: 0}
 --- !u!114 &251316432
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8926,6 +8927,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Collectible
   collectibleName: Bag
   collectableUI: {fileID: 0}
+  storyTrigger: {fileID: 0}
 --- !u!114 &932857304
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13555,6 +13557,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Collectible
   collectibleName: Hat
   collectableUI: {fileID: 0}
+  storyTrigger: {fileID: 0}
 --- !u!114 &1334157940
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20324,6 +20327,14 @@ PrefabInstance:
       propertyPath: drawingCamera
       value: 
       objectReference: {fileID: 2071870873}
+    - target: {fileID: 324979805939735576, guid: 1b05aae8efc7d5b4e9375d463def49d5, type: 3}
+      propertyPath: playerTransform
+      value: 
+      objectReference: {fileID: 552576949}
+    - target: {fileID: 324979805939735576, guid: 1b05aae8efc7d5b4e9375d463def49d5, type: 3}
+      propertyPath: maxDrawingDistance
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 324979805939735576, guid: 1b05aae8efc7d5b4e9375d463def49d5, type: 3}
       propertyPath: 'paperMasks.Array.data[0]'
       value: 

@@ -1,3 +1,4 @@
+
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -11,6 +12,10 @@ public class Drawing : MonoBehaviour
     [SerializeField, Min(0.01f)] private float lineWidth = 0.15f;
     [SerializeField, Min(0.001f)] private float minimumPointDistance = 0.08f;
     [SerializeField] private float drawingPlaneZ = 0f;
+
+    [Header("Drawing Range")]
+    [SerializeField] private Transform playerTransform;
+    [SerializeField, Min(0.1f)] private float maxDrawingDistance = 3f;
 
     [Header("Rendering")]
     [SerializeField] private string sortingLayerName = "Default";
@@ -53,7 +58,6 @@ public class Drawing : MonoBehaviour
 
         drawingAudioSource = GetComponent<AudioSource>();
 
-        // Also handles objects that already had Drawing before RequireComponent.
         if (drawingAudioSource == null)
             drawingAudioSource = gameObject.AddComponent<AudioSource>();
 
@@ -67,14 +71,15 @@ public class Drawing : MonoBehaviour
         Shader shader = Shader.Find("Sprites/Default");
 
         if (shader == null)
-            shader = Shader.Find("Universal Render Pipeline/2D/Sprite-Unlit-Default");
+            shader = Shader.Find(
+                "Universal Render Pipeline/2D/Sprite-Unlit-Default");
 
         if (shader != null)
             fallbackMaterial = new Material(shader);
         else
-            Debug.LogWarning("Assign a Line Material on the Drawing component.", this);
+            Debug.LogWarning(
+                "Assign a Line Material on the Drawing component.", this);
     }
-
 
     private void Update()
     {
@@ -87,10 +92,15 @@ public class Drawing : MonoBehaviour
             return;
         }
 
+        // Automatically find the player if not assigned.
+        if (playerTransform == null && player != null)
+            playerTransform = player.transform;
+
         Vector2 screenPosition = mouse.position.ReadValue();
 
         if (screenPosition.x < 0f || screenPosition.y < 0f ||
-            screenPosition.x >= Screen.width || screenPosition.y >= Screen.height)
+            screenPosition.x >= Screen.width ||
+            screenPosition.y >= Screen.height)
         {
             EndStroke();
             return;
@@ -107,6 +117,7 @@ public class Drawing : MonoBehaviour
         // =====================================
         // RIGHT CLICK: ERASE
         // Works even if pencil is broken
+        // Not restricted by drawing range
         // =====================================
 
         if (mouse.rightButton.isPressed)
@@ -132,7 +143,17 @@ public class Drawing : MonoBehaviour
             return;
         }
 
-        // Check if mouse is inside paper
+        // =====================================
+        // NEW: CHECK DRAWING RANGE
+        // =====================================
+
+        if (!IsWithinDrawingRange(worldPosition))
+        {
+            EndStroke();
+            return;
+        }
+
+        // Check if mouse is inside paper.
         SpriteMask paper = GetPaperAtPosition(worldPosition);
 
         if (paper == null)
@@ -141,7 +162,7 @@ public class Drawing : MonoBehaviour
             return;
         }
 
-        // Separate strokes when switching papers or pencils
+        // Separate strokes when switching papers or pencils.
         if (currentLine != null &&
             (paper != currentPaper ||
              player.currentPencil != strokePencil))
@@ -149,7 +170,7 @@ public class Drawing : MonoBehaviour
             EndStroke();
         }
 
-        // Start a new stroke or continue drawing
+        // Start a new stroke or continue drawing.
         if (currentLine == null)
         {
             BeginStroke(worldPosition, paper, player);
@@ -163,14 +184,35 @@ public class Drawing : MonoBehaviour
         IsDrawingOnPaper = currentLine != null;
     }
 
+    // =====================================
+    // NEW: DRAWING RANGE
+    // =====================================
 
-    private void BeginStroke(Vector3 worldPosition, SpriteMask paper, PlayerPencil player)
+    private bool IsWithinDrawingRange(Vector3 worldPosition)
+    {
+        if (playerTransform == null)
+            return false;
+
+        Vector2 playerPosition = playerTransform.position;
+        Vector2 drawingPosition = worldPosition;
+
+        return Vector2.Distance(
+            playerPosition,
+            drawingPosition) <= maxDrawingDistance;
+    }
+
+    private void BeginStroke(
+        Vector3 worldPosition, SpriteMask paper, PlayerPencil player)
     {
         currentPaper = paper;
         strokePencil = player.currentPencil;
 
-        GameObject stroke = new GameObject("Stroke_" + nextStrokeNumber++);
-        stroke.transform.position = new Vector3(0f, 0f, drawingPlaneZ);
+        GameObject stroke = new GameObject(
+            "Stroke_" + nextStrokeNumber++);
+
+        stroke.transform.position =
+            new Vector3(0f, 0f, drawingPlaneZ);
+
         stroke.transform.SetParent(transform, true);
 
         currentLine = stroke.AddComponent<LineRenderer>();
@@ -186,18 +228,22 @@ public class Drawing : MonoBehaviour
         currentLine.sortingLayerName = sortingLayerName;
         currentLine.sortingOrder = sortingOrder;
 
-        Material material = lineMaterial != null ? lineMaterial : fallbackMaterial;
+        Material material =
+            lineMaterial != null ? lineMaterial : fallbackMaterial;
+
         if (material != null)
             currentLine.sharedMaterial = material;
 
-        // Colored strokes remain visible but have no physical collider.
+        // Colored strokes have no physical collider.
         currentCollider = null;
+
         if (createCollider && player.heldColorName == "Black")
         {
             currentCollider = stroke.AddComponent<EdgeCollider2D>();
             currentCollider.enabled = false;
             currentCollider.isTrigger = false;
             currentCollider.edgeRadius = lineWidth * 0.5f;
+
             stroke.tag = "Platform";
             stroke.layer = LayerMask.NameToLayer("Ground");
 
@@ -223,7 +269,9 @@ public class Drawing : MonoBehaviour
 
     private void AddPoint(Vector3 worldPosition)
     {
-        Vector3 localPosition = currentLine.transform.InverseTransformPoint(worldPosition);
+        Vector3 localPosition =
+            currentLine.transform.InverseTransformPoint(worldPosition);
+
         localPosition.z = 0f;
 
         int index = currentLine.positionCount;
@@ -232,7 +280,8 @@ public class Drawing : MonoBehaviour
 
         if (currentCollider != null)
         {
-            colliderPoints.Add(new Vector2(localPosition.x, localPosition.y));
+            colliderPoints.Add(
+                new Vector2(localPosition.x, localPosition.y));
 
             if (colliderPoints.Count >= 2)
             {
@@ -248,12 +297,18 @@ public class Drawing : MonoBehaviour
     {
         IsDrawingOnPaper = false;
 
-        if (drawingAudioSource != null && drawingAudioSource.isPlaying)
+        if (drawingAudioSource != null &&
+            drawingAudioSource.isPlaying)
+        {
             drawingAudioSource.Stop();
+        }
 
         // Discard clicks that never became a complete line.
-        if (currentLine != null && currentLine.positionCount < 2)
+        if (currentLine != null &&
+            currentLine.positionCount < 2)
+        {
             Destroy(currentLine.gameObject);
+        }
 
         currentLine = null;
         currentCollider = null;
@@ -264,7 +319,7 @@ public class Drawing : MonoBehaviour
 
     private SpriteMask GetPaperAtPosition(Vector3 worldPosition)
     {
-        // Prefer the existing paper when paper rectangles overlap.
+        // Prefer existing paper when rectangles overlap.
         if (IsInsidePaper(currentPaper, worldPosition))
             return currentPaper;
 
@@ -280,22 +335,31 @@ public class Drawing : MonoBehaviour
         return null;
     }
 
-    private bool IsInsidePaper(SpriteMask paper, Vector3 worldPosition)
+    private bool IsInsidePaper(
+        SpriteMask paper, Vector3 worldPosition)
     {
         if (paper == null || !paper.enabled ||
-            !paper.gameObject.activeInHierarchy || paper.sprite == null)
+            !paper.gameObject.activeInHierarchy ||
+            paper.sprite == null)
         {
             return false;
         }
 
-        Vector3 localPosition = paper.transform.InverseTransformPoint(worldPosition);
+        Vector3 localPosition =
+            paper.transform.InverseTransformPoint(worldPosition);
+
         Bounds bounds = paper.sprite.bounds;
 
-        // Account for paper rotation/scale and keep line thickness inside its edges.
+        // Account for paper rotation and scale.
         float padding = lineWidth * 0.5f + paperEdgeInset;
+
         Matrix4x4 matrix = paper.transform.worldToLocalMatrix;
-        float paddingX = padding * new Vector2(matrix.m00, matrix.m01).magnitude;
-        float paddingY = padding * new Vector2(matrix.m10, matrix.m11).magnitude;
+
+        float paddingX = padding *
+            new Vector2(matrix.m00, matrix.m01).magnitude;
+
+        float paddingY = padding *
+            new Vector2(matrix.m10, matrix.m11).magnitude;
 
         return localPosition.x >= bounds.min.x + paddingX &&
                localPosition.x <= bounds.max.x - paddingX &&
@@ -322,14 +386,19 @@ public class Drawing : MonoBehaviour
 
     private void EraseAtPosition(Vector3 worldPosition)
     {
-        if (eraseOnlyOnPaper && GetPaperAtPosition(worldPosition) == null)
+        if (eraseOnlyOnPaper &&
+            GetPaperAtPosition(worldPosition) == null)
+        {
             return;
+        }
 
-        List<GameObject> strokesToErase = new List<GameObject>();
+        List<GameObject> strokesToErase =
+            new List<GameObject>();
 
         foreach (Transform child in transform)
         {
-            LineRenderer line = child.GetComponent<LineRenderer>();
+            LineRenderer line =
+                child.GetComponent<LineRenderer>();
 
             if (line == null)
                 continue;
@@ -338,16 +407,19 @@ public class Drawing : MonoBehaviour
             {
                 Vector3 pointA = line.useWorldSpace
                     ? line.GetPosition(i)
-                    : line.transform.TransformPoint(line.GetPosition(i));
+                    : line.transform.TransformPoint(
+                        line.GetPosition(i));
 
                 Vector3 pointB = line.useWorldSpace
                     ? line.GetPosition(i + 1)
-                    : line.transform.TransformPoint(line.GetPosition(i + 1));
+                    : line.transform.TransformPoint(
+                        line.GetPosition(i + 1));
 
                 float distance = DistanceToSegment(
                     worldPosition, pointA, pointB);
 
-                if (distance <= eraserRadius + lineWidth * 0.5f)
+                if (distance <= eraserRadius +
+                    lineWidth * 0.5f)
                 {
                     strokesToErase.Add(child.gameObject);
                     break;
@@ -357,8 +429,8 @@ public class Drawing : MonoBehaviour
 
         foreach (GameObject stroke in strokesToErase)
         {
-            // Immediately disable collider before destroying
-            EdgeCollider2D collider = stroke.GetComponent<EdgeCollider2D>();
+            EdgeCollider2D collider =
+                stroke.GetComponent<EdgeCollider2D>();
 
             if (collider != null)
                 collider.enabled = false;
@@ -377,10 +449,32 @@ public class Drawing : MonoBehaviour
             return Vector2.Distance(point, start);
 
         float t = Mathf.Clamp01(
-            Vector2.Dot(point - start, segment) / segment.sqrMagnitude);
+            Vector2.Dot(point - start, segment) /
+            segment.sqrMagnitude);
 
         Vector2 closestPoint = start + t * segment;
 
         return Vector2.Distance(point, closestPoint);
+    }
+
+    // =====================================
+    // NEW: SHOW RANGE IN SCENE VIEW
+    // =====================================
+
+    private void OnDrawGizmosSelected()
+    {
+        Transform target = playerTransform;
+
+        if (target == null && PlayerPencil.Instance != null)
+            target = PlayerPencil.Instance.transform;
+
+        if (target == null)
+            return;
+
+        Gizmos.color = Color.cyan;
+
+        Gizmos.DrawWireSphere(
+            target.position,
+            maxDrawingDistance);
     }
 }
