@@ -1,3 +1,4 @@
+
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -6,6 +7,12 @@ public class PencilSharpener : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private Camera interactionCamera;
+
+    [Header("Interaction Range")]
+    [SerializeField, Min(0f)]
+    private float maxInteractionDistance = 3f;
+
+    public float MaxInteractionDistance => maxInteractionDistance;
 
     private BoxCollider2D clickArea;
 
@@ -55,13 +62,10 @@ public class PencilSharpener : MonoBehaviour
 
         Vector3 worldPosition = ray.GetPoint(distance);
 
-        // Only sharpen when the click is inside this object.
+        // Only sharpen when clicking directly on the sharpener.
         if (clickArea.OverlapPoint(worldPosition))
         {
             SharpenPencil();
-
-            if (AudioManager.Instance != null)
-                AudioManager.Instance.PlaySharpenerSound();
         }
     }
 
@@ -69,23 +73,46 @@ public class PencilSharpener : MonoBehaviour
     {
         PlayerPencil player = PlayerPencil.Instance;
 
-        if (player == null ||
-            !player.isHoldingPencil ||
+        if (player == null)
+            return;
+
+        // Check distance between player and sharpener.
+        float distance = Vector2.Distance(
+            player.transform.position,
+            transform.position
+        );
+
+        if (distance > maxInteractionDistance)
+        {
+            Debug.Log(
+                "Too far to use sharpener! Distance: " +
+                distance.ToString("F1") +
+                " (max: " + maxInteractionDistance + ")",
+                this
+            );
+
+            return;
+        }
+
+        if (!player.isHoldingPencil ||
             player.currentPencil == null)
         {
-            Debug.Log("Pick up a pencil before using the sharpener.", this);
+            Debug.Log(
+                "Pick up a pencil before using the sharpener.",
+                this
+            );
+
             return;
         }
 
         ColorPencil pencil = player.currentPencil;
 
-        // Restore THIS pencil's durability.
+        // Restore this pencil's durability.
         pencil.currentUseTime = 0f;
         pencil.isDull = false;
         pencil.isBroken = false;
 
         // Update the pencil's world sprite for when it is dropped.
-        // This does not make the hidden, held pencil visible.
         pencil.UpdateWorldSprite();
 
         // Update the pencil indicator beside the player.
@@ -95,6 +122,12 @@ public class PencilSharpener : MonoBehaviour
         if (durability != null)
         {
             durability.UpdatePencilSprite();
+        }
+
+        // Play sound only after successful sharpening.
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlaySharpenerSound();
         }
 
         Debug.Log(

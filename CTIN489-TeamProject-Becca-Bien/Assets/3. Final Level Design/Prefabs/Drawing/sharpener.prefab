@@ -82,7 +82,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: 37f2cd070b577fb44b1d17a487bc4254, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -154,6 +154,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PencilSharpener
   interactionCamera: {fileID: 0}
+  maxInteractionDistance: 5
 --- !u!114 &6385364729824420197
 MonoBehaviour:
   m_ObjectHideFlags: 0
