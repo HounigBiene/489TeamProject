@@ -196,7 +196,7 @@ public class TutorialManager : MonoBehaviour
         while (playerPencil == null || !playerPencil.isHoldingPencil)
             yield return null;
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.1f);
         if (clickPromptUI != null) clickPromptUI.SetActive(false);
         
         if (currentStep == TutorialStep.PickUpPencil)
@@ -342,7 +342,7 @@ public class TutorialManager : MonoBehaviour
                 sharpenPromptUI.SetActive(true);
 
             // 3. Start the timer to hide it
-            StartCoroutine(HideSharpenerAfterDelay(4f)); // Hides after 4 seconds
+            StartCoroutine(HideSharpenerAfterDelay(2f)); // Hides after 4 seconds
         });
     }
 

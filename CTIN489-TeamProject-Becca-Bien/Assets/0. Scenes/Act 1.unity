@@ -2426,6 +2426,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SceneSwitch
   sceneName: VerticalSlice
+  currentLevel: Act 1
 --- !u!1001 &270653835
 PrefabInstance:
   m_ObjectHideFlags: 0

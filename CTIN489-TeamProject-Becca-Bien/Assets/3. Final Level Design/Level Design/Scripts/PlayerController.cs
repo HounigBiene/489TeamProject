@@ -98,6 +98,9 @@ public class PlayerController : MonoBehaviour
         // Reset
         if (Input.GetKeyDown(KeyCode.R))
         {
+            string currentScene = SceneManager.GetActiveScene().name;
+            SaveDrawingsTelemetry.SaveDrawingData(currentScene);
+
             // Save csv
             if (TelemetryManager.instance != null)
             {            

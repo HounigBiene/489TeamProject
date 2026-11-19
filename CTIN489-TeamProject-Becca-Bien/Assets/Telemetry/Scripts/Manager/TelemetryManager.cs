@@ -64,6 +64,10 @@ namespace USCG.Core.Telemetry
 
         private void OnApplicationQuit()
         {
+            // Save the drawings when the game closes!
+            string currentScene = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
+            SaveDrawingsTelemetry.SaveDrawingData(currentScene);
+
             if (_printMetricsOnQuit)
             {
                 PrintMetricsImmediate();
