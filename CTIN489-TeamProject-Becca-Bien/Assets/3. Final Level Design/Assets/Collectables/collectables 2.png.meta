@@ -17,6 +17,9 @@ TextureImporter:
   - first:
       213: 3035564575850981956
     second: collectables 2_4
+  - first:
+      213: 5338143082417002173
+    second: collectables 2_5
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -118,11 +121,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 48
-        y: 711
+        y: 654
         width: 419
-        height: 809
+        height: 866
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -139,12 +142,12 @@ TextureImporter:
       name: collectables 2_1
       rect:
         serializedVersion: 2
-        x: 684
-        y: 896
+        x: 768
+        y: 1004
         width: 270
         height: 465
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -161,12 +164,12 @@ TextureImporter:
       name: collectables 2_2
       rect:
         serializedVersion: 2
-        x: 1061
-        y: 999
+        x: 1281
+        y: 1005
         width: 307
         height: 429
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -180,37 +183,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: collectables 2_3
-      rect:
-        serializedVersion: 2
-        x: 193
-        y: 157
-        width: 445
-        height: 604
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 595f50efe95c9bfa0800000000000000
-      internalID: -5784374959723383403
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: collectables 2_4
       rect:
         serializedVersion: 2
-        x: 872
-        y: 482
-        width: 271
-        height: 448
+        x: 614
+        y: 274
+        width: 445
+        height: 604
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -223,11 +204,33 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: collectables 2_5
+      rect:
+        serializedVersion: 2
+        x: 1347
+        y: 320
+        width: 271
+        height: 448
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: db69cabc9d4e41a40800000000000000
+      internalID: 5338143082417002173
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 6f1933f8593852a43b3af0b59b5dcc27
     internalID: 0
     vertices: []
     indices: 
@@ -242,6 +245,7 @@ TextureImporter:
       collectables 2_2: 5941426917843437165
       collectables 2_3: -5784374959723383403
       collectables 2_4: 3035564575850981956
+      collectables 2_5: 5338143082417002173
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

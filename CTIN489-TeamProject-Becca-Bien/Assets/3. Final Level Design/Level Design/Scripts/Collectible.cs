@@ -7,6 +7,9 @@ public class Collectible : MonoBehaviour
     [Header("Collectible UI")]
     public CollectableUI collectableUI;
 
+    [Header("Story Trigger (Optional)")]
+    public SparkStoryTrigger storyTrigger;
+
     private bool isCollected = false;
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -42,6 +45,12 @@ public class Collectible : MonoBehaviour
         if (collectableUI != null)
         {
             collectableUI.SetCollected();
+        }
+
+        // dialogue trigger for spark collectables
+        if (storyTrigger != null)
+        {
+            storyTrigger.TriggerSparkDialogue();
         }
 
         Debug.Log(

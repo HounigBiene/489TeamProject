@@ -89,7 +89,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b69312737ece4f94590bba2feaddf55a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::IntroDialogue
-  characterProfile: {fileID: 6919168667032496594, guid: 929b7b92c5695804c9aff224a343a782, type: 3}
+  characterProfile: {fileID: -2749518338762990462, guid: caa87d7719b2b6b43a4c8ecf86b82f77, type: 3}
 --- !u!1 &1610269480861689782
 GameObject:
   m_ObjectHideFlags: 0

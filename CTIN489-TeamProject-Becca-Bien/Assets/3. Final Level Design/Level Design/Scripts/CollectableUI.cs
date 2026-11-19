@@ -8,7 +8,7 @@ public class CollectableUI : MonoBehaviour
     void Awake()
     {
         itemImage = GetComponent<Image>();
-        itemImage.color = Color.gray;
+        itemImage.color = Color.black;
     }
 
     public void SetCollected()
