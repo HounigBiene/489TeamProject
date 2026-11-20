@@ -1,3 +1,3 @@
-This week I worked on smoothing out jumps and character animation (walk and idle)
+This week I worked on finalizing opening and ending scenes with narration and speech bubbles, connected all scenes to flow end to end, added new assets and collectables, and adjusted our telemetry
 
-Next I will work on the pencil UI and end sequence
+Next week I will work on the game trailer
