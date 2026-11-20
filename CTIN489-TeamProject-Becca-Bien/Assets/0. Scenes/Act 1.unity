@@ -1423,6 +1423,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Collectible
   collectibleName: Items
+  collectableUI: {fileID: 736884620}
+  storyTrigger: {fileID: 0}
   isFlower: 1
 --- !u!1 &84022793
 GameObject:
@@ -2408,6 +2410,17 @@ Transform:
   - {fileID: 1646770704}
   m_Father: {fileID: 319379073}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &121353442 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7902710115122178406, guid: 4eae508e0fb50b245b7f196b29174185, type: 3}
+  m_PrefabInstance: {fileID: 2064899352}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3aa85f6d1a850bb46b934d4485eaf620, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CollectableUI
 --- !u!1 &125589804
 GameObject:
   m_ObjectHideFlags: 0
@@ -3316,8 +3329,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cfc177c6e2d2ed49a6a8ffc364e9720, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SceneSwitch
-  sceneName: VerticalSlice
-  currentLevel: EndingCutscene
+  sceneName: EndingCutscene
+  currentLevel: Act 1
 --- !u!4 &268911248 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5767654213599217187, guid: 987a0d7d6e8c30743894d8b7cbd2f5bc, type: 3}
@@ -3897,6 +3910,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Collectible
   collectibleName: Items
+  collectableUI: {fileID: 121353442}
+  storyTrigger: {fileID: 0}
   isFlower: 1
 --- !u!1 &364531544
 GameObject:
@@ -6614,6 +6629,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 655340408896220584, guid: 4cea5447fa947c746aabb90e8c437a81, type: 3}
   m_PrefabInstance: {fileID: 613211460}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &736884620 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1016333349777942448, guid: 4eae508e0fb50b245b7f196b29174185, type: 3}
+  m_PrefabInstance: {fileID: 2064899352}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3aa85f6d1a850bb46b934d4485eaf620, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CollectableUI
 --- !u!1 &750462785
 GameObject:
   m_ObjectHideFlags: 0
@@ -7227,6 +7253,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Collectible
   collectibleName: Scroll
+  collectableUI: {fileID: 0}
+  storyTrigger: {fileID: 0}
   isFlower: 0
 --- !u!60 &960319590
 PolygonCollider2D:
@@ -7673,6 +7701,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Collectible
   collectibleName: Basket
+  collectableUI: {fileID: 0}
+  storyTrigger: {fileID: 0}
   isFlower: 0
 --- !u!114 &977560320
 MonoBehaviour:
@@ -8715,6 +8745,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Collectible
   collectibleName: Paintbrush
+  collectableUI: {fileID: 0}
+  storyTrigger: {fileID: 0}
   isFlower: 0
 --- !u!60 &1056107408
 PolygonCollider2D:
@@ -10171,6 +10203,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Collectible
   collectibleName: Spark
+  collectableUI: {fileID: 0}
+  storyTrigger: {fileID: 1267254104}
   isFlower: 0
 --- !u!212 &1267254103
 SpriteRenderer:
@@ -13650,6 +13684,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Collectible
   collectibleName: Items
+  collectableUI: {fileID: 2074110171}
+  storyTrigger: {fileID: 0}
   isFlower: 1
 --- !u!1 &1572144336
 GameObject:
@@ -13758,6 +13794,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Collectible
   collectibleName: Lightbulb
+  collectableUI: {fileID: 0}
+  storyTrigger: {fileID: 0}
   isFlower: 0
 --- !u!60 &1572144340
 PolygonCollider2D:
@@ -17201,6 +17239,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Collectible
   collectibleName: Items
+  collectableUI: {fileID: 736884620}
+  storyTrigger: {fileID: 0}
   isFlower: 1
 --- !u!1 &1904457288
 GameObject:
@@ -18294,6 +18334,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
   m_BlendShapeWeights: []
+--- !u!114 &2074110171 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5196996092481083929, guid: 4eae508e0fb50b245b7f196b29174185, type: 3}
+  m_PrefabInstance: {fileID: 2064899352}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3aa85f6d1a850bb46b934d4485eaf620, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CollectableUI
 --- !u!114 &2076603465 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2090177079298906052, guid: 4cea5447fa947c746aabb90e8c437a81, type: 3}
