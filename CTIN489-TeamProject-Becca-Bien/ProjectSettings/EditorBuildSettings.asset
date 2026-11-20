@@ -20,7 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/0. Scenes/Act 1.unity
     guid: f2504843ea72664419575d18d2b89507
-  - enabled: 1
+  - enabled: 0
     path: Assets/0. Scenes/VerticalSlice.unity
     guid: d141c05807a928a499c4cdcb2780e403
   - enabled: 1

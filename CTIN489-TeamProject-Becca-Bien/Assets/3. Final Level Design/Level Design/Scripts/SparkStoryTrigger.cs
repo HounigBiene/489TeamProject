@@ -5,15 +5,20 @@ public class SparkStoryTrigger : MonoBehaviour
     [Header("Dialogue Settings")]
     public Sprite characterProfile;
 
-    // A static variable means it remembers if we've seen it, 
     // even if the object is destroyed!
-    private static bool hasSeenSparkDialogue = false;
+    private bool hasSeenSparkDialogue = false;
 
-    void Start()
-    {
-        // Reset the static variable so we can test it again!
-        hasSeenSparkDialogue = false; 
-    }
+    // void Start()
+    // {
+    //     // Reset the static variable so we can test it again!
+    //     //hasSeenSparkDialogue = false; 
+    // }
+
+    // [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+    // static void ResetStatic() 
+    // { 
+    //     hasSeenSparkDialogue = false; 
+    // }
 
     public void TriggerSparkDialogue()
     {
