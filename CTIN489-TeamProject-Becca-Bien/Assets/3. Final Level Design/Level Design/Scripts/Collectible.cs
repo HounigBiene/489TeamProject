@@ -1,26 +1,23 @@
+
 using UnityEngine;
 
 public class Collectible : MonoBehaviour
 {
     public string collectibleName = "Items";
 
-    [Header("Collectible UI")]
-    public CollectableUI collectableUI;
-
-    [Header("Story Trigger (Optional)")]
-    public SparkStoryTrigger storyTrigger;
+    [Header("Flower Collection")]
+    public bool isFlower = false;
 
     private bool isCollected = false;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        // Only let the player collect this item once.
         if (isCollected || !other.CompareTag("Player"))
             return;
 
         isCollected = true;
 
-        // Record the time since gameplay started.
+        // Record collection time.
         if (CollectibleTimeTracker.Instance != null)
         {
             CollectibleTimeTracker.Instance.RecordCollection(
@@ -35,27 +32,25 @@ public class Collectible : MonoBehaviour
             );
         }
 
-        // Play collect sound.
+        // Play collection sound.
         if (AudioManager.Instance != null)
         {
             AudioManager.Instance.PlayCollectableSound();
         }
 
-        // Update the collectible UI.
-        if (collectableUI != null)
+        // Count flower collectibles.
+        if (isFlower)
         {
-            collectableUI.SetCollected();
+            CollectableDialogue flowerTrigger =
+                FindAnyObjectByType<CollectableDialogue>();
+
+            if (flowerTrigger != null)
+            {
+                flowerTrigger.CollectFlower();
+            }
         }
 
-        // dialogue trigger for spark collectables
-        if (storyTrigger != null)
-        {
-            storyTrigger.TriggerSparkDialogue();
-        }
-
-        Debug.Log(
-            $"Collected: {collectibleName}"
-        );
+        Debug.Log("Collected: " + collectibleName);
 
         Destroy(gameObject);
     }

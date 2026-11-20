@@ -30,8 +30,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: -0.46471074, w: 0.8854626}
   m_LocalPosition: {x: 27.44, y: 3.23, z: 0}
-  m_LocalScale: {x: 0.35, y: 0.35, z: 0.35}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -55.383}
@@ -81,7 +81,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 1586686883
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 5806247343882902020, guid: 7fb692936e367c54297cc9ad84731391, type: 3}
@@ -109,7 +109,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ColorPencil
   colorName: Black
   colorValue: {r: 0, g: 0, b: 0, a: 1}
-  maxPickupDistance: 3
+  maxPickupDistance: 5
   sharpSprite: {fileID: 5806247343882902020, guid: 7fb692936e367c54297cc9ad84731391, type: 3}
   dullSprite: {fileID: 3364420212256695481, guid: a5f0b8219990d4647ac1fd28825d9e08, type: 3}
   brokenSprite: {fileID: -2012382893496992895, guid: fb4b839b81e6ab44d82fa8972542eb0e, type: 3}
@@ -154,7 +154,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.88, y: 6.52}
+    oldSize: {x: 0.9, y: 4.88}
     newSize: {x: 0.84, y: 9.93}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
