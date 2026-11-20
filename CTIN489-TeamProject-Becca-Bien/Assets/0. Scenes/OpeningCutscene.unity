@@ -1189,7 +1189,7 @@ MonoBehaviour:
   nextSceneName: Tutorial
   pageFlipPauseTime: 1
   pageFlipSound: {fileID: 8300000, guid: 4f5aebe47b5920948b63a132f0d5a3b1, type: 3}
-  pageFlipVolume: 1
+  pageFlipVolume: 0.5
 --- !u!4 &940764340
 Transform:
   m_ObjectHideFlags: 0
